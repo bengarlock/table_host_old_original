@@ -1,0 +1,64 @@
+{
+  "reservations": [
+    {
+      "id": 1,
+      "booked": true,
+      "time": "7:00 PM",
+      "party_size": 2,
+      "first_name": "Benjamin",
+      "last_name": "Garlock",
+      "phone_number": "6462416885",
+      "reservation_notes": "Celebrating Birthday",
+      "guest_notes": "Friend of the owner",
+      "status": "booked"
+    },
+    {
+      "id": 2,
+      "booked": true,
+      "time": "8:00 PM",
+      "party_size": "5",
+      "first_name": "Bonnie",
+      "last_name": "Mather",
+      "phone_number": "2128675309",
+      "reservation_notes": "Celebrating Birthday",
+      "guest_notes": "Friend of the owner",
+      "status": "booked"
+    },
+    {
+      "id": 3,
+      "booked": true,
+      "time": "8:00 PM",
+      "party_size": "3",
+      "first_name": "Shanti",
+      "last_name": "Garlock",
+      "phone_number": "6462416885",
+      "reservation_notes": "Celebrating Birthday",
+      "guest_notes": "Friend of the owner",
+      "status": "booked"
+    },
+    {
+      "id": 4,
+      "booked": true,
+      "time": "7:00 PM",
+      "party_size": "2",
+      "first_name": "Benjamin",
+      "last_name": "Garlock",
+      "phone_number": "6462416885",
+      "reservation_notes": "Celebrating Birthday. Might be running late",
+      "guest_notes": "Friend of the owner",
+      "status": "booked"
+    },
+    {
+      "id": 5,
+      "booked": true,
+      "time": "9:00 PM",
+      "party_size": "3",
+      "first_name": "Polly",
+      "last_name": "Kennedy-Wells",
+      "phone_number": "6462416885",
+      "reservation_notes": "Friend of the owner.  Do not give her treats! ",
+      "guest_notes": "VIP",
+      "status": "booked"
+    }
+  ]
+}

@@ -1,0 +1,170 @@
+
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-content: center;
+  font-size: 30px;
+  background-color: #073f66;
+  padding: 10px;
+  color: white;
+  margin: 0px;
+  width: auto;
+  list-style: none;
+}
+
+#main-menu-button {
+  width: 25px;
+  height: 2px;
+  background-color: white;
+  margin: 6px 0;
+
+}
+
+
+#main-menu-container {
+  position: absolute;
+  display: block;
+  width: 250px;
+  background-color: lightgrey;
+  z-index: 1;
+}
+
+.menu-item {
+  font-size: 25px;
+  padding: 5px;
+}
+
+.menu-item:hover {
+  background-color: #073f66;
+  color: white;
+  transition: all 0.3s ease 0s;
+
+}
+
+.time-party-size {
+  justify-content: space-between;
+}
+
+.reservation-card {
+  padding: 10px;
+  width: available;
+  background-color: aliceblue;
+}
+
+.reservation-card:hover {
+  background-color: lightgrey;
+  transition: all 0.3s ease 0s;
+}
+
+.reservation-container {
+  width: 400px;
+  height: max-content;
+  border-right: black; size: 2px;
+  justify-content: space-between
+}
+
+#reservations-container-header{
+  font-size: 25px;
+  text-align: center;
+  background-color: darkgrey;
+  width: available;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+div#overlay {
+  z-index: 2;
+  background: rgba(0,0,0,0.7);
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0px;
+  left: 0px;
+  text-align: center;
+}
+
+#reservation-form-container{
+  position: relative;
+  border-radius: 10px;
+  z-index: 3;
+  margin: 150px auto 0px auto;
+  width: 65%;
+  height: 50%;
+  background: white;
+  color: #000;
+  overflow: hidden;
+}
+
+.reservation-form {
+  margin-top: 20px;
+  opacity: 100%;
+  background: white;
+  padding: 0 50px;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.reservation-form input {
+  background: #eee;
+  border: 1px solid grey;
+  padding: 12px;
+  margin: 10px;
+}
+
+textarea.notes {
+  width: 200px;
+  height: 100px;
+  background: #eee;
+  border: 1px solid grey;
+  padding: 12px;
+  margin: 10px;
+}
+
+.reservation-form select {
+  background: #eee;
+  border: 1px solid grey;
+  padding: 12px;
+}
+
+#wrapper {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding-left: 24px;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  text-align: left;
+  background-color: darkgrey;
+}
+
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+}
+
+tr:nth-child(even) {
+  background-color: aliceblue;
+}
+
+tr:hover {
+  background-color: lightgrey;
+  transition: all 0.3s ease 0s;
+}
+
