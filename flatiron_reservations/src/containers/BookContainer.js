@@ -74,6 +74,7 @@ class BookContainer extends React.Component {
                     {this.state.reservationForm ? <ReservationForm
                         key={this.state.reservationFormObj.id}
                         reservation={this.state.reservationFormObj}
+                        onClickHandler={this.onClickHandler}
                         onSubmitHandler={this.onSubmitHandler} /> : null }
                 </div>
 

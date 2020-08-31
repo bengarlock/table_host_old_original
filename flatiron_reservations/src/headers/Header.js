@@ -27,7 +27,7 @@ class Header extends React.Component {
 
                     </li>
                     <li>Flatiron Reservations</li>
-                    <li>Book</li>
+                    <li name="book">Book</li>
                 </ul>
 
                 <div>{this.state.menuClicked ? <MainMenu menuClickHandler={this.props.menuClickHandler} onClickHandler={this.onClickHandler}/> : null}</div>

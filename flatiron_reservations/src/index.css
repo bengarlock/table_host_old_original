@@ -94,9 +94,9 @@ div#overlay {
   position: relative;
   border-radius: 10px;
   z-index: 3;
-  margin: 150px auto 0px auto;
-  width: 65%;
-  height: 50%;
+  margin: 100px auto 0px auto;
+  width: 70%;
+  height: 65%;
   background: white;
   color: #000;
   overflow: hidden;
@@ -117,21 +117,24 @@ div#overlay {
   border: 1px solid grey;
   padding: 12px;
   margin: 10px;
-}
-
-textarea.notes {
-  width: 200px;
-  height: 100px;
-  background: #eee;
-  border: 1px solid grey;
-  padding: 12px;
-  margin: 10px;
+  width: 25%;
 }
 
 .reservation-form select {
   background: #eee;
   border: 1px solid grey;
   padding: 12px;
+  width: 25%;
+  margin: 10px;
+}
+
+textarea.notes {
+  width: 39%;
+  height: 100px;
+  background: #eee;
+  border: 1px solid grey;
+  padding: 12px;
+  margin: 10px;
 }
 
 #wrapper {
@@ -168,3 +171,10 @@ tr:hover {
   transition: all 0.3s ease 0s;
 }
 
+h2 {
+  margin-bottom: 20px;
+}
+
+#close {
+  margin-left: 97%;
+}

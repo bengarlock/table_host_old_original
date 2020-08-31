@@ -1,4 +1,11 @@
 {
+  "08-31-2020": [],
+  "09-01-2020": [],
+  "09-02-2020": [],
+  "09-03-2020": [],
+  "09-04-2020": [],
+  "09-05-2020": [],
+  "09-06-2020": [],
   "reservations": [
     {
       "id": 1,
@@ -9,26 +16,26 @@
       "last_name": "Garlock",
       "phone_number": "6462416885",
       "reservation_notes": "Celebrating Birthday",
-      "guest_notes": "Friend of the owner",
+      "guest_notes": "Friends with one of the servers",
       "status": "booked"
     },
     {
       "id": 2,
       "booked": true,
       "time": "8:00 PM",
-      "party_size": "5",
+      "party_size": "2",
       "first_name": "Bonnie",
       "last_name": "Mather",
       "phone_number": "2128675309",
       "reservation_notes": "Celebrating Birthday",
       "guest_notes": "Friend of the owner",
-      "status": "booked"
+      "status": "wrong-number"
     },
     {
       "id": 3,
       "booked": true,
       "time": "8:00 PM",
-      "party_size": "3",
+      "party_size": "4",
       "first_name": "Shanti",
       "last_name": "Garlock",
       "phone_number": "6462416885",
@@ -44,7 +51,7 @@
       "first_name": "Benjamin",
       "last_name": "Garlock",
       "phone_number": "6462416885",
-      "reservation_notes": "Celebrating Birthday. Might be running late",
+      "reservation_notes": "Celebrating Birthday. \n\nMight be running late",
       "guest_notes": "Friend of the owner",
       "status": "booked"
     },
@@ -52,13 +59,13 @@
       "id": 5,
       "booked": true,
       "time": "9:00 PM",
-      "party_size": "3",
+      "party_size": "4",
       "first_name": "Polly",
       "last_name": "Kennedy-Wells",
       "phone_number": "6462416885",
       "reservation_notes": "Friend of the owner.  Do not give her treats! ",
       "guest_notes": "VIP",
-      "status": "booked"
+      "status": "confirmed"
     }
   ]
 }
