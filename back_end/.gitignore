@@ -25,3 +25,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+#weather api key: 3836de81b0146034c2e3a530d8feff39
+#api.openweathermap.org/data/2.5/weather?q={city name}&appid=3836de81b0146034c2e3a530d8feff39
+
+api.openweathermap.org/data/2.5/weather?zip=07071,us
+
