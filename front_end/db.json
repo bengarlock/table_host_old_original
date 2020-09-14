@@ -21,15 +21,15 @@
     },
     {
       "id": 2,
-      "booked": true,
-      "time": "8:00 PM",
+      "booked": false,
+      "time": "7:00 PM",
       "party_size": "2",
-      "first_name": "Bonnie",
-      "last_name": "Mather",
-      "phone_number": "2128675309",
-      "reservation_notes": "Celebrating Birthday",
-      "guest_notes": "Friend of the owner",
-      "status": "wrong-number"
+      "first_name": "",
+      "last_name": "",
+      "phone_number": "",
+      "reservation_notes": "",
+      "guest_notes": "",
+      "status": "cancelled"
     },
     {
       "id": 3,
@@ -45,15 +45,15 @@
     },
     {
       "id": 4,
-      "booked": true,
+      "booked": false,
       "time": "7:00 PM",
       "party_size": "2",
-      "first_name": "Benjamin",
-      "last_name": "Garlock",
-      "phone_number": "6462416885",
-      "reservation_notes": "Celebrating Birthday. \n\nMight be running late",
-      "guest_notes": "Friend of the owner",
-      "status": "booked"
+      "first_name": "",
+      "last_name": "",
+      "phone_number": "",
+      "reservation_notes": "",
+      "guest_notes": "",
+      "status": "cancelled"
     },
     {
       "id": 5,
