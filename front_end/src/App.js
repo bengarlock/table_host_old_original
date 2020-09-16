@@ -17,7 +17,7 @@ class App extends React.Component {
             this.setState({
                 currentPage: <BookContainer />
             })
-        } else if (obj === "Reservations") {
+        } else if (obj === "Floor") {
             this.setState( {
                 currentPage: <ReservationsContainer />
             })

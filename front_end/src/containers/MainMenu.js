@@ -11,13 +11,11 @@ class MainMenu extends React.Component {
         return (
             <div id="main-menu-container">
                 <div className="menu-item" onClick={this.menuClickHandler}>Book</div>
-                <div className="menu-item" onClick={this.menuClickHandler}>Reservations</div>
+                <div className="menu-item" onClick={this.menuClickHandler}>Floor</div>
                 <div className="menu-item" onClick={this.menuClickHandler}>Guests</div>
             </div>
         )
     }
-
-
 }
 
 export default MainMenu

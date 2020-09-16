@@ -2,24 +2,24 @@ import React from 'react'
 import Slot from "../cards/Slot";
 import ReservationForm from "../forms/ReservationForm";
 
-const url = "http://localhost:3000/reservations/"
+const url = "http://localhost:3000/books/"
 
 class BookContainer extends React.Component {
 
     state = {
-        reservations: [],
+        slots: [],
         reservationForm: false,
         reservationFormObj: null
     }
 
     componentDidMount() {
-        fetch(url)
+        fetch(url + "110")
             .then(res => res.json())
-            .then(reservations => this.setState({reservations: reservations}))
+            .then(book => this.setState({slots: book.slots}))
     }
 
     renderSlots = () => {
-        return this.state.reservations.map(reservation => <Slot key={reservation.id} slot={reservation} onClickHandler={this.onClickHandler}/>)
+        return this.state.slots.map(slot => <Slot key={slot.id} slot={slot} onClickHandler={this.onClickHandler}/>)
     }
 
     onClickHandler = (obj) => {
