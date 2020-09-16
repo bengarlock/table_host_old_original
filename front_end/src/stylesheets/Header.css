@@ -1,0 +1,42 @@
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    font-size: 30px;
+    background-color: #073f66;
+    padding: 10px;
+    color: white;
+    margin: 0px;
+    width: auto;
+    list-style: none;
+}
+
+
+.arrow {
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 5px;
+}
+
+.right {
+    margin-left: 10px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+}
+
+.left {
+    margin-right: 10px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+}
+
+.date-picker {
+    font-size: 25px;
+    background: none;
+    color: white;
+    padding: 5px;
+    left: 25%;
+    right: 25%
+}
+
