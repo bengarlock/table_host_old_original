@@ -6,16 +6,19 @@ import "../stylesheets/Calendar.css"
 
 class DateCalendar extends Component {
     state = {
-        value: new Date(),
+        value: this.props.date,
     }
 
-    onChange = value => this.setState({ value })
+    onChange = value => {
+        this.setState({ value })
+        this.props.calendarSetDate(value)
+    }
 
     render() {
         const { value } = this.state;
         return (
             <div className="calendar-container">
-                <main className="Sample__container__content">
+                <main>
                     <Calendar
                         onChange={this.onChange}
                         showWeekNumbers

@@ -23,7 +23,13 @@ class Header extends React.Component {
         this.setState({
             date: today
         })
-        console.log()
+    }
+
+    calendarSetDate = (date) => {
+        this.setState({
+            date: date,
+            calendarClicked: !this.state.calendarClicked
+        })
     }
 
     renderDate = (e) => {
@@ -44,6 +50,11 @@ class Header extends React.Component {
         } else if (e.target.className === "date-picker") {
             this.setState({
                 calendarClicked: !this.state.calendarClicked
+            })
+        } else if (e.target.className === "date-now") {
+            let today = new Date()
+            this.setState({
+                date: today
             })
         }
     }
@@ -78,16 +89,15 @@ class Header extends React.Component {
 
                     </li>
                     <li className="date-picker-container">
-                            <span className="arrow left" value="date-back" onClick={this.renderDate}></span>
+                            <span className="arrow left" value="date-back" onClick={this.renderDate} onDoubleClick={null}></span>
                             <span className="date-picker" value="date-picker" onClick={this.renderDate}>
                                 {this.getDate()}
-                                {this.state.calendarClicked ? <DateCalendar /> : null}
+                                {this.state.calendarClicked ? <DateCalendar date={this.state.date} calendarSetDate={this.calendarSetDate}/> : null}
                             </span>
                             <span className="arrow right" value="date-forward" onClick={this.renderDate}></span>
                     </li>
-                    <li></li>
+                    <li style={{fontSize: "20px", padding: "10px"}} className="date-now" onClick={this.renderDate}>Today</li>
                 </ul>
-
                 <div>{this.state.menuClicked ? <MainMenu menuClickHandler={this.props.menuClickHandler} onClickHandler={this.onClickHandler}/> : null}</div>
             </nav>
         )
