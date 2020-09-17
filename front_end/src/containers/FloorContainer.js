@@ -3,7 +3,7 @@ import Reservation from "../cards/Reservation";
 
 const url = "http://localhost:3000/reservations/"
 
-class ReservationsContainer extends React.Component {
+class FloorContainer extends React.Component {
 
     state = {
         reservations: []
@@ -41,4 +41,4 @@ class ReservationsContainer extends React.Component {
 
 }
 
-export default ReservationsContainer
+export default FloorContainer

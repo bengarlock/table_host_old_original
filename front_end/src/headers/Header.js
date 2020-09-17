@@ -8,7 +8,6 @@ class Header extends React.Component {
     state = {
         menuClicked: false,
         calendarClicked: false,
-        date: '',
     }
 
     onClickHandler = () => {
@@ -18,61 +17,51 @@ class Header extends React.Component {
         })
     }
 
-    componentDidMount() {
-        let today = new Date()
-        this.setState({
-            date: today
-        })
-    }
-
-    calendarSetDate = (date) => {
-        this.setState({
-            date: date,
-            calendarClicked: !this.state.calendarClicked
-        })
-    }
-
+    //triggered on user clicking calendar buttons
     renderDate = (e) => {
         if (e.target.className === "arrow right") {
-            let date = this.state.date
+            let date = this.props.date
             date.setDate(date.getDate() + 1)
-            this.setState({
-                date: date
-            })
-            return this.state.date
+            this.props.setDate(date)
+            return this.props.date
+
         } else if (e.target.className === "arrow left") {
-            let date = this.state.date
+            let date = this.props.date
             date.setDate(date.getDate() - 1)
-            this.setState({
-                date: date
-            })
-            return this.state.date
+            this.props.setDate(date)
+            return this.props.date
+
         } else if (e.target.className === "date-picker") {
             this.setState({
                 calendarClicked: !this.state.calendarClicked
             })
+
         } else if (e.target.className === "date-now") {
-            let today = new Date()
-            this.setState({
-                date: today
-            })
+            let date = new Date()
+            this.props.setDate(date)
         }
     }
 
+    //used to display current state:date in header.
     getDate = () => {
-        if (this.state.date) {
+        if (this.props.date) {
             let today = new Date()
-            if (this.state.date === today){
+            if (this.props.date === today){
                 return String("Today")
             } else {
-                let date = this.state.date
+                let date = this.props.date
                 let NewDate = parseInt(date.getMonth()+1)  + "-" +  date.getDate() + "-" + date.getFullYear()
                 return String(NewDate)
             }
         } else {
             return "Today"
         }
+    }
 
+    toggleCalendar = () => {
+        this.setState({
+            calendarClicked: !this.state.calendarClicked
+        })
     }
 
 
@@ -89,10 +78,10 @@ class Header extends React.Component {
 
                     </li>
                     <li className="date-picker-container">
-                            <span className="arrow left" value="date-back" onClick={this.renderDate} onDoubleClick={null}></span>
+                            <span className="arrow left" value="date-back" onClick={this.renderDate}></span>
                             <span className="date-picker" value="date-picker" onClick={this.renderDate}>
                                 {this.getDate()}
-                                {this.state.calendarClicked ? <DateCalendar date={this.state.date} calendarSetDate={this.calendarSetDate}/> : null}
+                                {this.state.calendarClicked ? <DateCalendar date={this.props.date} setDate={this.props.setDate} toggleCalendar={this.toggleCalendar}/> : null}
                             </span>
                             <span className="arrow right" value="date-forward" onClick={this.renderDate}></span>
                     </li>

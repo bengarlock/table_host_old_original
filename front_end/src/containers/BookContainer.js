@@ -2,8 +2,6 @@ import React from 'react'
 import Slot from "../cards/Slot";
 import ReservationForm from "../forms/ReservationForm";
 
-const url = "http://localhost:3000/books/"
-
 class BookContainer extends React.Component {
 
     state = {
@@ -13,13 +11,11 @@ class BookContainer extends React.Component {
     }
 
     componentDidMount() {
-        fetch(url + "110")
+        let date = this.props.date
+        let url = "http://localhost:3000/date?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
+        fetch(url)
             .then(res => res.json())
-            .then(book => this.setState({slots: book.slots}))
-    }
-
-    renderSlots = () => {
-        return this.state.slots.map(slot => <Slot key={slot.id} slot={slot} onClickHandler={this.onClickHandler}/>)
+            .then(book => this.setState({slots: book[0].slots}))
     }
 
     onClickHandler = (obj) => {
@@ -30,7 +26,11 @@ class BookContainer extends React.Component {
         })
     }
 
-    onSubmitHandler = (obj) => {
+    renderSlots = () => {
+        return this.state.slots.map(slot => <Slot key={slot.id} slot={slot} onClickHandler={this.onClickHandler}/>)
+    }
+
+    /*onSubmitHandler = (obj) => {
         const packet = {
             method: "PATCH",
             headers: {
@@ -50,7 +50,7 @@ class BookContainer extends React.Component {
         this.setState({
             reservationForm: false
         })
-    }
+    }*/
 
 
     render() {
@@ -66,7 +66,7 @@ class BookContainer extends React.Component {
                         <th>Phone Number</th>
                         <th>Status</th>
                     </tr>
-                    {this.renderSlots()}
+                        {this.renderSlots()}
                     </tbody>
                 </table>
 

@@ -1,26 +1,29 @@
 import React from 'react';
 import './App.css';
 import Header from "./headers/Header";
-import ReservationsContainer from "./containers/ReservationsContainer";
+import FloorContainer from "./containers/FloorContainer";
 import BookContainer from "./containers/BookContainer";
+import { Route } from 'react-router-dom'
 import GuestContainer from "./containers/GuestContainer";
 
 
 class App extends React.Component {
 
     state = {
-        currentPage: <BookContainer />
+        date: new Date()
+    }
+
+    setDate = (date) => {
+        this.setState({
+            date: date
+        })
     }
 
     menuClickHandler = (obj) => {
         if (obj === "Book") {
-            this.setState({
-                currentPage: <BookContainer />
-            })
+            console.log("Book")
         } else if (obj === "Floor") {
-            this.setState( {
-                currentPage: <ReservationsContainer />
-            })
+            console.log("Floor")
         } else if (obj === "Guests") {
             console.log("Guests clicked")
         }
@@ -29,10 +32,11 @@ class App extends React.Component {
     render() {
         return (
             <>
-                <Header menuClickHandler={this.menuClickHandler}/>
-                {this.state.currentPage}
+                <Header menuClickHandler={this.menuClickHandler} date={this.state.date} setDate={this.setDate}/>
+                <Route exact path="/" render={ () => <BookContainer date={this.state.date}/> } />
+                <Route exact path="/floor" render={ () => <FloorContainer date={this.state.date}/> } />
             </>
-    );
+    )
   }
 }
 

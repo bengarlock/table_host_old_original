@@ -10,5 +10,10 @@ class BooksController < ApplicationController
     render json: @book
   end
 
+  def date
+    @book = Book.search_date(params[:date])
+    render json: @book
+  end
+
 
 end

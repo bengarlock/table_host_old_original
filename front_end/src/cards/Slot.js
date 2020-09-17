@@ -9,7 +9,7 @@ class Slot extends React.Component {
 
     render(){
         return(
-            <tr onDoubleClick={this.onClickHandler}>
+            <tr onDoubleClick={this.onClickHandler} data-slotid={this.props.slot.id}>
                 <td>{this.props.slot.time}</td>
                 <td>{this.props.slot.party_size}</td>
                 <td>{this.props.slot.first_name}</td>

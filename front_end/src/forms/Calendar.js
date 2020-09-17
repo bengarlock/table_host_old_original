@@ -6,12 +6,15 @@ import "../stylesheets/Calendar.css"
 
 class DateCalendar extends Component {
     state = {
-        value: this.props.date,
+        date: this.props.date,
     }
 
-    onChange = value => {
-        this.setState({ value })
-        this.props.calendarSetDate(value)
+    onChange = date => {
+        this.setState({
+            date: date
+        })
+        this.props.setDate(date)
+        this.props.toggleCalendar()
     }
 
     render() {
