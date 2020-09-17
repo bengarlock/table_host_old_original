@@ -1,6 +1,6 @@
 import React from "react"
 
-class ReservationForm extends React.Component{
+class ModifyReservationForm extends React.Component{
 
     state = {
         id: this.props.reservation.id,
@@ -134,4 +134,4 @@ class ReservationForm extends React.Component{
     }
 }
 
-export default ReservationForm
+export default ModifyReservationForm

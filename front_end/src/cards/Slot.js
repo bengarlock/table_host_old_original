@@ -3,7 +3,7 @@ import React from "react";
 class Slot extends React.Component {
 
     onClickHandler = () => {
-        this.props.onClickHandler(this.props.slot)
+        this.props.fetchSlotInfo(this.props.slot)
     }
 
 

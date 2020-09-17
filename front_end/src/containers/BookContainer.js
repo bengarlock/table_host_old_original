@@ -1,59 +1,43 @@
 import React from 'react'
 import Slot from "../cards/Slot";
-import ReservationForm from "../forms/ReservationForm";
-
+import ModifyReservationForm from "../forms/ModifyReservationForm";
+import NewReservationForm from "../forms/NewReservationForm";
 class BookContainer extends React.Component {
 
     state = {
-        slots: [],
-        reservationForm: false,
-        reservationFormObj: null
+        modify_form: false,
+        new_form: false,
+        current_slot: '',
     }
 
-    componentDidMount() {
-        let date = this.props.date
-        let url = "http://localhost:3000/date?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
-        fetch(url)
+    fetchSlotInfo = (slot) => {
+        fetch("http://localhost:3000/slots/" + slot.id)
             .then(res => res.json())
-            .then(book => this.setState({slots: book[0].slots}))
+            .then(slot => this.checkSlotStatus(slot))
     }
 
-    onClickHandler = (obj) => {
-        let reservationFormStatus = !this.state.reservationForm
-        this.setState({
-            reservationForm: reservationFormStatus,
-            reservationFormObj: obj
-        })
+    checkSlotStatus = (slot) => {
+        if (slot.guest === null) {
+            this.setState({
+                slot: slot,
+                new_form: !this.state.new_form
+            })
+        } else {
+            this.setState({
+                slot: slot,
+                modify_form: !this.state.modify_form
+            })
+        }
     }
+
 
     renderSlots = () => {
-        return this.state.slots.map(slot => <Slot key={slot.id} slot={slot} onClickHandler={this.onClickHandler}/>)
+        return this.props.slots.map(slot => <Slot key={slot.id} slot={slot} fetchSlotInfo={this.fetchSlotInfo}/>)
     }
-
-    /*onSubmitHandler = (obj) => {
-        const packet = {
-            method: "PATCH",
-            headers: {
-                "content-type": "application/json",
-                "accept": "application/json"
-            },
-            body: JSON.stringify(obj)
-        }
-
-        fetch(url + obj.id, packet)
-            .then(res => res.json())
-
-        fetch(url)
-            .then(res => res.json())
-            .then(reservations => this.setState({reservations: reservations}))
-
-        this.setState({
-            reservationForm: false
-        })
-    }*/
 
 
     render() {
+
         return(
             <div>
                 <table>
@@ -71,11 +55,15 @@ class BookContainer extends React.Component {
                 </table>
 
                 <div>
-                    {this.state.reservationForm ? <ReservationForm
+                    {this.state.modify_form ? <ModifyReservationForm
                         key={this.state.reservationFormObj.id}
                         reservation={this.state.reservationFormObj}
                         onClickHandler={this.onClickHandler}
                         onSubmitHandler={this.onSubmitHandler} /> : null }
+                </div>
+                <div>
+                    {this.state.new_form ? <NewReservationForm
+                        key={this.state.current_slot.id} slot={this.state.current_slot}/> : null }
                 </div>
 
             </div>

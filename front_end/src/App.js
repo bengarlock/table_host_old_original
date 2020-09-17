@@ -10,14 +10,30 @@ import GuestContainer from "./containers/GuestContainer";
 class App extends React.Component {
 
     state = {
-        date: new Date()
+        slots: [],
+        date: new Date(),
     }
 
     setDate = (date) => {
-        this.setState({
-            date: date
-        })
+        let url = "http://localhost:3000/date?date=" + (this.state.date.getFullYear() + '-' + ('0' + (this.state.date.getMonth()+1)).slice(-2) + '-' + ('0' + this.state.date.getDate()).slice(-2))
+        fetch(url)
+            .then(res => res.json())
+            .then(book => this.setState({
+                slots: book[0].slots,
+                date: date,
+            }))
     }
+
+    componentDidMount() {
+        let date = new Date()
+        let url = "http://localhost:3000/date?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
+        fetch(url)
+            .then(res => res.json())
+            .then(book => this.setState({
+                slots: book[0].slots,
+            }))
+    }
+
 
     menuClickHandler = (obj) => {
         if (obj === "Book") {
@@ -33,7 +49,7 @@ class App extends React.Component {
         return (
             <>
                 <Header menuClickHandler={this.menuClickHandler} date={this.state.date} setDate={this.setDate}/>
-                <Route exact path="/" render={ () => <BookContainer date={this.state.date}/> } />
+                <Route exact path="/" render={ () => <BookContainer date={this.state.date} slots={this.state.slots} /> } />
                 <Route exact path="/floor" render={ () => <FloorContainer date={this.state.date}/> } />
             </>
     )

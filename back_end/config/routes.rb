@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   resources :guests
 
   get 'date', to: "books#date"
+  get 'search', to: "guests#search"
 
 end
