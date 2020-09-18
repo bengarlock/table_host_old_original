@@ -11,6 +11,7 @@ class App extends React.Component {
 
     state = {
         slots: [],
+        guests: [],
         date: new Date(),
     }
 
@@ -20,6 +21,7 @@ class App extends React.Component {
             .then(res => res.json())
             .then(book => this.setState({
                 slots: book[0].slots,
+                guests: book[0].guests,
                 date: date,
             }))
     }
@@ -29,9 +31,20 @@ class App extends React.Component {
         let url = "http://localhost:3000/date?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
         fetch(url)
             .then(res => res.json())
-            .then(book => this.setState({
-                slots: book[0].slots,
-            }))
+            .then(book => this.renderSlots(book))
+    }
+
+    renderSlots = (book) => {
+
+        book[0].slots.forEach(item =>{
+
+        })
+
+
+        this.setState({
+            slots: book[0].slots,
+            guests: book[0].guests,
+        })
     }
 
 

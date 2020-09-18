@@ -8,17 +8,18 @@ Slot.destroy_all
 
 Guest.create(first_name: "Ben", last_name: "Garlock", phone_number: "(646) 241-6885", guest_notes: "Student at Flatiron School")
 
+puts "Seeding Guest Database..."
+
+#blank guest record
+blank_guest = Guest.create(first_name: '', last_name: '', phone_number: '', guest_notes: '')
+
 1000.times do
   Guest.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, guest_notes: Faker::TvShows::BojackHorseman.tongue_twister)
 end
 
 #Generate Restaurant:
-Restaurant.create(name: "ilili", address: "236 Fifth Ave, New York NY 10001", description: "Welcome to ilili!
-We’re honored to share the cuisine and culture of Lebanon in the heart of New York City. Since 2007, our home in
-the Flatiron District has introduced the passion and generosity of the Lebanese table to hundreds of thousands of curious
-diners while comforting native Lebanese guests with a celebration of their homeland and values. Owner and Executive Chef
-Philippe Massoud expertly crafts a sophisticated blend of modern and traditional Lebanese cuisine drawing influences from
-the span of the ancient Silk Road trade routes.")
+puts "Seeding Restaurant..."
+Restaurant.create(name: "ilili", address: "236 Fifth Ave, New York NY 10001", description: "Welcome to ilili!")
 
 
 #Create Future days
@@ -36,17 +37,19 @@ times = ["5:00 PM", "5:15 PM","5:30 PM","5:45 PM","6:00 PM","6:15 PM","6:30 PM",
 
   times_index = 0
 
+  # Slot.create(time: "5:00 PM", party_size: 2, book_id: Book.last.id, guest_id: null)
+
   while times_index < times.length do
       2.times do
-        Slot.create(time: times[times_index], party_size: 2, book_id: Book.last.id)
+        Slot.create(time: times[times_index], party_size: 2, book_id: Book.last.id, guest_id: blank_guest.id)
       end
 
       2.times do
-        Slot.create(time: times[times_index], party_size: 4, book_id: Book.last.id)
+        Slot.create(time: times[times_index], party_size: 4, book_id: Book.last.id, guest_id: blank_guest.id)
       end
 
       1.times do
-        Slot.create(time: times[times_index], party_size: 6, book_id: Book.last.id)
+        Slot.create(time: times[times_index], party_size: 6, book_id: Book.last.id, guest_id: blank_guest.id)
       end
       times_index += 1
   end

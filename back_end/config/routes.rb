@@ -2,7 +2,6 @@ Rails.application.routes.draw do
   resources :tables
   resources :books
   resources :slots
-  resources :reservations
   resources :restaurants
   resources :guests
 

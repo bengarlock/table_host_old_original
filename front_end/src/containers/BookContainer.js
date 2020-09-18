@@ -22,14 +22,12 @@ class BookContainer extends React.Component {
     }
 
     checkSlotStatus = (slot) => {
-        if (slot.guest === null) {
+        if (slot.booked === false) {
             this.setState({
-                slot: slot,
                 new_form: !this.state.new_form
             })
         } else {
             this.setState({
-                slot: slot,
                 modify_form: !this.state.modify_form
             })
         }
@@ -52,6 +50,17 @@ class BookContainer extends React.Component {
             guest: guest
         })
     }
+
+    renderGuest = (id) => {
+        fetch("http://localhost:3000/guests/" + id)
+            .then(res => res.json())
+            .then(guest => this.setState ({
+                first_name: guest.first_name,
+                last_name: guest.last_name,
+                phone_number: guest.phone_number
+            }))
+    }
+
 
     renderSlots = () => {
         return this.props.slots.map(slot => <Slot key={slot.id} slot={slot} fetchSlotInfo={this.fetchSlotInfo} />)
@@ -80,7 +89,8 @@ class BookContainer extends React.Component {
                     {this.state.modify_form ? <ModifyReservationForm
                         key={this.state.current_slot.id}
                         guest={this.state.guest}
-                        current_slot={this.state.current_slot}/> : null }
+                        current_slot={this.state.current_slot}
+                        modifyFormSetState={this.modifyFormSetState}/> : null }
                 </div>
                 <div>
                     {this.state.new_form ?

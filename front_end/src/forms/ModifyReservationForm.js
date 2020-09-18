@@ -3,18 +3,18 @@ import React from "react"
 class ModifyReservationForm extends React.Component{
 
     state = {
-        id: this.props.guest.id,
-        booked: this.props.guest.booked,
+        guest_id: this.props.guest.id,
         first_name: this.props.guest.first_name,
         last_name: this.props.guest.last_name,
+        phone_number: this.props.guest.phone_number,
+        guest_notes: this.props.guest.guest_notes,
+
+        slot_id: this.props.current_slot.id,
+        reservation_notes: this.props.current_slot.reservation_notes,
+        status: this.props.current_slot.status,
         time: this.props.current_slot.time,
         party_size: this.props.current_slot.party_size,
-        phone_number: this.props.guest.phone_number,
-        reservation_notes: this.props.current_slot.reservation_notes,
-        guest_notes: this.props.guest.guest_notes,
-        status: this.props.guest.status
     }
-
 
     onChangeHandler = (e) => {
 
@@ -88,19 +88,45 @@ class ModifyReservationForm extends React.Component{
         }
     }
 
+    onClickHandler = (e) => {
+        if (e.target.id === "close") {
+            this.props.modifyFormSetState()
+        }
+    }
+
+
     onSubmitHandler = (e) => {
         e.preventDefault()
-        this.props.onSubmitHandler(this.state)
+
+        //update slot with guest_id
+        let data = {
+            guest_id: this.state.guest_id
+        }
+
+        let packet = {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json",
+            },
+            body: JSON.stringify(data)
+        }
+
+        fetch("http://localhost:3000/slots/" + this.state.slot_id, packet)
+            .then(res => res.json())
+            .then(console.log)
     }
 
     render(){
+        console.log("GuestID: ", this.state.guest_id)
+        console.log("SlotID: ", this.state.slot_id)
         return(
             <div id="wrapper">
                 <div id="overlay">
                     <div id="reservation-form-container" >
                         <form className="reservation-form" onSubmit={this.onSubmitHandler} style={{cursor: "default"}}>
                             <div>
-                                <div id="close" onClick={this.props.onClickHandler}>Close</div>
+                                <div id="close" onClick={this.onClickHandler}>Close</div>
                                 <h2>Reservation Form</h2>
                                 <input type="text" value={this.state.first_name} name="first_name" placeholder="First Name" onChange={this.onChangeHandler} />
                                 <input type="text" value={this.state.last_name} name="last_name" placeholder="Last Name" onChange={this.onChangeHandler} />

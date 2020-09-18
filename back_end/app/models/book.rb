@@ -1,6 +1,6 @@
 class Book < ApplicationRecord
   has_many :slots
-  has_many :reservations, through: :slots
+  has_many :guests, through: :slots
 
 
   include PgSearch

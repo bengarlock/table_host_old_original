@@ -33,12 +33,13 @@ class NewReservationForm extends React.Component {
     }
 
 
+
     render(){
         return(
             <div id="wrapper">
                 <div id="overlay">
                     <div id="reservation-form-container" >
-                        <form className="reservation-form" onSubmit={this.onSubmitHandler} style={{cursor: "default"}}>
+                        <form className="reservation-form" onSubmit={this.onSubmitHandler} >
                             <div>
                                 <div id="close" onClick={this.props.newFormSetState}>Close</div>
                                 <h2>Search For Guest</h2>
@@ -50,8 +51,6 @@ class NewReservationForm extends React.Component {
                             <div className="submit-button">
                                 <input style={{backgroundColor: "#486998", width: "150px" }} type="submit" />
                             </div>
-
-
                         </form>
                     </div>
                 </div>
