@@ -4,7 +4,7 @@ import Header from "./headers/Header";
 import FloorContainer from "./containers/FloorContainer";
 import BookContainer from "./containers/BookContainer";
 import { Route } from 'react-router-dom'
-import GuestContainer from "./containers/GuestContainer";
+/*import GuestContainer from "./containers/GuestContainer";*/
 
 
 class App extends React.Component {

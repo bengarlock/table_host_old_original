@@ -3,17 +3,18 @@ import React from "react"
 class ModifyReservationForm extends React.Component{
 
     state = {
-        id: this.props.reservation.id,
-        booked: this.props.reservation.booked,
-        first_name: this.props.reservation.first_name,
-        last_name: this.props.reservation.last_name,
-        time: this.props.reservation.time,
-        party_size: this.props.reservation.party_size,
-        phone_number: this.props.reservation.phone_number,
-        reservation_notes: this.props.reservation.reservation_notes,
-        guest_notes: this.props.reservation.guest_notes,
-        status: this.props.reservation.status
+        id: this.props.guest.id,
+        booked: this.props.guest.booked,
+        first_name: this.props.guest.first_name,
+        last_name: this.props.guest.last_name,
+        time: this.props.current_slot.time,
+        party_size: this.props.current_slot.party_size,
+        phone_number: this.props.guest.phone_number,
+        reservation_notes: this.props.current_slot.reservation_notes,
+        guest_notes: this.props.guest.guest_notes,
+        status: this.props.guest.status
     }
+
 
     onChangeHandler = (e) => {
 

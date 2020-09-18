@@ -7,10 +7,15 @@ class BookContainer extends React.Component {
     state = {
         modify_form: false,
         new_form: false,
+        search_form: false,
         current_slot: '',
+        guest: '',
     }
 
     fetchSlotInfo = (slot) => {
+        this.setState({
+            current_slot: slot
+        })
         fetch("http://localhost:3000/slots/" + slot.id)
             .then(res => res.json())
             .then(slot => this.checkSlotStatus(slot))
@@ -30,9 +35,26 @@ class BookContainer extends React.Component {
         }
     }
 
+    newFormSetState = () => {
+        this.setState({
+            new_form: !this.state.new_form
+        })
+    }
+
+    modifyFormSetState = () => {
+        this.setState({
+            modify_form: !this.state.modify_form
+        })
+    }
+
+    updateGuest = (guest) => {
+        this.setState({
+            guest: guest
+        })
+    }
 
     renderSlots = () => {
-        return this.props.slots.map(slot => <Slot key={slot.id} slot={slot} fetchSlotInfo={this.fetchSlotInfo}/>)
+        return this.props.slots.map(slot => <Slot key={slot.id} slot={slot} fetchSlotInfo={this.fetchSlotInfo} />)
     }
 
 
@@ -56,14 +78,18 @@ class BookContainer extends React.Component {
 
                 <div>
                     {this.state.modify_form ? <ModifyReservationForm
-                        key={this.state.reservationFormObj.id}
-                        reservation={this.state.reservationFormObj}
-                        onClickHandler={this.onClickHandler}
-                        onSubmitHandler={this.onSubmitHandler} /> : null }
+                        key={this.state.current_slot.id}
+                        guest={this.state.guest}
+                        current_slot={this.state.current_slot}/> : null }
                 </div>
                 <div>
-                    {this.state.new_form ? <NewReservationForm
-                        key={this.state.current_slot.id} slot={this.state.current_slot}/> : null }
+                    {this.state.new_form ?
+                        <NewReservationForm
+                            key={this.state.current_slot.id}
+                            slot={this.state.current_slot}
+                            newFormSetState={this.newFormSetState}
+                            modifyFormSetState={this.modifyFormSetState}
+                            updateGuest={this.updateGuest}/> : null }
                 </div>
 
             </div>

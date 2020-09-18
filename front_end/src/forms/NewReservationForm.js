@@ -1,31 +1,35 @@
 import React from "react"
 import "../stylesheets/Forms.css"
+import SearchItems from "../cards/SearchItems";
+
 
 class NewReservationForm extends React.Component {
 
     state = {
         search: '',
-        searchResults: ''
+        searchResults: []
     }
 
     onChangeHandler = (e) => {
-
         if (e.target.name === "search") {
             this.setState({
                 search: e.target.value
             })
-            console.log("http://localhost:3000/search?search=" + `"${this.state.search}"`)
-
-            fetch("http://localhost:3000/search?search=" + `"${this.state.search}"`)
-                .then(res => res.json())
-                .then(results => console.log(results))
-
+            this.fetchSearchResults()
         }
+    }
 
+    fetchSearchResults = () => {
+        fetch("http://localhost:3000/search?q=" + this.state.search)
+            .then(res => res.json())
+            .then(results => this.setState({
+                searchResults: results
+            }))
     }
 
     renderSearchResults = () => {
-        return null
+        let limitedResults = this.state.searchResults.splice(1, 8)
+        return limitedResults.map(result => <SearchItems key={result.id} result={result} newFormSetState={this.props.newFormSetState} modifyFormSetState={this.props.modifyFormSetState} updateGuest={this.props.updateGuest}/>)
     }
 
 
@@ -36,16 +40,17 @@ class NewReservationForm extends React.Component {
                     <div id="reservation-form-container" >
                         <form className="reservation-form" onSubmit={this.onSubmitHandler} style={{cursor: "default"}}>
                             <div>
-                                <div id="close" onClick={this.props.onClickHandler}>Close</div>
+                                <div id="close" onClick={this.props.newFormSetState}>Close</div>
                                 <h2>Search For Guest</h2>
                                 <input type="text" value={this.state.search} name="search" placeholder="Guest Search" onChange={this.onChangeHandler} />
                             </div>
                             <div>
-                                <input style={{backgroundColor: "#486998", top: "200px"}} type="submit" />
-                            </div>
-                            <div>
                                 {this.renderSearchResults()}
                             </div>
+                            <div className="submit-button">
+                                <input style={{backgroundColor: "#486998", width: "150px" }} type="submit" />
+                            </div>
+
 
                         </form>
                     </div>

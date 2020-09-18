@@ -177,3 +177,9 @@ h2 {
 #close {
     margin-left: 97%;
 }
+
+.submit-button {
+    position: absolute;
+    top: 75%;
+    left: 38%
+}
