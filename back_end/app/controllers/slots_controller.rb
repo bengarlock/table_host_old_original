@@ -7,7 +7,6 @@ class SlotsController < ApplicationController
 
   def show
     @slot = Slot.find(params[:id])
-    @guest = Guest.find(slot_id)
     render json: @slot
   end
 

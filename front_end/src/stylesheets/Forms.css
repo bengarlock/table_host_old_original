@@ -1,10 +1,4 @@
 
-* {
-    font-family: 'Source Sans Pro', sans-serif;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 .main-header {
     display: flex;
@@ -24,7 +18,6 @@
     height: 2px;
     background-color: white;
     margin: 6px 0;
-
 }
 
 #main-menu-container {
@@ -36,11 +29,15 @@
 }
 
 .menu-item {
+    display: block;
+    text-decoration: none;
     font-size: 25px;
+    color: black;
     padding: 5px;
 }
 
 .menu-item:hover {
+    text-decoration: none;
     background-color: #073f66;
     color: white;
     transition: all 0.3s ease 0s;
@@ -62,21 +59,6 @@
     transition: all 0.3s ease 0s;
 }
 
-.reservation-container {
-    width: 400px;
-    height: max-content;
-    border-right: black; size: 2px;
-    justify-content: space-between
-}
-
-#reservations-container-header{
-    font-size: 25px;
-    text-align: center;
-    background-color: darkgrey;
-    width: available;
-    justify-content: space-between;
-    padding: 5px;
-}
 
 div#overlay {
     z-index: 2;

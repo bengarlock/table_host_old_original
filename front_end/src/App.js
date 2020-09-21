@@ -4,6 +4,8 @@ import Header from "./headers/Header";
 import FloorContainer from "./containers/FloorContainer";
 import BookContainer from "./containers/BookContainer";
 import { Route } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
+
 /*import GuestContainer from "./containers/GuestContainer";*/
 
 
@@ -11,19 +13,19 @@ class App extends React.Component {
 
     state = {
         slots: [],
-        guests: [],
         date: new Date(),
+        page: '/'
     }
 
     setDate = (date) => {
-        let url = "http://localhost:3000/date?date=" + (this.state.date.getFullYear() + '-' + ('0' + (this.state.date.getMonth()+1)).slice(-2) + '-' + ('0' + this.state.date.getDate()).slice(-2))
+        this.setState({
+            date: date
+        })
+
+        let url = "http://localhost:3000/date?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
         fetch(url)
             .then(res => res.json())
-            .then(book => this.setState({
-                slots: book[0].slots,
-                guests: book[0].guests,
-                date: date,
-            }))
+            .then(book => this.renderSlots(book))
     }
 
     componentDidMount() {
@@ -35,24 +37,60 @@ class App extends React.Component {
     }
 
     renderSlots = (book) => {
-
-        book[0].slots.forEach(item =>{
-
-        })
-
-
+        book[0].slots.sort((a, b) => (a.id > b.id) ? 1 : -1)
         this.setState({
             slots: book[0].slots,
-            guests: book[0].guests,
+        })
+    }
+
+    //updating using state
+    updateSlots = (state) => {
+        let newArray = [...this.state.slots]
+        let slotToUpdate = newArray.find(item => item.id === state.slot_id)
+
+        slotToUpdate.booked = !state.booked
+        slotToUpdate.guest.first_name = state.first_name
+        slotToUpdate.guest.last_name = state.last_name
+        slotToUpdate.guest.guest_notes = state.guest_notes
+        slotToUpdate.party_size = state.party_size
+        slotToUpdate.guest.phone_number = state.phone_number
+        slotToUpdate.reservation_notes = state.reservation_notes
+        slotToUpdate.status = state.status
+        slotToUpdate.time = state.time
+
+        this.setState({
+            slots: newArray
+        })
+    }
+
+    //updating using slot object. (This is messy)
+    updateSlotsfromObject = (slotObj) => {
+        let newArray = [...this.state.slots]
+        let slotToUpdate = newArray.find(item => item.id === slotObj.id)
+
+        slotToUpdate.booked = slotObj.booked
+        console.log(slotToUpdate.status)
+/*        slotToUpdate.guest.first_name = slotObj.first_name
+        slotToUpdate.guest.last_name = slotObj.last_name
+        slotToUpdate.guest.guest_notes = slotObj.guest_notes
+        slotToUpdate.party_size = slotObj.party_size
+        slotToUpdate.guest.phone_number = slotObj.phone_number
+        slotToUpdate.reservation_notes = slotObj.reservation_notes
+        slotToUpdate.status = slotObj.status
+        slotToUpdate.time = slotObj.time*/
+
+        this.setState({
+            slots: newArray
         })
     }
 
 
     menuClickHandler = (obj) => {
+
         if (obj === "Book") {
             console.log("Book")
         } else if (obj === "Floor") {
-            console.log("Floor")
+            console.log("floor")
         } else if (obj === "Guests") {
             console.log("Guests clicked")
         }
@@ -62,8 +100,8 @@ class App extends React.Component {
         return (
             <>
                 <Header menuClickHandler={this.menuClickHandler} date={this.state.date} setDate={this.setDate}/>
-                <Route exact path="/" render={ () => <BookContainer date={this.state.date} slots={this.state.slots} /> } />
-                <Route exact path="/floor" render={ () => <FloorContainer date={this.state.date}/> } />
+                <Route exact path="/" render={ () => <BookContainer date={this.state.date} slots={this.state.slots} updateSlots={this.updateSlots}/> } />
+                <Route exact path="/floor" render={ () => <FloorContainer date={this.state.date} slots={this.state.slots} updateSlotsfromObject={this.updateSlotsfromObject}/> } />
             </>
     )
   }

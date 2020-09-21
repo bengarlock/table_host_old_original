@@ -1,0 +1,30 @@
+.floorplan-container{
+    height: 100%;
+    background-color: black;
+}
+
+.reservation-container {
+    width: 300px;
+    height: 100%;
+    border-right: black; size: 2px;
+    justify-content: space-between;
+    background-color: #757575;
+}
+
+#reservations-container-header{
+    font-size: 25px;
+    text-align: center;
+    background-color: darkgrey;
+    width: available;
+    justify-content: space-between;
+    padding: 5px;
+}
+
+.floorplan-tables {
+    margin: 0px;
+    position: absolute;
+    top: 65px;
+    left: 300px;
+    width: 65%;
+    height: 85%
+}

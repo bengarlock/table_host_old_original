@@ -9,11 +9,12 @@ class ModifyReservationForm extends React.Component{
         phone_number: this.props.guest.phone_number,
         guest_notes: this.props.guest.guest_notes,
 
-        slot_id: this.props.current_slot.id,
-        reservation_notes: this.props.current_slot.reservation_notes,
-        status: this.props.current_slot.status,
-        time: this.props.current_slot.time,
-        party_size: this.props.current_slot.party_size,
+        slot_id: this.props.slot.id,
+        booked: this.props.slot.booked,
+        reservation_notes: this.props.slot.reservation_notes,
+        status: this.props.slot.status,
+        time: this.props.slot.time,
+        party_size: this.props.slot.party_size,
     }
 
     onChangeHandler = (e) => {
@@ -96,11 +97,18 @@ class ModifyReservationForm extends React.Component{
 
 
     onSubmitHandler = (e) => {
+        console.log(this.props.slot.id)
         e.preventDefault()
 
-        //update slot with guest_id
+        this.setState({
+            booked: true,
+            status: "booked"
+        })
+
         let data = {
-            guest_id: this.state.guest_id
+            guest_id: this.state.guest_id,
+            booked: true,
+            status: "booked"
         }
 
         let packet = {
@@ -114,12 +122,11 @@ class ModifyReservationForm extends React.Component{
 
         fetch("http://localhost:3000/slots/" + this.state.slot_id, packet)
             .then(res => res.json())
-            .then(console.log)
+            .then(() => this.props.modifyFormSetState())
+            .then(() => this.props.updateSlots(this.state))
     }
 
     render(){
-        console.log("GuestID: ", this.state.guest_id)
-        console.log("SlotID: ", this.state.slot_id)
         return(
             <div id="wrapper">
                 <div id="overlay">

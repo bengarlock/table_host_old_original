@@ -2,7 +2,6 @@ import React from "react"
 import "../stylesheets/Forms.css"
 import SearchItems from "../cards/SearchItems";
 
-
 class NewReservationForm extends React.Component {
 
     state = {
@@ -31,7 +30,6 @@ class NewReservationForm extends React.Component {
         let limitedResults = this.state.searchResults.splice(1, 8)
         return limitedResults.map(result => <SearchItems key={result.id} result={result} newFormSetState={this.props.newFormSetState} modifyFormSetState={this.props.modifyFormSetState} updateGuest={this.props.updateGuest}/>)
     }
-
 
 
     render(){
