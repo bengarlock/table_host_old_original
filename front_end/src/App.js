@@ -33,6 +33,16 @@ class App extends React.Component {
             .then(book => this.renderSlots(book))
     }
 
+    updateTableArray = (table) => {
+        const newArray = [...this.state.tables]
+        const tableToUpdate = newArray.find(item => item.id === table.id)
+        tableToUpdate.status = table.status
+
+        this.setState({
+            tables: newArray
+        }, () => console.log(this.state.tables))
+    }
+
     renderSlots = (book) => {
         book[0].slots.sort((a, b) => (a.id > b.id) ? 1 : -1)
         this.setState({
@@ -40,8 +50,9 @@ class App extends React.Component {
         })
     }
 
-    //updating using state
+    //updating coming from bookview using state
     updateSlots = (state) => {
+        window.location.reload(true);
         let newArray = [...this.state.slots]
         let slotToUpdate = newArray.find(item => item.id === state.slot_id)
 
@@ -96,7 +107,10 @@ class App extends React.Component {
             <>
                 <Header menuClickHandler={this.menuClickHandler} date={this.state.date} setDate={this.setDate}/>
                 <Route exact path="/" render={ () => <BookContainer date={this.state.date} slots={this.state.slots} updateSlots={this.updateSlots}/> } />
-                <Route exact path="/floor" render={ () => <FloorContainer date={this.state.date} slots={this.state.slots} updateSlotsfromObject={this.updateSlotsfromObject}/> } />
+                <Route exact path="/floor" render={ () => <FloorContainer
+                    date={this.state.date} slots={this.state.slots}
+                    updateSlotsfromObject={this.updateSlotsfromObject}
+                    updateTableArray={this.updateTableArray} /> } />
                 <Route exact path="/guests" render={ () => <GuestContainer /> } />
             </>
     )

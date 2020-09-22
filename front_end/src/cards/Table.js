@@ -10,7 +10,7 @@ class Table extends React.Component{
         border: "none"
     }
 
-    componentDidMount() {
+/*    componentDidMount = () => {
         if (this.props.table.status === "open") {
             this.setState({
                 color: "grey"
@@ -40,6 +40,30 @@ class Table extends React.Component{
                 color: "green"
             })
         }
+    }*/
+
+    renderTableColor = () => {
+        if (this.props.table.status === "open") {
+            return "grey"
+
+        } else if (this.props.table.status === "seated") {
+            return "blue"
+
+        } else if (this.props.table.status === "appetizer") {
+            return "red"
+
+        } else if (this.props.table.status === "entree") {
+            return "orange"
+
+        } else if (this.props.table.status === "dessert") {
+            return "#aa2dfc"
+
+        } else if (this.props.table.status === "check_dropped") {
+            return "#23fa5c"
+
+        } else if (this.props.table.status === "paid") {
+            return "green"
+        }
     }
 
     onDropHandler = (e) => {
@@ -62,7 +86,7 @@ class Table extends React.Component{
 
     onDropHandler = (e) => {
         e.preventDefault()
-        this.props.updateTable(this.props.table)
+        this.props.updateSeatedTable(this.props.table)
     }
 
     onDoubleClickHandler = (e) => {
@@ -90,7 +114,7 @@ class Table extends React.Component{
                      style={{
                          left: `${this.props.table.position_left}`,
                          top:`${this.props.table.position_top}`,
-                         backgroundColor: `${this.state.color}`, border: `${this.state.border}`}}>{this.props.table.name}</div>
+                         backgroundColor: `${this.renderTableColor()}`, border: `${this.state.border}`}}>{this.props.table.name}</div>
             </div>
         )
     }

@@ -3,8 +3,14 @@ import "../stylesheets/Forms.css"
 
 class TableStatusForm extends React.Component {
 
+
     onClickHandler = (e) => {
         e.preventDefault()
+
+        this.props.table.status = e.target.name
+
+        this.props.updateTableArray(this.props.table)
+
         this.props.renderStatusForm()
         this.props.table.status = e.target.name
 
@@ -21,7 +27,6 @@ class TableStatusForm extends React.Component {
         }
         fetch("http://localhost:3000/tables/" + this.props.table.id, packet)
             .then(res => res.json())
-            .then(() => this.props.updateTableArray(this.props.table))
     }
 
 

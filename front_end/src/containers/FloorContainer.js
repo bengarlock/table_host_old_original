@@ -29,7 +29,7 @@ class FloorContainer extends React.Component {
         })
     }
 
-    updateTable = (table) => {
+    updateSeatedTable = (table) => {
         const updateReservation = this.state.current_reservation
         updateReservation.status = "seated"
         this.setState({
@@ -58,7 +58,9 @@ class FloorContainer extends React.Component {
 
     updateTableArray = (table) => {
         const newArray = [...this.state.tables]
-        const tableToUpdate = newArray.find(item => item.id === table.id)
+        const tableToUpdate = newArray.find(item => {
+            return item.id === table.id
+        })
         tableToUpdate.status = table.status
 
         this.setState({
@@ -79,7 +81,7 @@ class FloorContainer extends React.Component {
     }
 
     renderFloorPlan = () => {
-        return this.state.tables.map(table => <Table key={table.id} table={table} updateTable={this.updateTable} renderStatusForm={this.renderStatusForm} />)
+        return this.state.tables.map(table => <Table key={table.id} table={table} updateSeatedTable={this.updateSeatedTable} renderStatusForm={this.renderStatusForm} />)
     }
 
     render() {
