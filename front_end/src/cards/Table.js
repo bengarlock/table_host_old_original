@@ -10,39 +10,14 @@ class Table extends React.Component{
         border: "none"
     }
 
-/*    componentDidMount = () => {
-        if (this.props.table.status === "open") {
-            this.setState({
-                color: "grey"
-            })
-        } else if (this.props.table.status === "seated") {
-            this.setState({
-                color: "blue"
-            })
-        } else if (this.props.table.status === "appetizer") {
-            this.setState({
-                color: "red"
-            })
-        } else if (this.props.table.status === "entree") {
-            this.setState({
-                color: "orange"
-            })
-        } else if (this.props.table.status === "dessert") {
-            this.setState({
-                color: "#aa2dfc"
-            })
-        } else if (this.props.table.status === "check_dropped") {
-            this.setState({
-                color: "#23fa5c"
-            })
-        } else if (this.props.table.status === "paid") {
-            this.setState({
-                color: "green"
-            })
-        }
-    }*/
+
+
+    componentDidMount() {
+        this.renderTableColor()
+    }
 
     renderTableColor = () => {
+
         if (this.props.table.status === "open") {
             return "grey"
 
@@ -66,27 +41,23 @@ class Table extends React.Component{
         }
     }
 
+
     onDropHandler = (e) => {
         e.preventDefault()
+        let table = e.target
+        table.style.update={ backgroundColor: "blue" }
+        this.props.table.status = "seated"
+        this.props.updateSeatedTable(this.props.table)
     }
 
     onDragOverHandler = (e) => {
         e.preventDefault()
-        this.setState({
-            color: "blue"
-        })
+
     }
 
     onDragLeaveHandler = (e) => {
         e.preventDefault()
-        this.setState({
-            color: "grey"
-        })
-    }
 
-    onDropHandler = (e) => {
-        e.preventDefault()
-        this.props.updateSeatedTable(this.props.table)
     }
 
     onDoubleClickHandler = (e) => {

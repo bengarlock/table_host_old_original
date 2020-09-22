@@ -81,6 +81,10 @@ class FloorContainer extends React.Component {
     }
 
     renderFloorPlan = () => {
+
+
+
+
         return this.state.tables.map(table => <Table key={table.id} table={table} updateSeatedTable={this.updateSeatedTable} renderStatusForm={this.renderStatusForm} />)
     }
 
