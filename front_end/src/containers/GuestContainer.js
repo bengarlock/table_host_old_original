@@ -12,34 +12,37 @@ class GuestContainer extends React.Component{
         show_guest_form: false
     }
 
+
     updateCurrentGuest = (guest) => {
+        console.log(this.state.searchResults)
         this.setState({
             show_guest_form: true,
-            current_guest: guest
-        })
+            current_guest: guest,
+        }, () => console.log(this.state.searchResults))
     }
 
     onChangeHandler = (e) => {
         if (e.target.name === "search") {
             this.setState({
                 search: e.target.value
-            })
-            fetch("http://localhost:3000/search?q=" + e.target.value)
-                .then(res => res.json())
-                .then(results => this.setState({
-                    searchResults: results
-                }))
+            }, () => this.fetchSearch(this.state.search))
         }
     }
 
+    fetchSearch = (search) => {
+        fetch("http://localhost:3000/search?q=" + search)
+            .then(res => res.json())
+            .then(results => this.setState({
+                    searchResults: results
+                }
+            ))
+    }
+
+
     renderSearchResults = () => {
-        if (this.state.search === ''){
-            let limitedResults = []
-            return limitedResults.map(result => <GuestSearchItem key={result.id} result={result} updateCurrentGuest={this.updateCurrentGuest}/>)
-        } else {
-            let limitedResults = this.state.searchResults.splice(0, 10)
-            return limitedResults.map(result => <GuestSearchItem key={result.id} result={result} updateCurrentGuest={this.updateCurrentGuest}/>)
-        }
+        let newArray = [...this.state.searchResults]
+        let limitedResults = newArray.splice(0, 10)
+        return limitedResults.map(result => <GuestSearchItem key={result.id} result={result} updateCurrentGuest={this.updateCurrentGuest}/>)
     }
 
 
