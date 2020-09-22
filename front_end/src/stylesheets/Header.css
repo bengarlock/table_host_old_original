@@ -40,3 +40,10 @@
     right: 25%
 }
 
+.navigation-header {
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0px;
+    z-index: 1;
+}
+

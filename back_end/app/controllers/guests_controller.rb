@@ -12,8 +12,6 @@ class GuestsController < ApplicationController
 
   def search
     @guests = Guest.search_by(params[:q])
-    #byebug
-    #search react dev tool
     render json: @guests
   end
 

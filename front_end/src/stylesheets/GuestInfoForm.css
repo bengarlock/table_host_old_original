@@ -1,0 +1,40 @@
+.guest-info-container {
+    text-align: center;
+}
+
+.guest-info-container h3 {
+    padding: 20px;
+}
+
+.guest-info-container input {
+    padding: 10px;
+    margin: 10px;
+}
+.guest-info-container textarea {
+    padding: 10px;
+    width: 470px;
+    height: 100px;
+}
+
+.guest-history-item-container {
+    padding: 10px;
+    background-color: white;
+    width: 470px;
+    margin: 0 auto;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    padding-bottom: 60px;
+    margin-top: 15px;
+}
+
+.guest-history-item {
+    padding: 20px;
+    height: 12px;
+}
+
+.guest-history-item span{
+    padding: 20px;
+    height: 14px;
+}
+

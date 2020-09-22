@@ -60,7 +60,7 @@
 }
 
 
-div#overlay {
+#overlay {
     z-index: 2;
     background: rgba(0,0,0,0.7);
     position: fixed;
@@ -161,7 +161,5 @@ h2 {
 }
 
 .submit-button {
-    position: absolute;
-    top: 75%;
-    left: 38%
+    margin: 0 auto;
 }

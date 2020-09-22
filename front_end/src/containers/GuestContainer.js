@@ -14,11 +14,10 @@ class GuestContainer extends React.Component{
 
 
     updateCurrentGuest = (guest) => {
-        console.log(this.state.searchResults)
         this.setState({
             show_guest_form: true,
             current_guest: guest,
-        }, () => console.log(this.state.searchResults))
+        })
     }
 
     onChangeHandler = (e) => {
@@ -40,9 +39,15 @@ class GuestContainer extends React.Component{
 
 
     renderSearchResults = () => {
-        let newArray = [...this.state.searchResults]
-        let limitedResults = newArray.splice(0, 10)
-        return limitedResults.map(result => <GuestSearchItem key={result.id} result={result} updateCurrentGuest={this.updateCurrentGuest}/>)
+        if (this.state.search === ''){
+            let limitedResults = []
+            return limitedResults.map(result => <GuestSearchItem key={result.id} result={result} updateCurrentGuest={this.updateCurrentGuest}/>)
+
+        } else {
+            let newArray = [...this.state.searchResults]
+            let limitedResults = newArray.splice(0, 10)
+            return limitedResults.map(result => <GuestSearchItem key={result.id} result={result} updateCurrentGuest={this.updateCurrentGuest}/>)
+        }
     }
 
 

@@ -1,5 +1,5 @@
 import React from "react"
-import "../stylesheets/Forms.css"
+import "../stylesheets/NewReservationForm.css"
 import SearchItems from "../cards/SearchItems";
 
 class NewReservationForm extends React.Component {
@@ -37,7 +37,9 @@ class NewReservationForm extends React.Component {
                             <div>
                                 <div id="close" onClick={this.props.newFormSetState}>Close</div>
                                 <h2>Search For Guest</h2>
-                                <input type="text" value={this.state.search} name="search" placeholder="Guest Search" onChange={this.onChangeHandler} />
+                                <div className="search-box">
+                                    <input  type="text" value={this.state.search} name="search" placeholder="Guest Search" onChange={this.onChangeHandler} />
+                                </div>
                             </div>
                             <div>
                                 {this.renderSearchResults()}

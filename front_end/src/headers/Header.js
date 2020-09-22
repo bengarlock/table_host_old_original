@@ -67,6 +67,7 @@ class Header extends React.Component {
 
     render() {
         return(
+            <div className="navigation-header">
             <nav>
                 <ul className="main-header">
                     <li>
@@ -89,6 +90,7 @@ class Header extends React.Component {
                 </ul>
                 <div>{this.state.menuClicked ? <MainMenu menuClickHandler={this.props.menuClickHandler} onClickHandler={this.onClickHandler}/> : null}</div>
             </nav>
+            </div>
         )
     }
 
