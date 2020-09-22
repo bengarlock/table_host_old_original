@@ -3,10 +3,8 @@ import './App.css';
 import Header from "./headers/Header";
 import FloorContainer from "./containers/FloorContainer";
 import BookContainer from "./containers/BookContainer";
+import GuestContainer from "./containers/GuestContainer";
 import { Route } from 'react-router-dom'
-import { Redirect } from 'react-router-dom'
-
-/*import GuestContainer from "./containers/GuestContainer";*/
 
 
 class App extends React.Component {
@@ -85,7 +83,6 @@ class App extends React.Component {
 
 
     menuClickHandler = (obj) => {
-
         if (obj === "Book") {
             console.log("Book")
         } else if (obj === "Floor") {
@@ -101,6 +98,7 @@ class App extends React.Component {
                 <Header menuClickHandler={this.menuClickHandler} date={this.state.date} setDate={this.setDate}/>
                 <Route exact path="/" render={ () => <BookContainer date={this.state.date} slots={this.state.slots} updateSlots={this.updateSlots}/> } />
                 <Route exact path="/floor" render={ () => <FloorContainer date={this.state.date} slots={this.state.slots} updateSlotsfromObject={this.updateSlotsfromObject}/> } />
+                <Route exact path="/guests" render={ () => <GuestContainer /> } />
             </>
     )
   }

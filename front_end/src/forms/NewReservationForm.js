@@ -11,7 +11,6 @@ class NewReservationForm extends React.Component {
 
     onChangeHandler = (e) => {
         if (e.target.name === "search") {
-            console.log(`"http://localhost:3000/search?q=${e.target.value}"`)
             this.setState({
                 search: e.target.value
             })

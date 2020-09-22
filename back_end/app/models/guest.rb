@@ -14,7 +14,4 @@ class Guest < ApplicationRecord
             OR LOWER(phone_number) LIKE :search_term", search_term: "%#{search_term.downcase}%")
   end
 
-
-
-
 end
