@@ -69,15 +69,14 @@ class App extends React.Component {
         let slotToUpdate = newArray.find(item => item.id === slotObj.id)
 
         slotToUpdate.booked = slotObj.booked
-        console.log(slotToUpdate.status)
-/*        slotToUpdate.guest.first_name = slotObj.first_name
+        slotToUpdate.guest.first_name = slotObj.first_name
         slotToUpdate.guest.last_name = slotObj.last_name
         slotToUpdate.guest.guest_notes = slotObj.guest_notes
         slotToUpdate.party_size = slotObj.party_size
         slotToUpdate.guest.phone_number = slotObj.phone_number
         slotToUpdate.reservation_notes = slotObj.reservation_notes
         slotToUpdate.status = slotObj.status
-        slotToUpdate.time = slotObj.time*/
+        slotToUpdate.time = slotObj.time
 
         this.setState({
             slots: newArray

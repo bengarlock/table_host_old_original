@@ -11,8 +11,8 @@ class GuestsController < ApplicationController
   end
 
   def search
-    @guest = Guest.search_by(params[:q])
-    render json: @guest
+    @guests = Guest.search_by(params[:q])
+    render json: @guests
   end
 
 end

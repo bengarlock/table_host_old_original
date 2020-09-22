@@ -9,8 +9,9 @@ class Guest < ApplicationRecord
 
 
   def self.search_by(search_term)
-    puts search_term.downcase
-    where("LOWER(first_name) LIKE :search_term OR LOWER(last_name) LIKE :search_term", search_term: "%#{search_term.downcase}%")
+    where("LOWER(first_name) LIKE :search_term
+            OR LOWER(last_name) LIKE :search_term
+            OR LOWER(phone_number) LIKE :search_term", search_term: "%#{search_term.downcase}%")
   end
 
 

@@ -2,6 +2,7 @@ import React from "react"
 import Reservation from "../cards/Reservation";
 import Table from "../cards/Table";
 import "../stylesheets/FloorContainer.css"
+import TableStatusForm from "../forms/TableStatusForm";
 
 
 
@@ -11,6 +12,7 @@ class FloorContainer extends React.Component {
         tables: [],
         current_reservation: '',
         current_table: '',
+        render_status_form: false
     }
 
     componentDidMount() {
@@ -54,6 +56,22 @@ class FloorContainer extends React.Component {
             .then(() => this.props.updateSlotsfromObject(this.state.current_reservation))
     }
 
+    updateTableArray = (table) => {
+        const newArray = [...this.state.tables]
+        const tableToUpdate = newArray.find(item => item.id === table.id)
+        tableToUpdate.status = table.status
+
+        this.setState({
+            tables: newArray
+        })
+    }
+
+    renderStatusForm = (table) => {
+        this.setState({
+            render_status_form: !this.state.render_status_form,
+            current_table: table
+        })
+    }
 
     renderReservations = () => {
         let bookedResos = this.props.slots.filter(item => item.booked === true && item.status === 'booked')
@@ -61,7 +79,7 @@ class FloorContainer extends React.Component {
     }
 
     renderFloorPlan = () => {
-        return this.state.tables.map(table => <Table key={table.id} table={table} updateTable={this.updateTable} />)
+        return this.state.tables.map(table => <Table key={table.id} table={table} updateTable={this.updateTable} renderStatusForm={this.renderStatusForm} />)
     }
 
     render() {
@@ -73,6 +91,11 @@ class FloorContainer extends React.Component {
                 </div>
                 <div className="floorplan-tables">
                     {this.renderFloorPlan()}
+                </div>
+                <div>
+                    {this.state.render_status_form ? <TableStatusForm table={this.state.current_table}
+                                                                      renderStatusForm={this.renderStatusForm}
+                                                                      updateTableArray={this.updateTableArray}/> : null}
                 </div>
             </div>
 

@@ -19,6 +19,26 @@ class Table extends React.Component{
             this.setState({
                 color: "blue"
             })
+        } else if (this.props.table.status === "appetizer") {
+            this.setState({
+                color: "red"
+            })
+        } else if (this.props.table.status === "entree") {
+            this.setState({
+                color: "orange"
+            })
+        } else if (this.props.table.status === "dessert") {
+            this.setState({
+                color: "#aa2dfc"
+            })
+        } else if (this.props.table.status === "check_dropped") {
+            this.setState({
+                color: "#23fa5c"
+            })
+        } else if (this.props.table.status === "paid") {
+            this.setState({
+                color: "green"
+            })
         }
     }
 
@@ -31,7 +51,6 @@ class Table extends React.Component{
         this.setState({
             color: "blue"
         })
-
     }
 
     onDragLeaveHandler = (e) => {
@@ -46,13 +65,13 @@ class Table extends React.Component{
         this.props.updateTable(this.props.table)
     }
 
-    onDoubleClickHandler = () => {
-        console.log("double clicked!")
+    onDoubleClickHandler = (e) => {
+        if (this.props.table.status !== "open") {
+            this.props.renderStatusForm(this.props.table)
+        }
     }
 
     onClickHandler = () => {
-        console.log(this.state.border)
-
         if (this.state.border === "none") {
             this.setState({
                 border: "2px solid white"

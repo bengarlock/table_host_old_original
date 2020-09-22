@@ -5,29 +5,26 @@ import SearchItems from "../cards/SearchItems";
 class NewReservationForm extends React.Component {
 
     state = {
-        search: '',
+        search: null,
         searchResults: []
     }
 
     onChangeHandler = (e) => {
         if (e.target.name === "search") {
+            console.log(`"http://localhost:3000/search?q=${e.target.value}"`)
             this.setState({
                 search: e.target.value
             })
-            this.fetchSearchResults()
+            fetch("http://localhost:3000/search?q=" + e.target.value)
+                .then(res => res.json())
+                .then(results => this.setState({
+                    searchResults: results
+                }))
         }
     }
 
-    fetchSearchResults = () => {
-        fetch("http://localhost:3000/search?q=" + this.state.search)
-            .then(res => res.json())
-            .then(results => this.setState({
-                searchResults: results
-            }))
-    }
-
     renderSearchResults = () => {
-        let limitedResults = this.state.searchResults.splice(1, 8)
+        let limitedResults = this.state.searchResults.splice(0, 10)
         return limitedResults.map(result => <SearchItems key={result.id} result={result} newFormSetState={this.props.newFormSetState} modifyFormSetState={this.props.modifyFormSetState} updateGuest={this.props.updateGuest}/>)
     }
 
