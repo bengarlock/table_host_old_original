@@ -107,8 +107,11 @@ class ModifyReservationForm extends React.Component{
 
         let data = {
             guest_id: this.state.guest_id,
+            reservation_notes: this.state.reservation_notes,
+            time: this.state.time,
+            party_size: this.state.party_size,
             booked: true,
-            status: "booked"
+            status: this.state.status
         }
 
         let packet = {
