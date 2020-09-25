@@ -12,16 +12,19 @@ class BookContainer extends React.Component {
         guest: '',
     }
 
-    checkSlotStatus = (slot) => {
+    checkSlotStatus = (slot, guest=null) => {
+        console.log(slot.booked)
         if (slot.booked === false) {
             this.setState({
                 new_form: !this.state.new_form,
-                slot: slot
+                slot: slot,
+                guest: guest
             })
         } else {
             this.setState({
                 modify_form: !this.state.modify_form,
-                slot: slot
+                slot: slot,
+                guest: guest
             })
         }
     }
@@ -38,9 +41,17 @@ class BookContainer extends React.Component {
         })
     }
 
-    updateGuest = (guest) => {
+    updateGuest = (guest, slot) => {
+        //takes guest and slot info from search item and merges.  Passes back down to modifyreservation form.
+        slot.guest.first_name = guest.first_name
+        slot.guest.last_name = guest.last_name
+        slot.guest.guest_notes = guest.guest_notes
+        slot.guest.phone_number = guest.phone_number
+        slot.guest_id = guest.id
+
         this.setState({
-            guest: guest
+            guest: guest,
+            slot: slot
         })
     }
 
@@ -50,7 +61,6 @@ class BookContainer extends React.Component {
 
 
     render() {
-
         return(
             <div>
                 <table>
@@ -70,8 +80,8 @@ class BookContainer extends React.Component {
                 <div>
                     {this.state.modify_form ? <ModifyReservationForm
                         key={this.state.slot.id}
-                        guest={this.state.guest}
                         slot={this.state.slot}
+                        guest={this.state.guest}
                         modifyFormSetState={this.modifyFormSetState}
                         updateSlots={this.props.updateSlots}/> : null }
                 </div>

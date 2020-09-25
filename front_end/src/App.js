@@ -40,7 +40,7 @@ class App extends React.Component {
 
         this.setState({
             tables: newArray
-        }, () => console.log(this.state.tables))
+        })
     }
 
     renderSlots = (book) => {
@@ -52,8 +52,8 @@ class App extends React.Component {
 
     //updating coming from bookview using state
     updateSlots = (state) => {
-        window.location.reload(true);
         let newArray = [...this.state.slots]
+        console.log("before array", newArray)
         let slotToUpdate = newArray.find(item => item.id === state.slot_id)
 
         slotToUpdate.booked = !state.booked
@@ -66,31 +66,14 @@ class App extends React.Component {
         slotToUpdate.status = state.status
         slotToUpdate.time = state.time
 
-        this.setState({
+        console.log("after array", newArray)
+
+
+
+        /*this.setState({
             slots: newArray
-        })
+        })*/
     }
-
-    //updating using slot object. (This is messy)
-    updateSlotsfromObject = (slotObj) => {
-        let newArray = [...this.state.slots]
-        let slotToUpdate = newArray.find(item => item.id === slotObj.id)
-
-        slotToUpdate.booked = slotObj.booked
-        slotToUpdate.guest.first_name = slotObj.first_name
-        slotToUpdate.guest.last_name = slotObj.last_name
-        slotToUpdate.guest.guest_notes = slotObj.guest_notes
-        slotToUpdate.party_size = slotObj.party_size
-        slotToUpdate.guest.phone_number = slotObj.phone_number
-        slotToUpdate.reservation_notes = slotObj.reservation_notes
-        slotToUpdate.status = slotObj.status
-        slotToUpdate.time = slotObj.time
-
-        this.setState({
-            slots: newArray
-        })
-    }
-
 
     menuClickHandler = (obj) => {
         if (obj === "Book") {

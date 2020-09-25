@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 2020_09_21_170255) do
     t.string "last_name"
     t.string "phone_number"
     t.string "guest_notes"
+    t.boolean "root_user", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

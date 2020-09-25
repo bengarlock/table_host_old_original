@@ -3,11 +3,11 @@ import React from "react"
 class ModifyReservationForm extends React.Component{
 
     state = {
-        guest_id: this.props.guest.id,
-        first_name: this.props.guest.first_name,
-        last_name: this.props.guest.last_name,
-        phone_number: this.props.guest.phone_number,
-        guest_notes: this.props.guest.guest_notes,
+        guest_id: this.props.slot.guest.id,
+        first_name: this.props.slot.guest.first_name,
+        last_name: this.props.slot.guest.last_name,
+        phone_number: this.props.slot.guest.phone_number,
+        guest_notes: this.props.slot.guest.guest_notes,
 
         slot_id: this.props.slot.id,
         booked: this.props.slot.booked,
@@ -17,8 +17,17 @@ class ModifyReservationForm extends React.Component{
         party_size: this.props.slot.party_size,
     }
 
-    onChangeHandler = (e) => {
+    componentDidMount() {
+        if (this.state.status === '') {
+            this.setState({
+                status: 'booked'
+            })
+        }
 
+    }
+
+
+    onChangeHandler = (e) => {
         if (e.target.name === "first_name") {
             this.setState({
                 first_name: e.target.value
@@ -95,39 +104,61 @@ class ModifyReservationForm extends React.Component{
         }
     }
 
-
     onSubmitHandler = (e) => {
-        console.log(this.props.slot.id)
         e.preventDefault()
+        this.patchSlot()
+        this.patchGuest()
+    }
 
-        this.setState({
-            booked: true,
-            status: "booked"
-        })
-
-        let data = {
-            guest_id: this.state.guest_id,
+    patchSlot = () => {
+        console.log("the current status of this slot is: ", this.props.slot.status)
+        let slotData = {
+            guest_id: this.props.guest.id,
             reservation_notes: this.state.reservation_notes,
             time: this.state.time,
             party_size: this.state.party_size,
             booked: true,
-            status: this.state.status
+            status: this.props.slot.status
         }
 
-        let packet = {
+        let slotPacket = {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
                 "accept": "application/json",
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(slotData)
         }
 
-        fetch("http://localhost:3000/slots/" + this.state.slot_id, packet)
+        fetch("http://localhost:3000/slots/" + this.state.slot_id, slotPacket)
             .then(res => res.json())
             .then(() => this.props.modifyFormSetState())
             .then(() => this.props.updateSlots(this.state))
     }
+
+    patchGuest = () => {
+
+        let guestData = {
+            first_name: this.state.first_name,
+            last_name: this.state.last_name,
+            phone_number: this.state.phone_number,
+            guest_notes: this.state.guest_notes
+        }
+
+        let guestPacket = {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json",
+            },
+            body: JSON.stringify(guestData)
+        }
+
+        fetch("http://localhost:3000/guests/" + this.props.guest.id, guestPacket)
+            .then(res => res.json())
+
+    }
+
 
     render(){
         return(

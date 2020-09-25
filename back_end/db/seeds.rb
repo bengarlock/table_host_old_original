@@ -14,7 +14,15 @@ Guest.create(first_name: "Ben", last_name: "Garlock", phone_number: "(646) 241-6
 puts "Seeding Guest Database..."
 
 #blank guest record
-blank_guest = Guest.create(first_name: '', last_name: '', phone_number: '', guest_notes: '')
+blank_guest = Guest.create(first_name: '', last_name: '', phone_number: '', guest_notes: '', root_user: true)
+
+guest_notes = [
+    "Likes Expensive Wine",
+    "Likes to sit in the back",
+    "Friend of the owner",
+    "Friend of employee",
+    "VIP",
+]
 
 1000.times do
   Guest.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, guest_notes: Faker::TvShows::BojackHorseman.tongue_twister)

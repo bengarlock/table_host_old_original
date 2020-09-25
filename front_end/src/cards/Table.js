@@ -10,8 +10,6 @@ class Table extends React.Component{
         border: "none"
     }
 
-
-
     componentDidMount() {
         this.renderTableColor()
     }
@@ -40,7 +38,6 @@ class Table extends React.Component{
             return "green"
         }
     }
-
 
     onDropHandler = (e) => {
         e.preventDefault()

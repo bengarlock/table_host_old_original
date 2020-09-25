@@ -10,6 +10,7 @@ class FloorContainer extends React.Component {
 
     state = {
         tables: [],
+        reservations: [],
         current_reservation: '',
         current_table: '',
         render_status_form: false
@@ -32,6 +33,7 @@ class FloorContainer extends React.Component {
     updateSeatedTable = (table) => {
         const updateReservation = this.state.current_reservation
         updateReservation.status = "seated"
+
         this.setState({
             current_reservation : updateReservation
         })
@@ -39,6 +41,7 @@ class FloorContainer extends React.Component {
         const data = {
             status: "seated"
         }
+
         const packet = {
             method: "PATCH",
             headers: {
@@ -48,13 +51,14 @@ class FloorContainer extends React.Component {
             body: JSON.stringify(data)
         }
 
+        //updates table status in API as well as Slot to seated.
         fetch("http://localhost:3000/tables/" + table.id, packet)
             .then(res => res.json())
 
         fetch("http://localhost:3000/slots/" + this.state.current_reservation.id, packet)
             .then(res => res.json())
-            .then(() => this.props.updateSlotsfromObject(this.state.current_reservation))
     }
+
 
     updateTableArray = (table) => {
         const newArray = [...this.state.tables]
@@ -81,10 +85,6 @@ class FloorContainer extends React.Component {
     }
 
     renderFloorPlan = () => {
-
-
-
-
         return this.state.tables.map(table => <Table key={table.id} table={table} updateSeatedTable={this.updateSeatedTable} renderStatusForm={this.renderStatusForm} />)
     }
 

@@ -5,6 +5,7 @@ class CreateGuests < ActiveRecord::Migration[6.0]
       t.string :last_name
       t.string :phone_number
       t.string :guest_notes
+      t.boolean :root_user, default: false
 
       t.timestamps
     end

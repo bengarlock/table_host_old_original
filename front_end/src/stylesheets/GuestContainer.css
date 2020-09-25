@@ -1,6 +1,6 @@
 .guest-container{
     height: 100%;
-    background-color: darkgrey;
+    background-color: #6e6e6e;
 }
 
 .search-column-container {
@@ -8,7 +8,7 @@
     height: 100%;
     border-right: black; size: 2px;
     justify-content: space-between;
-    background-color: lightgray;
+    background-color: #7e7e7e;
 }
 
 #search-container-header {
@@ -33,6 +33,7 @@
 }
 
 .search-result-item {
+    background-color: #acacac;
     text-align: center;
     padding: 10px;
 }

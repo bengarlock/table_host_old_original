@@ -5,7 +5,7 @@ import SearchItems from "../cards/SearchItems";
 class NewReservationForm extends React.Component {
 
     state = {
-        search: null,
+        search: '',
         searchResults: []
     }
 
@@ -22,9 +22,19 @@ class NewReservationForm extends React.Component {
         }
     }
 
+    onSubmitHandler = () => {
+        console.log("submit")
+    }
+
+
     renderSearchResults = () => {
         let limitedResults = this.state.searchResults.splice(0, 10)
-        return limitedResults.map(result => <SearchItems key={result.id} result={result} newFormSetState={this.props.newFormSetState} modifyFormSetState={this.props.modifyFormSetState} updateGuest={this.props.updateGuest}/>)
+        return limitedResults.map(result => <SearchItems
+            key={result.id} result={result}
+            newFormSetState={this.props.newFormSetState}
+            modifyFormSetState={this.props.modifyFormSetState}
+            updateGuest={this.props.updateGuest}
+            slot={this.props.slot}/>)
     }
 
 
