@@ -13,7 +13,6 @@ class BookContainer extends React.Component {
     }
 
     checkSlotStatus = (slot, guest=null) => {
-        console.log(slot.booked)
         if (slot.booked === false) {
             this.setState({
                 new_form: !this.state.new_form,
@@ -43,12 +42,6 @@ class BookContainer extends React.Component {
 
     updateGuest = (guest, slot) => {
         //takes guest and slot info from search item and merges.  Passes back down to modifyreservation form.
-        slot.guest.first_name = guest.first_name
-        slot.guest.last_name = guest.last_name
-        slot.guest.guest_notes = guest.guest_notes
-        slot.guest.phone_number = guest.phone_number
-        slot.guest_id = guest.id
-
         this.setState({
             guest: guest,
             slot: slot

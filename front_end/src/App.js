@@ -50,13 +50,12 @@ class App extends React.Component {
         })
     }
 
-    //updating coming from bookview using state
-    updateSlots = (state) => {
+    //updating coming from Slot.js using state
+    updateSlots = (slot, guest) => {
         let newArray = [...this.state.slots]
-        console.log("before array", newArray)
-        let slotToUpdate = newArray.find(item => item.id === state.slot_id)
+/*        let slotToUpdate = newArray.find(item => item.id === state.slot_id)*/
 
-        slotToUpdate.booked = !state.booked
+     /*   slotToUpdate.booked = !state.booked
         slotToUpdate.guest.first_name = state.first_name
         slotToUpdate.guest.last_name = state.last_name
         slotToUpdate.guest.guest_notes = state.guest_notes
@@ -65,14 +64,11 @@ class App extends React.Component {
         slotToUpdate.reservation_notes = state.reservation_notes
         slotToUpdate.status = state.status
         slotToUpdate.time = state.time
+*/
 
-        console.log("after array", newArray)
-
-
-
-        /*this.setState({
+        this.setState({
             slots: newArray
-        })*/
+        })
     }
 
     menuClickHandler = (obj) => {

@@ -19,11 +19,10 @@ class GuestsController < ApplicationController
       render json: @guest
     else
       puts "ERROR!! attempt made to change root user!"
-      render "Error: Cannot PATCH root user"
+      render :json => { :errors => "ERROR! Changes to root user are not allowed" }
     end
-
-
   end
+
 
   def search
     @guests = Guest.search_by(params[:q])
