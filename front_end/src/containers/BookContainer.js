@@ -44,7 +44,9 @@ class BookContainer extends React.Component {
         //takes guest and slot info from search item and merges.  Passes back down to modifyreservation form.
         this.setState({
             guest: guest,
-            slot: slot
+            slot: slot,
+            modify_form: !this.state.modify_form,
+            new_form: !this.state.new_form
         })
     }
 

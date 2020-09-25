@@ -13,9 +13,7 @@ class ModifyReservationForm extends React.Component{
             slot: this.props.slot,
             guest: this.props.guest
         })
-
     }
-
 
     onChangeHandler = (e) => {
         if (e.target.name === "first_name") {
@@ -137,8 +135,11 @@ class ModifyReservationForm extends React.Component{
             newSlot.status = "booked"
             newSlot.booked = true
 
+            const newGuest = this.state.guest
+
             this.setState({
-                slot: newSlot
+                slot: newSlot,
+                guest: newGuest
             }, () => {
                 this.patchSlot()
             })
@@ -168,12 +169,14 @@ class ModifyReservationForm extends React.Component{
 
         fetch("http://localhost:3000/slots/" + this.props.slot.id, slotPacket)
             .then(res => res.json())
-            .then(() => this.patchGuest())
             .then(() => this.props.modifyFormSetState())
-
+            .then(() => this.patchGuest())
     }
 
     patchGuest = () => {
+
+
+
         let guestData = {
             first_name: this.state.guest.first_name,
             last_name: this.state.guest.last_name,
@@ -189,12 +192,9 @@ class ModifyReservationForm extends React.Component{
             },
             body: JSON.stringify(guestData)
         }
-
         fetch("http://localhost:3000/guests/" + this.state.guest.id, guestPacket)
             .then(res => res.json())
-            .then(() => {
-                this.props.updateSlots(this.state)
-            })
+            .then(() => this.props.updateSlots(this.state))
     }
 
 

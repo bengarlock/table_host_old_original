@@ -12,8 +12,9 @@ class GuestsController < ApplicationController
 
   def update
     @guest = Guest.find(params[:id])
+    puts "root_user status = " + @guest.root_user.to_s
 
-    if @guest.root_user = false
+    if @guest.root_user == false
       puts "guest okay to patch"
       @guest.update(guest_params)
       render json: @guest

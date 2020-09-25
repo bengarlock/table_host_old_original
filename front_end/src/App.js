@@ -51,24 +51,24 @@ class App extends React.Component {
     }
 
     //updating coming from Slot.js using state
-    updateSlots = (slot, guest) => {
-        let newArray = [...this.state.slots]
-/*        let slotToUpdate = newArray.find(item => item.id === state.slot_id)*/
+    updateSlots = (state) => {
+        const newArray = this.state.slots
+        const slotToUpdate = newArray.find(item => item.id === state.slot.id)
 
-     /*   slotToUpdate.booked = !state.booked
-        slotToUpdate.guest.first_name = state.first_name
-        slotToUpdate.guest.last_name = state.last_name
-        slotToUpdate.guest.guest_notes = state.guest_notes
-        slotToUpdate.party_size = state.party_size
-        slotToUpdate.guest.phone_number = state.phone_number
-        slotToUpdate.reservation_notes = state.reservation_notes
-        slotToUpdate.status = state.status
-        slotToUpdate.time = state.time
-*/
+        slotToUpdate.booked = state.slot.booked
+        slotToUpdate.guest.first_name = state.guest.first_name
+        slotToUpdate.guest.last_name = state.guest.last_name
+        slotToUpdate.guest.guest_notes = state.guest.guest_notes
+        slotToUpdate.party_size = state.slot.party_size
+        slotToUpdate.guest.phone_number = state.guest.phone_number
+        slotToUpdate.reservation_notes = state.slot.reservation_notes
+        slotToUpdate.status = state.slot.status
+        slotToUpdate.time = state.slot.time
 
         this.setState({
             slots: newArray
         })
+
     }
 
     menuClickHandler = (obj) => {
