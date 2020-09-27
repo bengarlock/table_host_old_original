@@ -54,8 +54,8 @@ class App extends React.Component {
     updateSlots = (state) => {
         const newArray = this.state.slots
         const slotToUpdate = newArray.find(item => item.id === state.slot.id)
-
         slotToUpdate.booked = state.slot.booked
+        slotToUpdate.guest.id = state.guest.id
         slotToUpdate.guest.first_name = state.guest.first_name
         slotToUpdate.guest.last_name = state.guest.last_name
         slotToUpdate.guest.guest_notes = state.guest.guest_notes
@@ -65,10 +65,12 @@ class App extends React.Component {
         slotToUpdate.status = state.slot.status
         slotToUpdate.time = state.slot.time
 
+        console.log("App guest id: ", state.guest.id)
+
+
         this.setState({
             slots: newArray
         })
-
     }
 
     menuClickHandler = (obj) => {

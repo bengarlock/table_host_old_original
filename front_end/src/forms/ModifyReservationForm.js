@@ -8,7 +8,7 @@ class ModifyReservationForm extends React.Component{
     }
 
     componentDidMount() {
-        console.log(this.props.slot.id)
+        console.log(this.props.guest.id)
         this.setState({
             slot: this.props.slot,
             guest: this.props.guest
@@ -128,6 +128,7 @@ class ModifyReservationForm extends React.Component{
 
     onSubmitHandler = (e) => {
         e.preventDefault()
+        console.log("ModifyReso Submit Handler:", this.state.guest.id)
 
         // if user does not select a status this ensures status set correctly in state.
         if (this.state.slot.status === '') {
@@ -142,6 +143,7 @@ class ModifyReservationForm extends React.Component{
                 guest: newGuest
             }, () => {
                 this.patchSlot()
+                console.log("ModifyReso Submit Handler after setstate:", this.state.guest.id)
             })
         } else {
             this.patchSlot()
@@ -171,11 +173,10 @@ class ModifyReservationForm extends React.Component{
             .then(res => res.json())
             .then(() => this.props.modifyFormSetState())
             .then(() => this.patchGuest())
+            .then(() => console.log("Fetch reso :", this.state.guest.id))
     }
 
     patchGuest = () => {
-
-
 
         let guestData = {
             first_name: this.state.guest.first_name,
@@ -192,9 +193,10 @@ class ModifyReservationForm extends React.Component{
             },
             body: JSON.stringify(guestData)
         }
-        fetch("http://localhost:3000/guests/" + this.state.guest.id, guestPacket)
+        fetch("http://localhost:3000/guests/" + this.props.guest.id, guestPacket)
             .then(res => res.json())
             .then(() => this.props.updateSlots(this.state))
+            .then(() => console.log("Fetch guest:", this.state.guest.id))
     }
 
 

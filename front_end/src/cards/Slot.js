@@ -1,7 +1,6 @@
 import React from "react";
 
 class Slot extends React.Component {
-
     onClickHandler = () => {
         //updates state in bookcontainer
         this.props.checkSlotStatus(this.props.slot, this.props.slot.guest)

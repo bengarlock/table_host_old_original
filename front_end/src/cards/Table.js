@@ -16,7 +16,7 @@ class Table extends React.Component{
 
     renderTableColor = () => {
 
-        if (this.props.table.status === "open") {
+        if (this.props.table.status === "done") {
             return "grey"
 
         } else if (this.props.table.status === "seated") {
@@ -58,7 +58,7 @@ class Table extends React.Component{
     }
 
     onDoubleClickHandler = (e) => {
-        if (this.props.table.status !== "open") {
+        if (this.props.table.status !== "done") {
             this.props.renderStatusForm(this.props.table)
         }
     }

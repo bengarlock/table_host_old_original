@@ -8,15 +8,14 @@ class TableStatusForm extends React.Component {
         e.preventDefault()
 
         this.props.table.status = e.target.name
-
         this.props.updateTableArray(this.props.table)
-
         this.props.renderStatusForm()
         this.props.table.status = e.target.name
 
         const data = {
             status: e.target.name
         }
+
         const packet = {
             method: "PATCH",
             headers: {
@@ -25,7 +24,11 @@ class TableStatusForm extends React.Component {
             },
             body: JSON.stringify(data)
         }
+
         fetch("http://localhost:3000/tables/" + this.props.table.id, packet)
+            .then(res => res.json())
+
+        fetch("http://localhost:3000/slots/" + this.props.table.reservation_id, packet)
             .then(res => res.json())
     }
 
@@ -45,7 +48,7 @@ class TableStatusForm extends React.Component {
                             <input style={{backgroundColor: "#23fa5c"}} type="button" value="Check Dropped" name="check_dropped" onClick={this.onClickHandler} />
                             <input style={{backgroundColor: "green"}} type="button" value="Paid" name="paid" onClick={this.onClickHandler} />
                             <div>
-                                <input style={{backgroundColor: "grey"}} type="button" value="Done" name="open" onClick={this.onClickHandler} />
+                                <input style={{backgroundColor: "grey"}} type="button" value="Done" name="done" onClick={this.onClickHandler} />
                             </div>
                         </form>
                     </div>

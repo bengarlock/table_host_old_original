@@ -3,14 +3,26 @@ import "../stylesheets/ReservationFloorView.css"
 
 class Reservation extends React.Component{
 
-    onDragHandler = () => {
-        this.props.updateReservation(this.props.reservation)
+    state = {
+        reservation: this.props.reservation
     }
+
+    onDragHandler = () => {
+        this.setState({
+            reservation: this.props.reservation
+        }, () => this.props.updateReservation(this.state.reservation))
+    }
+
+    /*onMouseLeave = () => {
+        this.setState({
+            reservation: ''
+        }, () => this.props.updateReservation(this.state.reservation))
+    }*/
 
     render() {
         return(
             <div>
-                <div className="reservation-card"  draggable="true" onMouseOver={this.onDragHandler}>
+                <div className="reservation-card"  draggable="true" onMouseOver={this.onDragHandler} onMouseLeave={this.onMouseLeave}>
                     <h3>{this.props.reservation.first_name} {this.props.reservation.last_name}</h3>
                     <div>
                         <span className="reservation-time">{this.props.reservation.time} </span>

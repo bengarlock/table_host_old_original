@@ -19,7 +19,7 @@ class TablesController < ApplicationController
   private
 
   def table_params
-    params.require(:table).permit(:name, :restaurant_id, :class_name, :position_left, :position_top, :status)
+    params.require(:table).permit(:name, :restaurant_id, :class_name, :position_left, :position_top, :status, :reservation_id)
   end
 
 end

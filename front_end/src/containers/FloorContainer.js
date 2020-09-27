@@ -13,7 +13,7 @@ class FloorContainer extends React.Component {
         reservations: [],
         current_reservation: '',
         current_table: '',
-        render_status_form: false
+        render_status_form: false,
     }
 
     componentDidMount() {
@@ -35,30 +35,44 @@ class FloorContainer extends React.Component {
         updateReservation.status = "seated"
 
         this.setState({
-            current_reservation : updateReservation
+            current_reservation : updateReservation,
+            table_status: 'seated'
         })
 
-        const data = {
-            status: "seated"
+        const slotData = {
+            status: 'seated'
         }
 
-        const packet = {
+        const tableData = {
+            status: 'seated',
+            reservation_id: this.state.current_reservation.id
+        }
+
+        const slotPacket = {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
                 "accept": "application/json",
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(slotData)
+        }
+
+        const tablePacket = {
+            method: "PATCH",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json",
+            },
+            body: JSON.stringify(tableData)
         }
 
         //updates table status in API as well as Slot to seated.
-        fetch("http://localhost:3000/tables/" + table.id, packet)
+        fetch("http://localhost:3000/tables/" + table.id, tablePacket)
             .then(res => res.json())
 
-        fetch("http://localhost:3000/slots/" + this.state.current_reservation.id, packet)
+        fetch("http://localhost:3000/slots/" + this.state.current_reservation.id, slotPacket)
             .then(res => res.json())
     }
-
 
     updateTableArray = (table) => {
         const newArray = [...this.state.tables]
