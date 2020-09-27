@@ -1,0 +1,147 @@
+
+.report-container {
+    background-color: #6e6e6e;
+}
+
+.reports-nav {
+    height: 100%;
+    background-color: black;
+    width: 50px;
+    position: absolute;
+}
+
+.report-content {
+    background-color: #6e6e6e;
+    position: absolute;
+    margin-left: 50px;
+    width: 100%;
+    height: 100%;
+    padding: 5%
+}
+
+.cover-count-nav-icon {
+    position: absolute;
+    top: 0px;
+    width: 100%;
+    height: 50px;
+    padding: 3px;
+}
+
+.cover-count-nav-icon:hover {
+    background-color: #0f5fa2;
+    transition: all 0.3s ease 0s;
+}
+
+#cover-count-nav-icon-1 {
+    position: absolute;
+    width: 5px;
+    height: 10px;
+    background-color: white;
+    margin-left: 9px;
+    margin-top: 25px;
+}
+
+#cover-count-nav-icon-2 {
+    position: absolute;
+    width: 5px;
+    height: 20px;
+    background-color: white;
+    margin-left: 18px;
+    margin-top: 15px;
+}
+
+#cover-count-nav-icon-3 {
+    position: absolute;
+    width: 5px;
+    height: 30px;
+    background-color: white;
+    margin-left: 27px;
+    margin-top: 5px;
+}
+
+
+/*print reservations nav icon*/
+.print-reservations-nav-icon {
+    position: absolute;
+    top: 50px;
+    width: 100%;
+    height: 50px;
+    padding: 3px;
+}
+
+.print-reservations-nav-icon:hover {
+    background-color: #0f5fa2;
+    transition: all 0.3s ease 0s;
+}
+
+/*print reservations nav icon 1*/
+#print-reservations-nav-icon-1 {
+    position: static;
+    width: 100%;
+    height: 5px;
+    margin-top: 8px;
+}
+
+#print-reservations-nav-icon-1-1 {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    margin-left: 8px;
+}
+
+#print-reservations-nav-icon-1-2 {
+    position: absolute;
+    width: 15px;
+    height: 5px;
+    background-color: white;
+    margin-left: 18px;
+}
+
+/*print reservations nav icon 2*/
+#print-reservations-nav-icon-2 {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    margin-top: 5px;
+}
+
+#print-reservations-nav-icon-2-1 {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    margin-left: 8px;
+}
+
+#print-reservations-nav-icon-2-2 {
+    position: absolute;
+    width: 15px;
+    height: 5px;
+    background-color: white;
+    margin-left: 18px;
+}
+
+/*print reservations nav icon 3*/
+#print-reservations-nav-icon-3 {
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    margin-top: 15px;
+}
+
+#print-reservations-nav-icon-3-1 {
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    background-color: white;
+    margin-left: 8px;
+}
+
+#print-reservations-nav-icon-3-2 {
+    position: absolute;
+    width: 15px;
+    height: 5px;
+    background-color: white;
+    margin-left: 18px;
+}

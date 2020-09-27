@@ -70,8 +70,8 @@ class Header extends React.Component {
             <div className="navigation-header">
             <nav>
                 <ul className="main-header">
-                    <li>
-                        <div onClick={this.onClickHandler}>
+                    <li className="main-menu-button-container" onClick={this.onClickHandler}>
+                        <div>
                             <div id="main-menu-button"></div>
                             <div id="main-menu-button"></div>
                             <div id="main-menu-button"></div>

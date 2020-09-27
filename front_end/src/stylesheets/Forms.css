@@ -1,49 +1,5 @@
 
 
-.main-header {
-    display: flex;
-    justify-content: space-between;
-    align-content: center;
-    font-size: 30px;
-    background-color: #073f66;
-    padding: 10px;
-    color: white;
-    margin: 0px;
-    width: auto;
-    list-style: none;
-}
-
-#main-menu-button {
-    width: 25px;
-    height: 2px;
-    background-color: white;
-    margin: 6px 0;
-}
-
-#main-menu-container {
-    position: absolute;
-    display: block;
-    width: 250px;
-    background-color: lightgrey;
-    z-index: 1;
-}
-
-.menu-item {
-    display: block;
-    text-decoration: none;
-    font-size: 25px;
-    color: black;
-    padding: 5px;
-}
-
-.menu-item:hover {
-    text-decoration: none;
-    background-color: #073f66;
-    color: white;
-    transition: all 0.3s ease 0s;
-
-}
-
 .time-party-size {
     justify-content: space-between;
 }

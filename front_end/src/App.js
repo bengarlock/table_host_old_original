@@ -4,6 +4,7 @@ import Header from "./headers/Header";
 import FloorContainer from "./containers/FloorContainer";
 import BookContainer from "./containers/BookContainer";
 import GuestContainer from "./containers/GuestContainer";
+import ReportsContainer from "./containers/ReportsContainer";
 import { Route } from 'react-router-dom'
 
 
@@ -65,34 +66,22 @@ class App extends React.Component {
         slotToUpdate.status = state.slot.status
         slotToUpdate.time = state.slot.time
 
-        console.log("App guest id: ", state.guest.id)
-
-
         this.setState({
             slots: newArray
         })
     }
 
-    menuClickHandler = (obj) => {
-        if (obj === "Book") {
-            console.log("Book")
-        } else if (obj === "Floor") {
-            console.log("floor")
-        } else if (obj === "Guests") {
-            console.log("Guests clicked")
-        }
-    }
-
     render() {
         return (
             <>
-                <Header menuClickHandler={this.menuClickHandler} date={this.state.date} setDate={this.setDate}/>
+                <Header date={this.state.date} setDate={this.setDate}/>
                 <Route exact path="/" render={ () => <BookContainer date={this.state.date} slots={this.state.slots} updateSlots={this.updateSlots}/> } />
                 <Route exact path="/floor" render={ () => <FloorContainer
                     date={this.state.date} slots={this.state.slots}
                     updateSlotsfromObject={this.updateSlotsfromObject}
                     updateTableArray={this.updateTableArray} /> } />
                 <Route exact path="/guests" render={ () => <GuestContainer /> } />
+                <Route exact path="/reports" render={ () => <ReportsContainer date={this.state.date} slots={this.state.slots} /> } />
             </>
     )
   }
