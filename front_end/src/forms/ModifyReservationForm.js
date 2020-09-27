@@ -1,6 +1,9 @@
 import React from "react"
+import "../stylesheets/ModifyReservationForm.css"
+
 
 class ModifyReservationForm extends React.Component{
+
 
     state = {
         guest: '',

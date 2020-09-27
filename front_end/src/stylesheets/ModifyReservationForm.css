@@ -1,0 +1,49 @@
+#overlay {
+    z-index: 2;
+    background: rgba(0,0,0,0.7);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    text-align: center;
+}
+
+#reservation-form-container{
+    position: relative;
+    border-radius: 10px;
+    z-index: 3;
+    margin: 100px auto 0px auto;
+    width: 70%;
+    height: 600px;
+    background: white;
+    color: #000;
+    overflow: hidden;
+    background-color: deeppink;
+}
+
+.reservation-form {
+    margin-top: 20px;
+    opacity: 100%;
+    background: white;
+    padding: 0 50px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.reservation-form input {
+    background: #eee;
+    border: 1px solid grey;
+    padding: 12px;
+    margin: 10px;
+    width: 25%;
+}
+
+.reservation-form select {
+    background: #eee;
+    border: 1px solid grey;
+    padding: 12px;
+    width: 25%;
+    margin: 10px;
+}

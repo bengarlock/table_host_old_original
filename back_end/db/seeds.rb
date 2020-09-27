@@ -22,15 +22,18 @@ guest_notes = [
     "Friend of the owner",
     "Friend of employee",
     "VIP",
+    "Booth Table only",
+    "Quiet Table",
+    "Likes dirty martini with olive"
 ]
 
 1000.times do
-  Guest.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, guest_notes: Faker::TvShows::BojackHorseman.tongue_twister)
+  Guest.create(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, phone_number: Faker::PhoneNumber.cell_phone, guest_notes: guest_notes[rand(0...guest_notes.length)])
 end
 
 #Generate Restaurant:
 puts "Seeding Restaurant..."
-restaurant1 = Restaurant.create(name: "ilili", address: "236 Fifth Ave, New York NY 10001", description: "Welcome to ilili!")
+restaurant1 = Restaurant.create(name: "Flatiron Restaurant", address: "236 Fifth Ave, New York NY 10001", description: "Welcome to Flatiron Restaurant!")
 
 
 #Create Future days
@@ -38,7 +41,7 @@ today = Date.today
 index = 0
 times = ["5:00 PM", "5:15 PM","5:30 PM","5:45 PM","6:00 PM","6:15 PM","6:30 PM","6:45 PM",
          "7:00 PM","7:15 PM","7:30 PM","7:45 PM", "8:00 PM","8:15 PM","8:30 PM","8:45 PM",
-         "9:00 PM","9:15 PM","9:30 PM","9:45 PM",  "10:00 PM","10:15 PM","10:30 PM","10:45 PM",]
+         "9:00 PM","9:15 PM","9:30 PM","9:45 PM",  "10:00 PM"]
 
 
 100.times do
@@ -64,6 +67,7 @@ times = ["5:00 PM", "5:15 PM","5:30 PM","5:45 PM","6:00 PM","6:15 PM","6:30 PM",
 end
 
 #Create past days.
+index = 1
 100.times do
   Book.create(date: today - index, restaurant_id: Restaurant.last.id)
   puts("Creating day: " + Book.last.date )
@@ -121,3 +125,52 @@ table25 = Table.create(class_name: "fourTop", position_left:"210px", position_to
 table26 = Table.create(class_name: "fourTop", position_left:"280px", position_top: "350px", name:"26", restaurant_id: restaurant1.id)
 table27 = Table.create(class_name: "fourTop", position_left:"350px", position_top: "350px", name:"27", restaurant_id: restaurant1.id)
 table28 = Table.create(class_name: "fourTop", position_left:"420px", position_top: "350px", name:"28", restaurant_id: restaurant1.id)
+
+#creating demo Reservations
+puts "Creating Reservations..."
+
+reservation_notes = [
+    "Celebrating Birthday",
+    "Celebrating Anniversary",
+    "10th Wedding Anniversary",
+    "Catching a show after dinner",
+    "Requested booth",
+]
+
+8000.times do
+  slot = Slot.all.sample
+  guest = Guest.all.sample
+
+  old_id = slot.guest_id
+
+  if slot.booked == false
+    if guest.root_user == false
+      slot.guest_id = guest.id
+      slot.booked = true
+      slot.status = "booked"
+      slot.reservation_notes = reservation_notes[rand(0...reservation_notes.length)]
+      slot.save
+      puts "Booking guest id on: " + slot.book.date.to_s + " from " + old_id.to_s + " to " + guest.id.to_s
+    end
+  end
+end
+
+puts "Booking Large Parties..."
+1000.times do
+  slot = Slot.all.sample
+  guest = Guest.all.sample
+  old_id = slot.guest_id
+
+  if slot.booked == false
+    if guest.root_user == false
+      slot.guest_id = guest.id
+      slot.booked = true
+      slot.party_size = rand(8...12)
+      slot.status = "booked"
+      slot.reservation_notes = reservation_notes[rand(0...reservation_notes.length)]
+      slot.save
+      puts "Booking guest id on large party slot: " + slot.book.date.to_s + " from " + old_id.to_s + " to " + guest.id.to_s
+    end
+  end
+end
+
