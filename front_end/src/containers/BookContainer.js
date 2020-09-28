@@ -2,12 +2,14 @@ import React from 'react'
 import Slot from "../cards/Slot";
 import ModifyReservationForm from "../forms/ModifyReservationForm";
 import NewReservationForm from "../forms/NewReservationForm";
+import EmailReservationForm from "../forms/EmailReservationForm";
 class BookContainer extends React.Component {
 
     state = {
         modify_form: false,
         new_form: false,
         search_form: false,
+        email_form: false,
         slot: '',
         guest: '',
     }
@@ -40,6 +42,12 @@ class BookContainer extends React.Component {
         })
     }
 
+    emailFormSetState = () => {
+        this.setState({
+            email_form: !this.state.email_form
+        })
+    }
+
     updateGuest = (guest, slot) => {
         //takes guest and slot info from search item and merges.  Passes back down to modifyreservation form.
 
@@ -48,7 +56,7 @@ class BookContainer extends React.Component {
             slot: slot,
             modify_form: !this.state.modify_form,
             new_form: !this.state.new_form
-        }, () => console.log("book container", this.state.guest.id))
+        })
     }
 
     renderSlots = () => {
@@ -79,7 +87,8 @@ class BookContainer extends React.Component {
                         slot={this.state.slot}
                         guest={this.state.guest}
                         modifyFormSetState={this.modifyFormSetState}
-                        updateSlots={this.props.updateSlots}/> : null }
+                        updateSlots={this.props.updateSlots}
+                        emailFormState = {this.emailFormSetState}/> : null }
                 </div>
                 <div>
                     {this.state.new_form ?
@@ -90,6 +99,14 @@ class BookContainer extends React.Component {
                             modifyFormSetState={this.modifyFormSetState}
                             updateGuest={this.updateGuest}
                             updateSlots={this.props.updateSlots}/> : null }
+                </div>
+                <div>
+                    {this.state.email_form ?
+                        <EmailReservationForm
+                            key={this.state.slot.id}
+                            slot={this.state.slot}
+                            guest={this.state.guest}
+                            emailFormState={this.emailFormSetState}/> : null}
                 </div>
 
             </div>

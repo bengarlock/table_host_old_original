@@ -1,4 +1,11 @@
-#overlay {
+#email-wrapper {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    padding-left: 24px;
+}
+
+#email-overlay {
     z-index: 2;
     background: rgba(0,0,0,0.7);
     position: fixed;
@@ -9,7 +16,7 @@
     text-align: center;
 }
 
-#modify-reservation-form-container{
+#email-form-container{
     position: relative;
     border-radius: 10px;
     z-index: 3;
@@ -22,7 +29,7 @@
     overflow: hidden;
 }
 
-.reservation-form {
+.email-form {
     margin-top: 20px;
     opacity: 100%;
     background: white;
@@ -32,7 +39,7 @@
     text-align: center;
 }
 
-.reservation-form input {
+.email-form input {
     background: #eee;
     border: 1px solid grey;
     padding: 12px;
@@ -40,7 +47,7 @@
     width: 25%;
 }
 
-.reservation-form select {
+.email-form select {
     background: #eee;
     border: 1px solid grey;
     padding: 12px;

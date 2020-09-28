@@ -24,9 +24,16 @@ class GuestsController < ApplicationController
     end
   end
 
-
   def search
-    @guests = Guest.search_by(params[:q])
+    search_term = params[:q]
+    @results = PgSearch.multisearch(search_term).limit(15)
+    @guests = []
+    @results.each do |item|
+      id = item.searchable_id
+      puts id
+      @guest = Guest.find(id)
+      @guests.push(@guest)
+    end
     render json: @guests
   end
 

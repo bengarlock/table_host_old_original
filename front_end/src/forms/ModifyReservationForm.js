@@ -131,7 +131,6 @@ class ModifyReservationForm extends React.Component{
 
     onSubmitHandler = (e) => {
         e.preventDefault()
-        console.log("ModifyReso Submit Handler:", this.state.guest.id)
 
         // if user does not select a status this ensures status set correctly in state.
         if (this.state.slot.status === '') {
@@ -146,7 +145,6 @@ class ModifyReservationForm extends React.Component{
                 guest: newGuest
             }, () => {
                 this.patchSlot()
-                console.log("ModifyReso Submit Handler after setstate:", this.state.guest.id)
             })
         } else {
             this.patchSlot()
@@ -175,12 +173,11 @@ class ModifyReservationForm extends React.Component{
         fetch("http://localhost:3000/slots/" + this.props.slot.id, slotPacket)
             .then(res => res.json())
             .then(() => this.props.modifyFormSetState())
+            .then(() => this.props.emailFormState())
             .then(() => this.patchGuest())
-            .then(() => console.log("Fetch reso :", this.state.guest.id))
     }
 
     patchGuest = () => {
-
         let guestData = {
             first_name: this.state.guest.first_name,
             last_name: this.state.guest.last_name,
@@ -199,7 +196,6 @@ class ModifyReservationForm extends React.Component{
         fetch("http://localhost:3000/guests/" + this.props.guest.id, guestPacket)
             .then(res => res.json())
             .then(() => this.props.updateSlots(this.state))
-            .then(() => console.log("Fetch guest:", this.state.guest.id))
     }
 
 
@@ -207,7 +203,7 @@ class ModifyReservationForm extends React.Component{
         return(
             <div id="wrapper">
                 <div id="overlay">
-                    <div id="reservation-form-container" >
+                    <div id="modify-reservation-form-container" >
                         <form className="reservation-form" onSubmit={this.onSubmitHandler} style={{cursor: "default"}}>
                             <div>
                                 <div id="close" onClick={this.onClickHandler}>Close</div>

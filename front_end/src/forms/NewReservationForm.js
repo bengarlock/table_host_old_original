@@ -26,17 +26,14 @@ class NewReservationForm extends React.Component {
         console.log("submit")
     }
 
-
     renderSearchResults = () => {
-        let limitedResults = this.state.searchResults.splice(0, 10)
-        return limitedResults.map(result => <SearchItems
+        return this.state.searchResults.map(result => <SearchItems
             key={result.id} result={result}
             newFormSetState={this.props.newFormSetState}
             modifyFormSetState={this.props.modifyFormSetState}
             updateGuest={this.props.updateGuest}
             slot={this.props.slot}/>)
     }
-
 
     render(){
         return(
