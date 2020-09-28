@@ -18,6 +18,7 @@
     width: available;
     justify-content: space-between;
     padding: 5px;
+    position: sticky;
 }
 
 .floorplan-tables {

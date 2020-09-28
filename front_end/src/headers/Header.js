@@ -86,7 +86,7 @@ class Header extends React.Component {
                             </span>
                             <span className="arrow right" value="date-forward" onClick={this.renderDate}></span>
                     </li>
-                    <li style={{fontSize: "20px", padding: "10px"}} className="date-now" onClick={this.renderDate}>Today</li>
+                    <li style={{fontSize: "20px", padding: "25px"}} className="date-now" onClick={this.renderDate}>Today</li>
                 </ul>
                 <div>{this.state.menuClicked ? <MainMenu menuClickHandler={this.props.menuClickHandler} onClickHandler={this.onClickHandler}/> : null}</div>
             </nav>
