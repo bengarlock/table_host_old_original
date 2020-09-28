@@ -17,9 +17,7 @@ class App extends React.Component {
     }
 
     setDate = (date) => {
-        console.log(date)
         let url = "http://localhost:3000/date?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
-        console.log(url)
         this.setState({
             date: date
         }, () => {

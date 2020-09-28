@@ -22,6 +22,8 @@ class ReportCoverCountCard extends React.Component {
         let index = 0
         let total = 0
 
+        this.props.reservation.resos.sort((a, b) => (a.party_size > b.party_size) ? 1 : -1)
+
         while (index < time.total_booked) {
             if (this.props.reservation.resos[0]) {
                 if (this.props.reservation.resos[index].party_size > 7) {
