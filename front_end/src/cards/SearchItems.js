@@ -1,4 +1,5 @@
 import React from "react"
+import "../stylesheets/SearchItem.css"
 
 class SearchItems extends React.Component {
 
@@ -9,8 +10,8 @@ class SearchItems extends React.Component {
 
     render() {
         return(
-            <div className="search-results-container">
-                <span onClick={this.guestSelected}>{this.props.result.first_name} {this.props.result.last_name}</span>
+            <div className="search-results-container" onClick={this.guestSelected}>
+                <span>{this.props.result.first_name} {this.props.result.last_name}</span>
             </div>
         )
     }

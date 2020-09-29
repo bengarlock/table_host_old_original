@@ -8,6 +8,11 @@ class Header extends React.Component {
     state = {
         menuClicked: false,
         calendarClicked: false,
+        headerDate: ''
+    }
+
+    componentDidMount() {
+        this.getDate()
     }
 
     onClickHandler = () => {
@@ -20,16 +25,14 @@ class Header extends React.Component {
     //triggered on user clicking calendar buttons
     renderDate = (e) => {
         if (e.target.className === "arrow right") {
-            let date = this.props.date
-            date.setDate(date.getDate() + 1)
-            this.props.setDate(date)
-            return this.props.date
+            this.props.date.setDate(this.props.date.getDate() + 1)
+            this.props.setDate(this.props.date)
 
         } else if (e.target.className === "arrow left") {
-            let date = this.props.date
-            date.setDate(date.getDate() - 1)
-            this.props.setDate(date)
-            return this.props.date
+            this.props.date.setDate(this.props.date.getDate() - 1)
+            this.props.setDate(this.props.date)
+
+
 
         } else if (e.target.className === "date-picker") {
             this.setState({
@@ -42,19 +45,25 @@ class Header extends React.Component {
         }
     }
 
-    //used to display current state:date in header.
+    //used to display custom date text in header.
     getDate = () => {
+        let today = new Date()
+        let date = this.props.date
+
+        let propsDate = parseInt(date.getMonth() +1 )  + "-" +  date.getDate() + "-" + date.getFullYear()
+        let dateToday = parseInt(today.getMonth() +1)  + "-" +  today.getDate() + "-" + today.getFullYear()
+        let dateTomorrow = parseInt(today.getMonth() +1 )  + "-" +  (today.getDate() + 1) + "-" + today.getFullYear()
+
         if (this.props.date) {
-            let today = new Date()
-            if (this.props.date === today){
-                return String("Today")
+            if (propsDate === dateToday) {
+                return "Today"
+            } else if (propsDate === dateTomorrow) {
+                return "Tomorrow"
             } else {
                 let date = this.props.date
-                let NewDate = parseInt(date.getMonth()+1)  + "-" +  date.getDate() + "-" + date.getFullYear()
-                return String(NewDate)
+                let newDate = parseInt(date.getMonth()+1)  + "-" +  date.getDate() + "-" + date.getFullYear()
+                return String(newDate)
             }
-        } else {
-            return "Today"
         }
     }
 
@@ -78,13 +87,14 @@ class Header extends React.Component {
                         </div>
 
                     </li>
+                    <li className="arrow left" value="date-back" onClick={this.renderDate}></li>
                     <li className="date-picker-container">
-                            <span className="arrow left" value="date-back" onClick={this.renderDate}></span>
-                            <span className="date-picker" value="date-picker" onClick={this.renderDate}>
+                     {/*       <span ></span>*/}
+                            <span className="center-date-picker" value="date-picker" onClick={this.renderDate}>
                                 {this.getDate()}
                                 {this.state.calendarClicked ? <DateCalendar date={this.props.date} setDate={this.props.setDate} toggleCalendar={this.toggleCalendar}/> : null}
                             </span>
-                            <span className="arrow right" value="date-forward" onClick={this.renderDate}></span>
+                        <li className="arrow right" value="date-forward" onClick={this.renderDate}></li>
                     </li>
                     <li style={{fontSize: "20px", padding: "25px"}} className="date-now" onClick={this.renderDate}>Today</li>
                 </ul>

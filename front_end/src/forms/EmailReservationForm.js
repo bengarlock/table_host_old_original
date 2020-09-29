@@ -11,7 +11,6 @@ class EmailReservationForm extends React.Component{
 
     }
 
-
     onClickHandler = (e) => {
         if (e.target.id === "close"){
             this.props.emailFormState()
@@ -26,8 +25,9 @@ class EmailReservationForm extends React.Component{
                         <form className="email-form" onSubmit={this.onSubmitHandler} style={{cursor: "default"}}>
                             <div>
                                 <div id="close" onClick={this.onClickHandler}>Close</div>
-                                <h1 style={{padding: "20px"}}>Reservation Confirmation</h1>
-                                <div style={{padding: "20px", fontWeight: "900"}}>Reservation has been confirmed for: </div>
+                                <h2 style={{padding: "10px"}}>Reservation Confirmation</h2>
+                                <div style={{padding: "10px", fontWeight: "900"}}>Reservation has been confirmed for: </div>
+                                <div>{this.props.guest.first_name} {this.props.guest.last_name}</div>
                                 <div>{this.renderDateWording()}</div>
                                 <div>for {this.props.slot.party_size} people</div>
                                 <div>at {this.props.slot.time}</div>

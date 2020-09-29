@@ -26,7 +26,7 @@ class GuestsController < ApplicationController
 
   def search
     search_term = params[:q]
-    @results = PgSearch.multisearch(search_term).limit(15)
+    @results = PgSearch.multisearch(search_term).limit(10)
     @guests = []
     @results.each do |item|
       id = item.searchable_id

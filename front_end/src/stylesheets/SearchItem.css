@@ -1,0 +1,13 @@
+.search-results-container {
+    margin-left: 25%;
+    background-color: lightgray;
+    text-align: center;
+    padding: 10px;
+    width: 50%;
+}
+
+.search-results-container:hover {
+    background-color: #103f62;
+    color: white;
+    transition: all 0.5s ease 0s;
+}

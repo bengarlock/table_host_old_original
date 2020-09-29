@@ -11,7 +11,6 @@ class ModifyReservationForm extends React.Component{
     }
 
     componentDidMount() {
-        console.log(this.props.guest.id)
         this.setState({
             slot: this.props.slot,
             guest: this.props.guest
@@ -196,6 +195,11 @@ class ModifyReservationForm extends React.Component{
         fetch("http://localhost:3000/guests/" + this.props.guest.id, guestPacket)
             .then(res => res.json())
             .then(() => this.props.updateSlots(this.state))
+    }
+
+    renderTimeSlotDropDown = () => {
+        let timesArray = []
+        console.log(this.props.slot.book.id)
     }
 
 

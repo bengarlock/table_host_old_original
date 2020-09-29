@@ -51,9 +51,9 @@ class NewReservationForm extends React.Component {
                             <div>
                                 {this.renderSearchResults()}
                             </div>
-                            <div className="submit-button">
+                            {/*<div className="submit-button">
                                 <input style={{backgroundColor: "#486998", width: "150px" }} type="submit" />
-                            </div>
+                            </div>*/}
                         </form>
                     </div>
                 </div>
