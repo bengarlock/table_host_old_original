@@ -53,7 +53,7 @@ class GuestContainer extends React.Component{
 
     render(){
         return(
-            <div className="guest-container">
+            <div className="guest-container" style={{position: "relative", top: "80px"}}>
                 <div className="search-column-container">
                     <input id="search-container-header"
                            name="search"

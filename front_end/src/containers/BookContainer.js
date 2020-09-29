@@ -66,10 +66,10 @@ class BookContainer extends React.Component {
 
     render() {
         return(
-            <div>
+            <div style={{position: "relative", top: "80px"}}>
                 <table>
                     <tbody>
-                    <tr>
+                    <tr style={{}}>
                         <th>Time</th>
                         <th>Party Size</th>
                         <th>First Name</th>

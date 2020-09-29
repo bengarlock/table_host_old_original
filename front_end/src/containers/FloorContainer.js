@@ -104,7 +104,7 @@ class FloorContainer extends React.Component {
 
     render() {
         return(
-            <div className="floorplan-container">
+            <div className="floorplan-container" style={{position: "relative", top: "80px"}}>
                 <div className="reservation-container">
                     <div id="reservations-container-header">Reservations</div>
                     <div>{this.renderReservations()}</div>

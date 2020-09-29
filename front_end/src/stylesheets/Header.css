@@ -66,8 +66,8 @@
 }
 
 .navigation-header {
-    position: -webkit-sticky; /* Safari */
-    position: sticky;
+    position: fixed;
+    width: 100%;
     display: flex;
     top: 0px;
     flex-flow: row nowrap;
@@ -85,6 +85,7 @@
     position: absolute;
     width: 300px;
     height: 220px;
+    top: 70px;
     background-color: lightgray;
     z-index: 1;
     transition: all 0.3s ease-in-out 0s, visibility 0s linear 0.3s, z-index 0s linear 0.01s;
