@@ -34,7 +34,7 @@ class EmailReservationForm extends React.Component{
                                 <br />
                                 <div>Would you like a confirmation email?</div>
 
-                                <input style={{width: "300px"}} type="text" name="email" placeholder="Email" />
+                                <input style={{width: "300px"}} type="text" name="email" placeholder="Email" autoComplete="off" />
                             </div>
                             <input style={{backgroundColor: "#486998", color: "white"}} type="submit" value="Send Email"/>
                         </form>

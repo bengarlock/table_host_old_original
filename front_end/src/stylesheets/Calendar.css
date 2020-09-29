@@ -1,11 +1,12 @@
 
 .calendar-container {
     position: absolute;
-    display: block;
     z-index: 1;
     font-size: 12px;
     padding: 10px;
-    margin-left: -220px;
+    top: 60px;
+
+
 }
 
 .react-calendar {

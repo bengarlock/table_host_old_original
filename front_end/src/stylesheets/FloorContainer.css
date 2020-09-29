@@ -1,6 +1,12 @@
 .floorplan-container{
     height: 100%;
     background-color: black;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .reservation-container {
@@ -9,6 +15,7 @@
     border-right: black; size: 2px;
     justify-content: space-between;
     background-color: #757575;
+    overflow: hidden;
 }
 
 #reservations-container-header{
@@ -26,6 +33,6 @@
     position: absolute;
     top: 65px;
     left: 300px;
-    width: 65%;
-    height: 85%
+    width: 525px;
+    height: 525px;
 }

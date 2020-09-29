@@ -14,7 +14,7 @@
     background-color: #6e6e6e;
     position: absolute;
     margin-left: 50px;
-    width: 100%;
+    width: calc(100vw - 65px);
     height: 100%;
     padding: 5%
 }

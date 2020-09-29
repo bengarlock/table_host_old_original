@@ -16,25 +16,23 @@ class Header extends React.Component {
     }
 
     onClickHandler = () => {
-        let menuClicked = !this.state.menuClicked
         this.setState({
-            menuClicked: menuClicked
+            menuClicked: !this.state.menuClicked
         })
     }
 
     //triggered on user clicking calendar buttons
     renderDate = (e) => {
-        if (e.target.className === "arrow right") {
+        if (e.target.className === "arrow-right-container" || e.target.className === "arrow right") {
             this.props.date.setDate(this.props.date.getDate() + 1)
             this.props.setDate(this.props.date)
 
-        } else if (e.target.className === "arrow left") {
+        } else if (e.target.className === "arrow-left-container"  || e.target.className === "arrow left") {
             this.props.date.setDate(this.props.date.getDate() - 1)
             this.props.setDate(this.props.date)
 
-
-
-        } else if (e.target.className === "date-picker") {
+        } else if (e.target.className === "center-date-picker-container" || e.target.className === "center-date-picker") {
+            console.log(this.state.calendarClicked)
             this.setState({
                 calendarClicked: !this.state.calendarClicked
             })
@@ -42,6 +40,12 @@ class Header extends React.Component {
         } else if (e.target.className === "date-now") {
             let date = new Date()
             this.props.setDate(date)
+
+        } else {
+            this.setState({
+                menuClicked: false,
+                calendarClicked: false
+            })
         }
     }
 
@@ -76,34 +80,45 @@ class Header extends React.Component {
 
     render() {
         return(
-            <div className="navigation-header">
-            <nav>
-                <ul className="main-header">
-                    <li className="main-menu-button-container" onClick={this.onClickHandler}>
-                        <div>
-                            <div id="main-menu-button"></div>
-                            <div id="main-menu-button"></div>
-                            <div id="main-menu-button"></div>
-                        </div>
+            <div >
+                <nav className="navigation-header">
+                    <ul className="main-header">
+                        <li className="main-menu-button-container" onClick={this.onClickHandler}>
+                            <div>
+                                <div id="main-menu-button"></div>
+                                <div id="main-menu-button"></div>
+                                <div id="main-menu-button"></div>
+                            </div>
+                        </li>
+                        <li>
+                            <div className="date-picker-container">
+                                <div className="arrow-left-container" onClick={this.renderDate}>
+                                    <div className="arrow left" value="date-back"></div>
+                                </div>
+                                <div className="center-date-picker-container" onClick={this.renderDate}>
+                                    <div className="center-date-picker" value="date-picker" >
+                                        {this.getDate()}
+                                    </div>
+                                </div>
+                                <div className="arrow-right-container"  onClick={this.renderDate}>
+                                    <div className="arrow right" value="date-forward"></div>
+                                </div>
+                            </div>
+                        </li>
+                        <li style={{fontSize: "20px", padding: "25px"}} className="date-now" onClick={this.renderDate}>Today</li>
+                    </ul>
 
-                    </li>
-                    <li className="arrow left" value="date-back" onClick={this.renderDate}></li>
-                    <li className="date-picker-container">
-                     {/*       <span ></span>*/}
-                            <span className="center-date-picker" value="date-picker" onClick={this.renderDate}>
-                                {this.getDate()}
-                                {this.state.calendarClicked ? <DateCalendar date={this.props.date} setDate={this.props.setDate} toggleCalendar={this.toggleCalendar}/> : null}
-                            </span>
-                        <li className="arrow right" value="date-forward" onClick={this.renderDate}></li>
-                    </li>
-                    <li style={{fontSize: "20px", padding: "25px"}} className="date-now" onClick={this.renderDate}>Today</li>
-                </ul>
-                <div>{this.state.menuClicked ? <MainMenu menuClickHandler={this.props.menuClickHandler} onClickHandler={this.onClickHandler}/> : null}</div>
-            </nav>
+                </nav>
+                <div>
+                    {this.state.menuClicked ? <MainMenu menuClickHandler={this.props.menuClickHandler} onClickHandler={this.onClickHandler}/> : null}
+                </div>
+                <div className="calendar-wrapper">
+                    {this.state.calendarClicked ? <DateCalendar date={this.props.date} setDate={this.props.setDate} toggleCalendar={this.toggleCalendar}/> : null}
+                </div>
+
             </div>
         )
     }
-
 }
 
 export default Header

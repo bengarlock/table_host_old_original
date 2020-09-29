@@ -1,42 +1,56 @@
 .date-picker-container{
-    background-color: red;
-    align-content: center;
-    width: 400px;
-    height: 100%;
+    width: 250px;
+    height: 80px;
+    user-select: none;
+    display: flex;
+    align-items: center;
+    -webkit-box-align: center;
 }
-
 .arrow {
     border: solid white;
-    border-width: 0 3px 3px 0;
-    display: inline-block;
+    border-width: 0 2px 2px 0;
     padding: 5px;
 }
 
-.right {
-    position: absolute;
-    top: 35px;
+.arrow-left-container {
+    cursor: pointer;
+    padding: 20px
+}
 
+.arrow-right-container {
+    cursor: pointer;
+    padding: 20px
+}
+
+.right {
     transform: rotate(-45deg);
     -webkit-transform: rotate(-45deg);
 }
 
 .left {
-    position: absolute;
-    top: 35px;
-    margin-left: 10px;
     transform: rotate(135deg);
     -webkit-transform: rotate(135deg);
+}
+.center-date-picker-container {
+    justify-content: center;
+    margin: auto;
+    width: 200px;
+    display: flex;
 }
 
 .center-date-picker {
     position: relative;
-    top: 19px;
-    font-size: 35px;
-    background: green;
+    align-content: center;
+    text-align: center;
+    font-size: 20px;
+    height: 80px;
     color: white;
-    left: 72px;
-    padding: 17px;
     cursor: default;
+    display: inline-block;
+    padding: 7px;
+    padding-top: 25px;
+    margin:0 auto;
+
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -45,16 +59,30 @@
     user-select: none;
 }
 
+.calendar-wrapper {
+    display: flex;
+    justify-content: center;
+
+}
+
 .navigation-header {
     position: -webkit-sticky; /* Safari */
     position: sticky;
+    display: flex;
     top: 0px;
+    flex-flow: row nowrap;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-box-align: center;
+    -webkit-box-pack: justify;
+    align-items: center;
+    justify-content: space-between;
     z-index: 1;
+    user-select: none;
 }
 
 #main-menu-container {
     position: absolute;
-    display: block;
     width: 300px;
     height: 220px;
     background-color: lightgray;
@@ -78,7 +106,7 @@
     background-color: #073f66;
     color: white;
     margin: 0px;
-    width: auto;
+    width: 100%;
     list-style: none;
 }
 

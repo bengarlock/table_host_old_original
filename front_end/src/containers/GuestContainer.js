@@ -55,7 +55,12 @@ class GuestContainer extends React.Component{
         return(
             <div className="guest-container">
                 <div className="search-column-container">
-                    <input id="search-container-header" name="search" placeholder="Guest Search" onChange={this.onChangeHandler} value={this.state.search}></input>
+                    <input id="search-container-header"
+                           name="search"
+                           placeholder="Guest Search"
+                           onChange={this.onChangeHandler}
+                           value={this.state.search}
+                           autoComplete="off"></input>
                     {this.renderSearchResults()}
                 </div>
                 <div className="guest-form-container">

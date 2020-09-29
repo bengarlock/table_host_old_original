@@ -5,13 +5,15 @@
     background-color: white;
     padding: 20px;
     width: 89%;
+    display: flex;
+    justify-content: center;
 }
 
 .cover-count-container {
     position: absolute;
     background-color: white;
     top: 30px;
-    width: 1500px;
+    width: 1200px;
     height: 50%;
     padding: 25px;
 }

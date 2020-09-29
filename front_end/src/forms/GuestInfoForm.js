@@ -65,7 +65,10 @@ class GuestInfoForm extends React.Component {
 
                     <div className="guest-history-item-container">
                         <h3>Guest History</h3>
-                        {this.renderGuestHistory()}
+                        <table>
+                            {this.renderGuestHistory()}
+                        </table>
+
                     </div>
 
                 </form>

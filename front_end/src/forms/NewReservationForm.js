@@ -45,7 +45,7 @@ class NewReservationForm extends React.Component {
                                 <div id="close" onClick={this.props.newFormSetState}>Close</div>
                                 <h2>Search For Guest</h2>
                                 <div className="search-box">
-                                    <input  type="text" value={this.state.search} name="search" placeholder="Guest Search" onChange={this.onChangeHandler} />
+                                    <input  type="text" value={this.state.search} name="search" placeholder="Guest Search"  autoComplete="off" onChange={this.onChangeHandler} />
                                 </div>
                             </div>
                             <div>

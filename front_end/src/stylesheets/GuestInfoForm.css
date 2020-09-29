@@ -19,7 +19,7 @@
 .guest-history-item-container {
     padding: 10px;
     background-color: white;
-    width: 470px;
+    width: 600px;
     margin: 0 auto;
     border-color: black;
     border-width: 1px;
@@ -29,6 +29,7 @@
 }
 
 .guest-history-item {
+    font-size: 15px;
     padding: 20px;
     height: 12px;
 }
