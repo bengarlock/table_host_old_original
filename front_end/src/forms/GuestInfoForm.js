@@ -50,18 +50,28 @@ class GuestInfoForm extends React.Component {
     render(){
 
         return(
-            <div className='guest-info-container'>
+            <div className="guest-info-container">
 
-                <form>
-                    <div>
-                        <h3>Guest Information</h3>
-                        <input type="text" name="first_name" placeholder="First Name" value={this.state.first_name} onChange={this.onChangeHandler}></input>
-                        <input type="text" name="last_name" placeholder="Last Name" value={this.state.last_name} onChange={this.onChangeHandler}></input>
-                        <input type="text" name="phone_number" placeholder="Phone Number" value={this.state.phone_number} onChange={this.onChangeHandler}></input>
-                    </div>
-                    <div>
-                        <textarea type="text" name="guest_notes" placeholder="Guest Notes" value={this.state.guest_notes} onChange={this.onChangeHandler}></textarea>
-                    </div>
+                <div className="guest-info-sub-container">
+                    <form>
+                        <div>
+                            <h3>Guest Information</h3>
+                            <span>
+                                <input className="guest-info-form-input" type="text" name="first_name" placeholder="First Name" value={this.state.first_name} onChange={this.onChangeHandler}></input>
+                            </span>
+                            <span>
+                                <input className="guest-info-form-input" type="text" name="last_name" placeholder="Last Name" value={this.state.last_name} onChange={this.onChangeHandler}></input>
+                            </span>
+                            <span>
+                                <input className="guest-info-form-input" type="text" name="phone_number" placeholder="Phone Number" value={this.state.phone_number} onChange={this.onChangeHandler}></input>
+                            </span>
+                        </div>
+                        <div className="guest-info-form-input-text-box">
+                            <textarea  type="text" name="guest_notes" placeholder="Guest Notes" value={this.state.guest_notes} onChange={this.onChangeHandler}></textarea>
+                        </div>
+                    </form>
+                </div>
+
 
                     <div className="guest-history-item-container">
                         <h3>Guest History</h3>
@@ -70,10 +80,6 @@ class GuestInfoForm extends React.Component {
                         </table>
 
                     </div>
-
-                </form>
-
-
 
             </div>
         )

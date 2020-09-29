@@ -17,7 +17,7 @@
 }
 
 .guest-history-item-container {
-    padding: 10px;
+    padding: 30px;
     background-color: white;
     width: 600px;
     margin: 0 auto;
@@ -26,6 +26,22 @@
     border-style: solid;
     padding-bottom: 60px;
     margin-top: 15px;
+    border-radius: 10px;
+}
+
+.guest-info-sub-container {
+    padding: 10px;
+    background-color: white;
+    width: 600px;
+    height: 300px;
+    margin: 0 auto;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    padding-bottom: 60px;
+    margin-top: 15px;
+    border-radius: 10px;
+
 }
 
 .guest-history-item {
@@ -39,3 +55,10 @@
     height: 14px;
 }
 
+.guest-info-form-input {
+    width: 131px;
+}
+
+.guest-info-form-input-text-box textarea {
+    width: 433px;
+}

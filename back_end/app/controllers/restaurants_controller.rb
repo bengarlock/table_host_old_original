@@ -3,4 +3,8 @@ class RestaurantsController < ApplicationController
     @restaurants = Restaurant.all
     render json: @restaurants
   end
+
+
+
+
 end

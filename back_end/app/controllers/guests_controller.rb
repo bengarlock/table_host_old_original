@@ -37,6 +37,13 @@ class GuestsController < ApplicationController
     render json: @guests
   end
 
+  def email
+    email= params[:e]
+    puts email
+    ReservationMailer.with(email).confirmation_email.deliver_later
+    render html: @email
+  end
+
   private
 
   def guest_params
