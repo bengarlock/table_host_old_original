@@ -1,0 +1,20 @@
+.book-container-wrapper {
+    position: relative;
+    top: 80px;
+}
+
+.closed-message-wrapper {
+    left: 0;
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - 122px);
+    background-color: lightgray;
+
+}
+
+.closed-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 300px;
+}

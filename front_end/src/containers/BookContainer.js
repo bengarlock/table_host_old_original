@@ -3,6 +3,9 @@ import Slot from "../cards/Slot";
 import ModifyReservationForm from "../forms/ModifyReservationForm";
 import NewReservationForm from "../forms/NewReservationForm";
 import EmailReservationForm from "../forms/EmailReservationForm";
+import "../stylesheets/BookContainer.css"
+
+
 class BookContainer extends React.Component {
 
     state = {
@@ -60,22 +63,33 @@ class BookContainer extends React.Component {
     }
 
     renderSlots = () => {
-        return this.props.slots.map(slot => <Slot key={slot.id} slot={slot} checkSlotStatus={this.checkSlotStatus} />)
+        console.log(this.props.slots.length)
+        if (this.props.slots.length > 0) {
+            return this.props.slots.map(slot => <Slot key={slot.id} slot={slot} checkSlotStatus={this.checkSlotStatus} />)
+        } else {
+            return (
+                <div className="closed-message-wrapper">
+                    <div className={"closed-message"}>The Restaurant is closed on this day</div>
+                </div>)
+        }
+
     }
 
 
     render() {
         return(
-            <div style={{position: "relative", top: "80px"}}>
-                <table>
-                    <tbody>
-                    <tr style={{}}>
-                        <th>Time</th>
-                        <th>Party Size</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Phone Number</th>
-                        <th>Status</th>
+            <div className="book-container-wrapper">
+                <table style={{fontWeight: "bold"}}>
+                    <tbody className="book-container-wrapper">
+                    <tr className="header-title-bar">
+                        <th style={{textAlign: "center"}}>Time</th>
+                        <th style={{textAlign: "center"}}>Size</th>
+                        <th style={{textAlign: "center"}}>First Name</th>
+                        <th style={{textAlign: "center"}}>Last Name</th>
+                        <th style={{textAlign: "center"}}>Phone Number</th>
+                        <th style={{textAlign: "center"}}>Reservation Notes</th>
+                        <th style={{textAlign: "center"}}>Guest Notes</th>
+                        <th style={{textAlign: "center"}}>Status</th>
                     </tr>
                         {this.renderSlots()}
                     </tbody>

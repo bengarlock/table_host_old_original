@@ -46,10 +46,16 @@ class App extends React.Component {
     }
 
     renderSlots = (book) => {
-        book[0].slots.sort((a, b) => (a.id > b.id) ? 1 : -1)
-        this.setState({
-            slots: book[0].slots,
-        })
+        if (book[0]) {
+            book[0].slots.sort((a, b) => (a.id > b.id) ? 1 : -1)
+            this.setState({
+                slots: book[0].slots,
+            })
+        } else {
+            this.setState({
+                slots: []
+            })
+        }
     }
 
     //updating coming from Slot.js using state

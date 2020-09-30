@@ -16,6 +16,14 @@ class EmailReservationForm extends React.Component{
         }
     }
 
+    onSubmitHandler = (e) => {
+        e.preventDefault()
+        let slotRow = document.getElementById(`${this.props.slot.id}`)
+        slotRow.setAttribute("style", `background-color: #c8b819`)
+        slotRow.setAttribute("class", `last-reservation`)
+        this.props.emailFormState()
+    }
+
     render(){
         return(
             <div id="email-wrapper">

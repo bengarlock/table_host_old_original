@@ -1,12 +1,10 @@
 
 .calendar-container {
-    position: absolute;
+    position: fixed;
     z-index: 1;
     font-size: 12px;
     padding: 10px;
     top: 60px;
-
-
 }
 
 .react-calendar {
