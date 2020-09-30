@@ -19,7 +19,7 @@ class SlotsController < ApplicationController
   private
 
   def slot_params
-    params.require(:slot).permit(:time, :book, :party_size, :status, :reservation_notes, :booked, :guest_id)
+    params.require(:slot).permit(:time, :book, :party_size, :status, :reservation_notes, :booked, :guest_id, :tables)
   end
 
 end
