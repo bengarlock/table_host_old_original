@@ -7,7 +7,7 @@ class EmailReservationForm extends React.Component{
         const reservationDate = new Date(this.props.slot.book.date)
         const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         const monthsOfYear = ["January", "February", "Mark", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        return daysOfWeek[reservationDate.getDay()] + ', ' + monthsOfYear[reservationDate.getMonth()] + " " + (reservationDate.getDate() + 1)
+        return daysOfWeek[reservationDate.getDay()] + ', ' + monthsOfYear[reservationDate.getMonth() + 1] + " " + (/*reservationDate.getDate() + 1*/ "1st")
     }
 
     onClickHandler = (e) => {
