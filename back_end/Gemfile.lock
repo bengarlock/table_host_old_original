@@ -195,8 +195,9 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   capistrano (~> 3.11)
+  capistrano-bundler
   capistrano-passenger (~> 0.2.0)
-  capistrano-rails (~> 1.4)
+  capistrano-rails
   capistrano-rbenv (~> 2.1, >= 2.1.4)
   faker
   gmail
