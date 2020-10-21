@@ -32,7 +32,6 @@ class Header extends React.Component {
             this.props.setDate(this.props.date)
 
         } else if (e.target.className === "center-date-picker-container" || e.target.className === "center-date-picker") {
-            console.log(this.state.calendarClicked)
             this.setState({
                 calendarClicked: !this.state.calendarClicked
             })
