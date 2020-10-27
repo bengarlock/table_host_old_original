@@ -17,7 +17,7 @@ class App extends React.Component {
     }
 
     setDate = (date) => {
-        let url = "http://localhost:3000/date?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
+        let url = "http://www.bengarlock.com:8080/books?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
         this.setState({
             date: date
         }, () => {
@@ -29,7 +29,8 @@ class App extends React.Component {
 
     componentDidMount() {
         let date = new Date()
-        let url = "http://localhost:3000/date?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
+        let url = "http://www.bengarlock.com:8080/books?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
+        console.log("url:", url)
         fetch(url)
             .then(res => res.json())
             .then(book => this.renderSlots(book))
