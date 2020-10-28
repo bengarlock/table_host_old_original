@@ -63,7 +63,6 @@ class BookContainer extends React.Component {
     }
 
     renderSlots = () => {
-        console.log(this.props.slots.length)
         if (this.props.slots.length > 0) {
             return this.props.slots.map(slot => <Slot key={slot.id} slot={slot} checkSlotStatus={this.checkSlotStatus} />)
         } else {
