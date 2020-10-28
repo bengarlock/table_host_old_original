@@ -152,12 +152,12 @@ class ModifyReservationForm extends React.Component{
 
     patchSlot = () => {
         let slotData = {
-            guest_id: this.props.guest.id,
+            guest: this.props.guest.id,
             reservation_notes: this.state.slot.reservation_notes,
             time: this.state.slot.time,
             party_size: this.state.slot.party_size,
             booked: this.state.slot.booked,
-            status: this.state.slot.status
+            status: this.state.slot.status,
         }
 
         let slotPacket = {
@@ -169,7 +169,7 @@ class ModifyReservationForm extends React.Component{
             body: JSON.stringify(slotData)
         }
 
-        fetch("http://localhost:3000/slots/" + this.props.slot.id, slotPacket)
+        fetch("http://www.bengarlock.com:8080/slots/" + this.props.slot.id  + '/', slotPacket)
             .then(res => res.json())
             .then(() => this.props.modifyFormSetState())
             .then(() => this.props.emailFormState())
@@ -192,7 +192,7 @@ class ModifyReservationForm extends React.Component{
             },
             body: JSON.stringify(guestData)
         }
-        fetch("http://localhost:3000/guests/" + this.props.guest.id, guestPacket)
+        fetch("http://www.bengarlock.com:8080/guests/" + this.props.guest.id + '/', guestPacket)
             .then(res => res.json())
             .then(() => this.props.updateSlots(this.state))
     }

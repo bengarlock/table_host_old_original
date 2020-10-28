@@ -30,7 +30,7 @@ class GuestContainer extends React.Component{
 
     fetchSearch = (search) => {
         console.log("something")
-        fetch("http://localhost:3000/search?q=" + search)
+        fetch("http://www.bengarlock.com:8080/guests/?first_name=" + search)
             .then(res => res.json())
             .then(results => this.setState({
                     searchResults: results
