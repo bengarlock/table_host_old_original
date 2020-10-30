@@ -17,7 +17,7 @@ class FloorContainer extends React.Component {
     }
 
     componentDidMount() {
-        fetch("http://localhost:3000/tables/")
+        fetch("http://www.bengarlock.com:8080/tables/")
             .then(res => res.json())
             .then(tables => this.setState({
                 tables: tables
@@ -67,10 +67,10 @@ class FloorContainer extends React.Component {
         }
 
         //updates table status in API as well as Slot to seated.
-        fetch("http://localhost:3000/tables/" + table.id, tablePacket)
+        fetch("http://www.bengarlock.com:8080/tables/" + table.id, tablePacket)
             .then(res => res.json())
 
-        fetch("http://localhost:3000/slots/" + this.state.current_reservation.id, slotPacket)
+        fetch("http://www.bengarlock.com:8080/slots/" + this.state.current_reservation.id, slotPacket)
             .then(res => res.json())
     }
 
