@@ -25,10 +25,10 @@ class TableStatusForm extends React.Component {
             body: JSON.stringify(data)
         }
 
-        fetch("http://localhost:3000/tables/" + this.props.table.id, packet)
+        fetch("http://www.bengarlock.com:8080/tables/" + this.props.table.id, packet)
             .then(res => res.json())
 
-        fetch("http://localhost:3000/slots/" + this.props.table.reservation_id, packet)
+        fetch("http://www.bengarlock.com:8080/slots/" + this.props.table.reservation_id, packet)
             .then(res => res.json())
     }
 
