@@ -230,12 +230,6 @@ class ModifyReservationForm extends React.Component{
             .then(() => this.props.updateSlots(this.state))
     }
 
-    renderTimeSlotDropDown = () => {
-        let timesArray = []
-        console.log(this.props.slot.book.id)
-    }
-
-
     render(){
         return(
             <div id="wrapper">

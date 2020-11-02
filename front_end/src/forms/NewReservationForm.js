@@ -1,12 +1,14 @@
 import React from "react"
 import "../stylesheets/NewReservationForm.css"
 import SearchItems from "../cards/SearchItems";
+import NewGuestForm from "./NewGuestForm";
 
 class NewReservationForm extends React.Component {
 
     state = {
         search: '',
-        searchResults: []
+        searchResults: [],
+        render_new_guest_form: false
     }
 
     onChangeHandler = (e) => {
@@ -35,6 +37,12 @@ class NewReservationForm extends React.Component {
             slot={this.props.slot}/>)
     }
 
+    toggleNewGuestForm = () => {
+        this.setState({
+            render_new_guest_form: !this.state.render_new_guest_form
+        })
+    }
+
     render(){
         return(
             <div id="wrapper">
@@ -51,10 +59,22 @@ class NewReservationForm extends React.Component {
                             <div>
                                 {this.renderSearchResults()}
                             </div>
-                            {/*<div className="submit-button">
-                                <input style={{backgroundColor: "#486998", width: "150px" }} type="submit" />
-                            </div>*/}
                         </form>
+
+                        <div className="new-guest-form">
+                                {this.state.render_new_guest_form ? <NewGuestForm
+                                    search_data={this.state.search}
+                                    updateGuest={this.props.updateGuest}
+                                    slot={this.props.slot}
+                                    modifyFormSetState={this.props.modifyFormSetState}/> : null}
+
+                            </div>
+                            <div className="reservation-form" onClick={this.toggleNewGuestForm}>
+                                {this.state.render_new_guest_form ? null : <input
+                                    style={{backgroundColor: "#486998", width: "150px" }}
+                                    value="Create Guest"
+                                    type="button" />}
+                            </div>
                     </div>
                 </div>
             </div>
