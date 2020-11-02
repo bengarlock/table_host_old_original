@@ -49,7 +49,6 @@ class Table extends React.Component{
 
     onDragOverHandler = (e) => {
         e.preventDefault()
-
     }
 
     onDragLeaveHandler = (e) => {
@@ -77,7 +76,12 @@ class Table extends React.Component{
 
     render(){
         return(
-            <div id={this.props.table.id} onDragOver={this.onDragOverHandler} onDragLeave={this.onDragLeaveHandler} onDropCapture={this.onDropHandler} onDoubleClick={this.onDoubleClickHandler} onClick={this.onClickHandler}>
+            <div id={this.props.table.id}
+                 onMouseOver={this.onDragOverHandler}
+                 onDragLeave={this.onDragLeaveHandler}
+                 onDropCapture={this.onDropHandler}
+                 onDoubleClick={this.onDoubleClickHandler}
+                 onClick={this.onClickHandler}>
                 <div className={this.props.table.class_name}
                      style={{
                          left: `${this.props.table.position_left}`,

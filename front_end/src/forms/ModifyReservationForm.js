@@ -106,18 +106,20 @@ class ModifyReservationForm extends React.Component{
         } else if (e.target.value === "no-show") {
             let newSlot = this.state.slot
             newSlot.status = e.target.value
-            newSlot.booked = false
 
             this.setState({
                 slot: newSlot
             })
         } else if (e.target.value === "cancelled") {
             let newSlot = this.state.slot
-            newSlot.status = e.target.value
+
+            newSlot.status = "cancelled"
             newSlot.booked = false
+            //set guest back to root user... in this case id:
+            newSlot.guest = 1
 
             this.setState({
-                slot: newSlot
+                slot: newSlot,
             })
         }
     }
@@ -145,12 +147,35 @@ class ModifyReservationForm extends React.Component{
             }, () => {
                 this.patchSlot()
             })
+        } else if (this.state.slot.status === 'cancelled') {
+
+            let newGuest = {
+                id: 1,
+                first_name: "",
+                last_name: "",
+                phone_number: "",
+                guest_notes: "",
+                root_user: true
+            }
+
+            let newSlot = this.state.slot
+            newSlot.status = ''
+
+            this.setState({
+                guest: newGuest,
+                slot: newSlot
+            })
+
+            this.patchSlot()
+
         } else {
             this.patchSlot()
         }
+
     }
 
     patchSlot = () => {
+
         let slotData = {
             guest: this.props.guest.id,
             reservation_notes: this.state.slot.reservation_notes,

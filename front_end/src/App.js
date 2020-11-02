@@ -59,11 +59,15 @@ class App extends React.Component {
         }
     }
 
-    //updating coming from Slot.js using state
+    //updating coming from ModifyReservationForm.js using state
     updateSlots = (state) => {
+        console.log("guest ID is ", state.guest.id)
         const newArray = this.state.slots
         const slotToUpdate = newArray.find(item => item.id === state.slot.id)
+
         slotToUpdate.booked = state.slot.booked
+        slotToUpdate.guest = state.guest
+
         slotToUpdate.guest.id = state.guest.id
         slotToUpdate.guest.first_name = state.guest.first_name
         slotToUpdate.guest.last_name = state.guest.last_name
