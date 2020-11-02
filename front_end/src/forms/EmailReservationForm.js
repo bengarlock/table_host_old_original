@@ -3,11 +3,45 @@ import "../stylesheets/EmailReservationForm.css"
 class EmailReservationForm extends React.Component{
 
 
+    state = {
+        book: '',
+    }
+
+    componentDidMount() {
+        let packet = {
+            "method": "GET",
+            "headers": {
+                "content-type": "application/json",
+                "accept": "application/json"
+            }
+        }
+
+        fetch("http://www.bengarlock.com:8080/books/" + this.props.slot.book + '/', packet)
+            .then(res => res.json())
+            .then(book => this.setState({
+                book: book
+            }))
+    }
+
+
     renderDateWording = () =>{
-        const reservationDate = new Date(this.props.slot.book.date)
+        const reservationDate = new Date(this.state.book.date)
+        let trailer = () => {
+            if (reservationDate.getDate() + 1 === 1) {
+                return "st"
+            } else if (reservationDate.getDate() + 1 === 2) {
+                return 'nd'
+            } else if (reservationDate.getDate() + 1 === 3) {
+                return 'rd'
+            } else {
+                return 'th'
+            }
+        }
+
+
         const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
         const monthsOfYear = ["January", "February", "Mark", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        return daysOfWeek[reservationDate.getDay()] + ', ' + monthsOfYear[reservationDate.getMonth() + 1] + " " + (/*reservationDate.getDate() + 1*/ "1st")
+        return daysOfWeek[reservationDate.getDay()] + ', ' + monthsOfYear[reservationDate.getMonth()] + " " + (reservationDate.getDate() + 1) + trailer()
     }
 
     onClickHandler = (e) => {

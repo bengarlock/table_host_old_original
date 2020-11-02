@@ -15,7 +15,6 @@ class Table extends React.Component{
     }
 
     renderTableColor = () => {
-
         if (this.props.table.status === "done") {
             return "grey"
 
@@ -41,20 +40,14 @@ class Table extends React.Component{
 
     onDropHandler = (e) => {
         e.preventDefault()
-        let table = e.target
-        table.style.update={ backgroundColor: "blue" }
-        this.props.table.status = "seated"
-        this.props.updateSeatedTable(this.props.table)
+        console.log(e.target)
+        //
+        // let table = e.target
+        // table.style.update={ backgroundColor: "blue" }
+        // this.props.table.status = "seated"
+        // this.props.updateSeatedTable(this.props.table)
     }
 
-    onDragOverHandler = (e) => {
-        e.preventDefault()
-    }
-
-    onDragLeaveHandler = (e) => {
-        e.preventDefault()
-
-    }
 
     onDoubleClickHandler = (e) => {
         if (this.props.table.status !== "done") {
@@ -77,11 +70,10 @@ class Table extends React.Component{
     render(){
         return(
             <div id={this.props.table.id}
-                 onMouseOver={this.onDragOverHandler}
-                 onDragLeave={this.onDragLeaveHandler}
-                 onDropCapture={this.onDropHandler}
                  onDoubleClick={this.onDoubleClickHandler}
+                 onDrop={this.onDropHandler}
                  onClick={this.onClickHandler}>
+
                 <div className={this.props.table.class_name}
                      style={{
                          left: `${this.props.table.position_left}`,

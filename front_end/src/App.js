@@ -61,7 +61,6 @@ class App extends React.Component {
 
     //updating coming from ModifyReservationForm.js using state
     updateSlots = (state) => {
-        console.log("guest ID is ", state.guest.id)
         const newArray = this.state.slots
         const slotToUpdate = newArray.find(item => item.id === state.slot.id)
 

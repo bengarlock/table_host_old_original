@@ -54,20 +54,19 @@
     margin: 10px;
 }
 
+/*.last-reservation {*/
+/*    animation: pulse .5s;*/
+/*    animation-iteration-count: 1*/
+/*}*/
 
-.last-reservation {
-    animation: pulse 2s;
-    animation-iteration-count: 5
-}
-
-@keyframes pulse {
-    0% {
-        background-color: #d0cfcf;
-    }
-    50% {
-        background-color: #c0b339;
-   }
-    100% {
-        background-color: #c8c7c7;
-    }
-}
+/*@keyframes pulse {*/
+/*    0% {*/
+/*        background-color: #d0cfcf;*/
+/*    }*/
+/*    50% {*/
+/*        background-color: #c0b339;*/
+/*   }*/
+/*    100% {*/
+/*        background-color: #c8c7c7;*/
+/*    }*/
+/*}*/

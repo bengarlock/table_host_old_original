@@ -94,7 +94,12 @@ class FloorContainer extends React.Component {
     }
 
     renderReservations = () => {
-        let bookedResos = this.props.slots.filter(item => item.booked === true && item.status === 'booked')
+        let bookedResos = this.props.slots.filter(
+            item => item.booked === true && item.status === 'booked' ||
+                item.status === 'confirmed' ||
+                item.status === 'left-message' ||
+                item.status === 'no-answer' ||
+                item.status === 'wrong-number')
         return bookedResos.map(reservation => <Reservation key={reservation.id} reservation={reservation} updateReservation={this.updateReservation}/>)
     }
 
