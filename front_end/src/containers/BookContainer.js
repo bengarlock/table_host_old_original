@@ -52,9 +52,8 @@ class BookContainer extends React.Component {
     }
 
     updateGuest = (guest, slot) => {
+        console.log(guest, slot)
         //takes guest and slot info from search item and merges.  Passes back down to modifyreservation form.
-        console.log(guest)
-
         this.setState({
             guest: guest,
             slot: slot,
@@ -68,9 +67,9 @@ class BookContainer extends React.Component {
             return this.props.slots.map(slot => <Slot key={slot.id} slot={slot} checkSlotStatus={this.checkSlotStatus} />)
         } else {
             return (
-                <div className="closed-message-wrapper">
-                    <div className={"closed-message"}>The Restaurant is closed on this day</div>
-                </div>)
+                <tr className="closed-message-wrapper">
+                    <td className={"closed-message"}>The Restaurant is closed on this day</td>
+                </tr>)
         }
 
     }

@@ -239,14 +239,14 @@ class ModifyReservationForm extends React.Component{
                             <div>
                                 <div id="close" onClick={this.onClickHandler}>Close</div>
                                 <h2>Reservation Form</h2>
-                                <input type="text" value={this.state.guest.first_name} name="first_name" placeholder="First Name" onChange={this.onChangeHandler} />
-                                <input type="text" value={this.state.guest.last_name} name="last_name" placeholder="Last Name" onChange={this.onChangeHandler} />
-                                <input type="text" value={this.state.guest.phone_number} name="phone_number" placeholder="Phone Number" onChange={this.onChangeHandler} />
+                                <input type="text" value={this.state.guest.first_name || ''} name="first_name" placeholder="First Name" onChange={this.onChangeHandler} />
+                                <input type="text" value={this.state.guest.last_name || ''} name="last_name" placeholder="Last Name" onChange={this.onChangeHandler} />
+                                <input type="text" value={this.state.guest.phone_number || ''} name="phone_number" placeholder="Phone Number" onChange={this.onChangeHandler} />
                             </div>
                             <div>
-                                <input type="text" value={this.state.slot.time} name="time" placeholder="Time" onChange={this.onChangeHandler} />
-                                <input type="number" value={this.state.slot.party_size} name="party_size" placeholder="Party Size" onChange={this.onChangeHandler} />
-                                <select value={this.state.slot.status} onChange={this.onChangeHandler} >
+                                <input type="text" value={this.state.slot.time || ''} name="time" placeholder="Time" onChange={this.onChangeHandler} />
+                                <input type="number" value={this.state.slot.party_size || ''} name="party_size" placeholder="Party Size" onChange={this.onChangeHandler} />
+                                <select value={this.state.slot.status || ''} onChange={this.onChangeHandler} >
                                     <option value="booked">Booked</option>
                                     <option value="confirmed">Confirmed</option>
                                     <option value="left-message">Left Message</option>
@@ -258,8 +258,8 @@ class ModifyReservationForm extends React.Component{
                             </div>
 
                                 <label value="Reservation Notes"></label>
-                                <textarea type="text" className="notes" value={this.state.slot.reservation_notes} name="reservation_notes" placeholder="Reservation Notes" onChange={this.onChangeHandler} />
-                            <textarea type="text" className="notes" value={this.state.guest.guest_notes} name="guest_notes" placeholder="Guest Notes" onChange={this.onChangeHandler} />
+                                <textarea type="text" className="notes" value={this.state.slot.reservation_notes || ''} name="reservation_notes" placeholder="Reservation Notes" onChange={this.onChangeHandler} />
+                            <textarea type="text" className="notes" value={this.state.guest.guest_notes || ''} name="guest_notes" placeholder="Guest Notes" onChange={this.onChangeHandler} />
                             <div>
                                 <input style={{backgroundColor: "#486998"}} type="submit" />
                             </div>
