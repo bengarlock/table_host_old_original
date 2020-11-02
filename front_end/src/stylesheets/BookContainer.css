@@ -1,6 +1,7 @@
 .book-container-wrapper {
     position: relative;
     top: 80px;
+    -moz-box-sizing: border-box;
 }
 
 .closed-message-wrapper {
@@ -17,4 +18,12 @@
     align-items: center;
     justify-content: center;
     margin-top: 300px;
+}
+
+@-moz-document url-prefix() {
+  .book-container-wrapper {
+      top: 38px;
+      border: 1px solid black;
+      -moz-box-sizing: border-box;
+  }
 }
