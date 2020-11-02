@@ -1,5 +1,6 @@
 import React from "react"
 import "../stylesheets/ModifyReservationForm.css"
+import Times from "../cards/Times";
 
 
 class ModifyReservationForm extends React.Component{
@@ -11,10 +12,21 @@ class ModifyReservationForm extends React.Component{
     }
 
     componentDidMount() {
-        this.setState({
-            slot: this.props.slot,
-            guest: this.props.guest
-        })
+        let packet = {
+            method: "GET",
+            headers: {
+                "content-type": "application/json",
+                "accept": "application/json"
+            }
+        }
+
+        fetch("http://www.bengarlock.com:8080/books/" + this.props.slot.book + "/", packet)
+            .then(res => res.json())
+            .then(response => this.setState({
+                book: response,
+                slot: this.props.slot,
+                guest: this.props.guest
+            }))
     }
 
     onChangeHandler = (e) => {
@@ -230,6 +242,15 @@ class ModifyReservationForm extends React.Component{
             .then(() => this.props.updateSlots(this.state))
     }
 
+    renderTimeDropDowns = () => {
+        let time_slots = []
+        if (this.state.book) {
+            this.state.book.slots.map(slot => time_slots.includes(slot.time) ? null : time_slots.push(slot.time))
+            return time_slots.map(time => <Times time={time}/>)
+        }
+
+    }
+
     render(){
         return(
             <div id="wrapper">
@@ -244,7 +265,10 @@ class ModifyReservationForm extends React.Component{
                                 <input type="text" value={this.state.guest.phone_number || ''} name="phone_number" placeholder="Phone Number" onChange={this.onChangeHandler} />
                             </div>
                             <div>
-                                <input type="text" value={this.state.slot.time || ''} name="time" placeholder="Time" onChange={this.onChangeHandler} />
+                                <select value={this.state.slot.time || ''} name="time" placeholder="Time" onChange={this.onChangeHandler} >
+                                    {this.renderTimeDropDowns()}
+                                </select>
+
                                 <input type="number" value={this.state.slot.party_size || ''} name="party_size" placeholder="Party Size" onChange={this.onChangeHandler} />
                                 <select value={this.state.slot.status || ''} onChange={this.onChangeHandler} >
                                     <option value="booked">Booked</option>
