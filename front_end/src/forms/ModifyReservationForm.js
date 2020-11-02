@@ -47,6 +47,7 @@ class ModifyReservationForm extends React.Component{
             this.setState({
                 slot: newSlot
             })
+
         } else if (e.target.name === "phone_number") {
             let newGuest = this.state.guest
             newGuest.phone_number = e.target.value
@@ -71,13 +72,16 @@ class ModifyReservationForm extends React.Component{
         } else if (e.target.value === "booked") {
             let newSlot = this.state.slot
             newSlot.status = e.target.value
+            newSlot.booked = true
 
             this.setState({
                 slot: newSlot
+
             })
         } else if (e.target.value === "confirmed") {
             let newSlot = this.state.slot
             newSlot.status = e.target.value
+            newSlot.booked = true
 
             this.setState({
                 slot: newSlot
@@ -85,6 +89,7 @@ class ModifyReservationForm extends React.Component{
         } else if (e.target.value === "left-message") {
             let newSlot = this.state.slot
             newSlot.status = e.target.value
+            newSlot.booked = true
 
             this.setState({
                 slot: newSlot
@@ -92,6 +97,7 @@ class ModifyReservationForm extends React.Component{
         } else if (e.target.value === "no-answer") {
             let newSlot = this.state.slot
             newSlot.status = e.target.value
+            newSlot.booked = true
 
             this.setState({
                 slot: newSlot
@@ -99,6 +105,7 @@ class ModifyReservationForm extends React.Component{
         } else if (e.target.value === "wrong-number") {
             let newSlot = this.state.slot
             newSlot.status = e.target.value
+            newSlot.booked = true
 
             this.setState({
                 slot: newSlot
@@ -106,16 +113,17 @@ class ModifyReservationForm extends React.Component{
         } else if (e.target.value === "no-show") {
             let newSlot = this.state.slot
             newSlot.status = e.target.value
+            newSlot.booked = true
 
             this.setState({
                 slot: newSlot
             })
+
         } else if (e.target.value === "cancelled") {
             let newSlot = this.state.slot
-
-            newSlot.status = "cancelled"
+            newSlot.status = e.target.value
             newSlot.booked = false
-            //set guest back to root user... in this case id:
+            //set guest back to root user... in this case id 1:
             newSlot.guest = 1
 
             this.setState({
