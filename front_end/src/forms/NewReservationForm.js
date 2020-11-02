@@ -14,7 +14,7 @@ class NewReservationForm extends React.Component {
             this.setState({
                 search: e.target.value
             })
-            fetch("http://www.bengarlock.com:8080/guests?first_name=" + e.target.value)
+            fetch("http://www.bengarlock.com:8080/guests/?search=" + e.target.value)
                 .then(res => res.json())
                 .then(results => this.setState({
                     searchResults: results
