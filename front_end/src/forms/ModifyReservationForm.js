@@ -191,7 +191,6 @@ class ModifyReservationForm extends React.Component{
         } else {
             this.patchSlot()
         }
-
     }
 
     patchSlot = () => {
