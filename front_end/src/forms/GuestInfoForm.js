@@ -44,7 +44,8 @@ class GuestInfoForm extends React.Component {
     }
 
     renderGuestHistory = () => {
-        return this.state.slots.map(slot => <GuestHistoryItem key={slot.id} slot={slot}/>)
+        console.log(this.state.slots)
+        //return this.state.slots.map(slot => <GuestHistoryItem key={slot.id} slot={slot}/>)
     }
 
     render(){
