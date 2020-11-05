@@ -24,8 +24,8 @@ class DateCalendar extends Component {
                 <main>
                     <Calendar
                         onChange={this.onChange}
-                        showWeekNumbers
-                        value={value}
+                        showWeekNumbers={false}
+                        value={this.state.date}
                     />
                 </main>
             </div>
