@@ -18,7 +18,7 @@ class DateCalendar extends Component {
     }
 
     render() {
-        const { value } = this.state;
+
         return (
             <div className="calendar-container">
                 <main>
