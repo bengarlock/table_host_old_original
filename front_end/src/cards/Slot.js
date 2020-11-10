@@ -96,14 +96,14 @@ class Slot extends React.Component {
                 onMouseOver={this.onMouseOver}
                 onMouseLeave={this.onMouseLeave}>
 
-                <td style={{width: "100px", textAlign: "center", color: this.state.textColor}}>{this.props.slot.time}</td>
-                <td style={{width: "60px", textAlign: "center", color: this.state.textColor}}>{this.props.slot.party_size}</td>
-                <td style={{width: "300px"}}>{this.props.slot.guest.first_name}</td>
-                <td style={{width: "300px"}}>{this.props.slot.guest.last_name}</td>
-                <td style={{width: "200px", textAlign: "center"}}>{this.props.slot.guest.phone_number}</td>
-                <td style={{width: "400px"}}>{this.props.slot.reservation_notes}</td>
-                <td style={{width: "400px"}}>{this.props.slot.guest.guest_notes}</td>
-                <td style={{textAlign: "center"}}>{this.props.slot.status}</td>
+                <td id="time" style={{color: this.state.textColor}}>{this.props.slot.time}</td>
+                <td id="party-size" style={{color: this.state.textColor}}>{this.props.slot.party_size}</td>
+                <td id="first-name">{this.props.slot.guest.first_name}</td>
+                <td id="last-name">{this.props.slot.guest.last_name}</td>
+                <td id="phone-number">{this.props.slot.guest.phone_number}</td>
+                <td id='reservation-notes'>{this.props.slot.reservation_notes}</td>
+                <td id='guest-notes'>{this.props.slot.guest.guest_notes}</td>
+                <td id='status'>{this.props.slot.status}</td>
             </tr>
         )
     }

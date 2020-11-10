@@ -20,6 +20,10 @@
     margin-top: 300px;
 }
 
+table {
+    table-layout: auto;
+}
+
 @-moz-document url-prefix() {
   .book-container-wrapper {
       top: 38px;

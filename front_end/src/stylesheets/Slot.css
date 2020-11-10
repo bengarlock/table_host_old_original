@@ -1,0 +1,51 @@
+tr {
+    overflow: hidden;
+    height: 20px;
+
+}
+
+td {
+    overflow: hidden;
+}
+
+#time {
+    width: 100px;
+    text-align: center;
+}
+
+#party-size {
+    width: 20px;
+    text-align: center;
+}
+
+#first-name {
+    width: 150px;
+}
+
+#last-name {
+    width: 150px;
+}
+
+#phone-number {
+    width: 200px;
+    white-space: nowrap;
+    overflow:hidden;
+}
+
+#reservation-notes {
+    max-width: 400px;
+    white-space: nowrap;
+    overflow:hidden;
+}
+
+#guest-notes {
+    max-width: 400px;
+    white-space: nowrap;
+    overflow:hidden;
+}
+
+#status {
+    width: 90px;
+    white-space: nowrap;
+    overflow:hidden;
+}
