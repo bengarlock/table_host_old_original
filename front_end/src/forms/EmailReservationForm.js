@@ -16,7 +16,7 @@ class EmailReservationForm extends React.Component{
             }
         }
 
-        fetch("https://database.bengarlock.com/books/" + this.props.slot.book + '/', packet)
+        fetch("https://www.bengarlock.com:8080/books/" + this.props.slot.book + '/', packet)
             .then(res => res.json())
             .then(book => this.setState({
                 book: book

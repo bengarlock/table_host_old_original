@@ -20,7 +20,7 @@ class ModifyReservationForm extends React.Component{
             }
         }
 
-        fetch("https://database.bengarlock.com/books/" + this.props.slot.book + "/", packet)
+        fetch("https://www.bengarlock.com:8080/books/" + this.props.slot.book + "/", packet)
             .then(res => res.json())
             .then(response => this.setState({
                 book: response,
@@ -213,7 +213,7 @@ class ModifyReservationForm extends React.Component{
             body: JSON.stringify(slotData)
         }
 
-        fetch("https://database.bengarlock.com/slots/" + this.props.slot.id  + '/', slotPacket)
+        fetch("https://www.bengarlock.com:8080/slots/" + this.props.slot.id  + '/', slotPacket)
             .then(res => res.json())
             .then(() => this.props.modifyFormSetState())
             .then(() => this.props.emailFormState())
@@ -236,7 +236,7 @@ class ModifyReservationForm extends React.Component{
             },
             body: JSON.stringify(guestData)
         }
-        fetch("https://database.bengarlock.com/guests/" + this.props.guest.id + '/', guestPacket)
+        fetch("https://www.bengarlock.com:8080/guests/" + this.props.guest.id + '/', guestPacket)
             .then(res => res.json())
             .then(() => this.props.updateSlots(this.state))
     }
