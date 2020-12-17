@@ -30,13 +30,13 @@ class TableStatusForm extends React.Component {
     }
 
     updateTable = (data, packet) => {
-        fetch("http://www.bengarlock.com:8080/tables/" + this.props.table.id +"/" , packet)
+        fetch("https://database.bengarlock.com/tables/" + this.props.table.id +"/" , packet)
             .then(res => res.json())
 
     }
 
     updateSlot = (data, packet) => {
-        fetch("http://www.bengarlock.com:8080/slots/" + this.props.table.reservation_id + "/", packet)
+        fetch("https://database.bengarlock.com/slots/" + this.props.table.reservation_id + "/", packet)
             .then(res => res.json())
     }
 

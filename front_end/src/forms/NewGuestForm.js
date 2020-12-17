@@ -66,7 +66,7 @@ class NewGuestForm extends React.Component {
             },
             body: JSON.stringify(data)
         }
-        fetch("http://www.bengarlock.com:8080/guests/", packet)
+        fetch("https://database.bengarlock.com/guests/", packet)
             .then(res => res.json())
             .then(response => this.setState({
                 guest: {
