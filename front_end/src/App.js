@@ -16,7 +16,7 @@ class Tablehost extends React.Component {
     }
 
     setDate = (date) => {
-        let url = "https://database.bengarlock.com/books?date=" + (date.getFullYear() + '-' +
+        let url = "https://www.bengarlock.com:8080/books?date=" + (date.getFullYear() + '-' +
             ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
         this.setState({
             date: date
@@ -29,7 +29,7 @@ class Tablehost extends React.Component {
 
     componentDidMount() {
         let date = new Date()
-        let url = "https://database.bengarlock.com/books?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
+        let url = "https://www.bengarlock.com:8080/books?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
         fetch(url)
             .then(res => res.json())
             .then(book => this.renderSlots(book))
