@@ -29,7 +29,7 @@ class GuestContainer extends React.Component{
     }
 
     fetchSearch = (search) => {
-        fetch("https://www.bengarlock.com:8080/guests/?search=" + search)
+        fetch(this.props.backendUrl + "/guests/?search=" + search)
             .then(res => res.json())
             .then(results => this.setState({
                     searchResults: results
@@ -41,12 +41,19 @@ class GuestContainer extends React.Component{
     renderSearchResults = () => {
         if (this.state.search === ''){
             let limitedResults = []
-            return limitedResults.map(result => <GuestSearchItem key={result.id} result={result} updateCurrentGuest={this.updateCurrentGuest}/>)
+            return limitedResults.map(result => <GuestSearchItem
+                key={result.id}
+                result={result}
+                updateCurrentGuest={this.updateCurrentGuest}
+                backendUrl={this.props.backendUrl}/>)
 
         } else {
             let newArray = [...this.state.searchResults]
             let limitedResults = newArray.splice(0, 10)
-            return limitedResults.map(result => <GuestSearchItem key={result.id} result={result} updateCurrentGuest={this.updateCurrentGuest}/>)
+            return limitedResults.map(result => <GuestSearchItem
+                key={result.id}
+                result={result}
+                updateCurrentGuest={this.updateCurrentGuest}/>)
         }
     }
 

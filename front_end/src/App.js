@@ -7,6 +7,8 @@ import GuestContainer from "./containers/GuestContainer";
 import ReportsContainer from "./containers/ReportsContainer";
 import { Route } from 'react-router-dom'
 
+const backend_url = 'https://bengarlock.com:8080'
+
 class Tablehost extends React.Component {
 
     state = {
@@ -16,7 +18,7 @@ class Tablehost extends React.Component {
     }
 
     setDate = (date) => {
-        let url = "https://www.bengarlock.com:8080/books?date=" + (date.getFullYear() + '-' +
+        let url = backend_url + '/books?date=' + (date.getFullYear() + '-' +
             ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
         this.setState({
             date: date
@@ -29,7 +31,7 @@ class Tablehost extends React.Component {
 
     componentDidMount() {
         let date = new Date()
-        let url = "https://www.bengarlock.com:8080/books?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
+        let url = backend_url + "/books?date=" + (date.getFullYear() + '-' + ('0' + (date.getMonth()+1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2))
         fetch(url)
             .then(res => res.json())
             .then(book => this.renderSlots(book))
@@ -86,12 +88,17 @@ class Tablehost extends React.Component {
         return (
             <>
                 <Header date={this.state.date} setDate={this.setDate}/>
-                <Route exact path="/" render={ () => <BookContainer date={this.state.date} slots={this.state.slots} updateSlots={this.updateSlots}/> } />
+                <Route exact path="/" render={ () => <BookContainer
+                    date={this.state.date}
+                    slots={this.state.slots}
+                    updateSlots={this.updateSlots}
+                    backendUrl={backend_url}/> } />
                 <Route exact path="/floor" render={ () => <FloorContainer
                     date={this.state.date} slots={this.state.slots}
                     updateSlotsfromObject={this.updateSlotsfromObject}
-                    updateTableArray={this.updateTableArray} /> } />
-                <Route exact path="/guests" render={ () => <GuestContainer /> } />
+                    updateTableArray={this.updateTableArray}
+                    backendUrl={backend_url}/> } />
+                <Route exact path="/guests" render={ () => <GuestContainer backendUrl={backend_url}/> } />
                 <Route exact path="/reports" render={ () => <ReportsContainer date={this.state.date} slots={this.state.slots} /> } />
 
             </>

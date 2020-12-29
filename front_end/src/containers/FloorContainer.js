@@ -17,7 +17,7 @@ class FloorContainer extends React.Component {
     }
 
     componentDidMount() {
-        fetch("https://www.bengarlock.com:8080/tables/")
+        fetch(this.props.backendUrl + "/tables/")
             .then(res => res.json())
             .then(tables => this.setState({
                 tables: tables
@@ -67,10 +67,10 @@ class FloorContainer extends React.Component {
         }
 
         //updates table status in API as well as Slot to seated.
-        fetch("https://www.bengarlock.com:8080/tables/" + table.id + "/", tablePacket)
+        fetch(this.props.backendUrl + "/tables/" + table.id + "/", tablePacket)
             .then(res => res.json())
 
-        fetch("https://www.bengarlock.com:8080/slots/" + this.state.current_reservation.id + "/", slotPacket)
+        fetch(this.props.backendUrl + "/slots/" + this.state.current_reservation.id + "/", slotPacket)
             .then(res => res.json())
     }
 
@@ -94,17 +94,26 @@ class FloorContainer extends React.Component {
     }
 
     renderReservations = () => {
-        let bookedResos = this.props.slots.filter(
-            item => item.booked === true && item.status === 'booked' ||
-                item.status === 'confirmed' ||
-                item.status === 'left-message' ||
-                item.status === 'no-answer' ||
-                item.status === 'wrong-number')
-        return bookedResos.map(reservation => <Reservation key={reservation.id} reservation={reservation} updateReservation={this.updateReservation}/>)
+        let bookedResos = this.props.slots.filter(item =>
+            (item.booked) &&
+            (item.status === 'booked') ||
+            (item.status === 'confirmed') ||
+            (item.status === 'left-message') ||
+            (item.status === 'no-answer') ||
+            (item.status === 'wrong-number')
+        )
+
+        return bookedResos.map(reservation => <Reservation
+            key={reservation.id}
+            reservation={reservation}
+            updateReservation={this.updateReservation}/>)
     }
 
     renderFloorPlan = () => {
-        return this.state.tables.map(table => <Table key={table.id} table={table} updateSeatedTable={this.updateSeatedTable} renderStatusForm={this.renderStatusForm} />)
+        return this.state.tables.map(table => <Table
+            key={table.id} table={table}
+            updateSeatedTable={this.updateSeatedTable}
+            renderStatusForm={this.renderStatusForm} />)
     }
 
     render() {
@@ -118,16 +127,16 @@ class FloorContainer extends React.Component {
                     {this.renderFloorPlan()}
                 </div>
                 <div>
-                    {this.state.render_status_form ? <TableStatusForm table={this.state.current_table}
-                                                                      renderStatusForm={this.renderStatusForm}
-                                                                      updateTableArray={this.updateTableArray}/> : null}
+                    {this.state.render_status_form ?
+                        <TableStatusForm
+                            table={this.state.current_table}
+                            renderStatusForm={this.renderStatusForm}
+                            updateTableArray={this.updateTableArray}/> : null}
                 </div>
             </div>
 
         )
     }
-
-
 }
 
 export default FloorContainer

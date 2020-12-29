@@ -93,13 +93,15 @@ class BookContainer extends React.Component {
                 </table>
 
                 <div>
-                    {this.state.modify_form ? <ModifyReservationForm
+                    {this.state.modify_form ?
+                        <ModifyReservationForm
                         key={this.state.slot.id}
                         slot={this.state.slot}
                         guest={this.state.guest}
                         modifyFormSetState={this.modifyFormSetState}
                         updateSlots={this.props.updateSlots}
-                        emailFormState = {this.emailFormSetState}/> : null }
+                        emailFormState = {this.emailFormSetState}
+                        backendUrl={this.props.backendUrl}/> : null }
                 </div>
                 <div>
                     {this.state.new_form ?
@@ -109,7 +111,9 @@ class BookContainer extends React.Component {
                             newFormSetState={this.newFormSetState}
                             modifyFormSetState={this.modifyFormSetState}
                             updateGuest={this.updateGuest}
-                            updateSlots={this.props.updateSlots}/> : null }
+                            updateSlots={this.props.updateSlots}
+                            backendUrl={this.props.backendUrl}/> : null }
+
                 </div>
                 <div>
                     {this.state.email_form ?
@@ -117,7 +121,8 @@ class BookContainer extends React.Component {
                             key={this.state.slot.id}
                             slot={this.state.slot}
                             guest={this.state.guest}
-                            emailFormState={this.emailFormSetState}/> : null}
+                            emailFormState={this.emailFormSetState}
+                            backendUrl={this.props.backendUrl}/> : null}
                 </div>
 
             </div>

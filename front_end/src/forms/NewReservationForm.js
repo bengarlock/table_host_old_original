@@ -16,7 +16,7 @@ class NewReservationForm extends React.Component {
             this.setState({
                 search: e.target.value
             })
-            fetch("https://www.bengarlock.com:8080/guests/?search=" + e.target.value)
+            fetch(this.props.backendUrl + "/guests/?search=" + e.target.value)
                 .then(res => res.json())
                 .then(results => this.setState({
                     searchResults: results
@@ -53,7 +53,12 @@ class NewReservationForm extends React.Component {
                                 <div id="close" onClick={this.props.newFormSetState}>Close</div>
                                 <h2>Search For Guest</h2>
                                 <div className="search-box">
-                                    <input  type="text" value={this.state.search} name="search" placeholder="Guest Search"  autoComplete="off" onChange={this.onChangeHandler} />
+                                    <input  type="text"
+                                            value={this.state.search}
+                                            name="search"
+                                            placeholder="Guest Search"
+                                            autoComplete="off"
+                                            onChange={this.onChangeHandler} />
                                 </div>
                             </div>
                             <div>
@@ -66,7 +71,8 @@ class NewReservationForm extends React.Component {
                                     search_data={this.state.search}
                                     updateGuest={this.props.updateGuest}
                                     slot={this.props.slot}
-                                    modifyFormSetState={this.props.modifyFormSetState}/> : null}
+                                    modifyFormSetState={this.props.modifyFormSetState}
+                                    backendUrl={this.props.backendUrl}/> : null}
 
                             </div>
                             <div className="reservation-form" onClick={this.toggleNewGuestForm}>

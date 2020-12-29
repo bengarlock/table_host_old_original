@@ -66,7 +66,7 @@ class NewGuestForm extends React.Component {
             },
             body: JSON.stringify(data)
         }
-        fetch("https://www.bengarlock.com:8080/guests/", packet)
+        fetch(this.props.backendUrl + "/guests/", packet)
             .then(res => res.json())
             .then(response => this.setState({
                 guest: {
@@ -130,9 +130,21 @@ class NewGuestForm extends React.Component {
 
             <div>
                 <form onSubmit={this.onSubmitHandler} className="reservation-form">
-                    <input name = "first-name" type="text" value={this.state.guest.first_name || ''} onChange={this.onChangeHandler} placeholder="First Name" />
-                    <input name = "last-name" type="text" value={this.state.guest.last_name || ''} onChange={this.onChangeHandler} placeholder="Last Name" />
-                    <input name = "phone-number" type="text" value={this.state.guest.phone_number || ''} onChange={this.onChangeHandler} placeholder="Phone Number" /><br />
+                    <input name = "first-name"
+                           type="text"
+                           value={this.state.guest.first_name || ''}
+                           onChange={this.onChangeHandler}
+                           placeholder="First Name" />
+                    <input name = "last-name"
+                           type="text"
+                           value={this.state.guest.last_name || ''}
+                           onChange={this.onChangeHandler}
+                           placeholder="Last Name" />
+                    <input name = "phone-number"
+                           type="text"
+                           value={this.state.guest.phone_number || ''}
+                           onChange={this.onChangeHandler}
+                           placeholder="Phone Number" /><br />
                     <input name = "Create Guest" type="submit" />
                 </form>
             </div>

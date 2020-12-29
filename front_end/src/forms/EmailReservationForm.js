@@ -16,7 +16,7 @@ class EmailReservationForm extends React.Component{
             }
         }
 
-        fetch("https://www.bengarlock.com:8080/books/" + this.props.slot.book + '/', packet)
+        fetch(this.props.backendUrl + "/books/" + this.props.slot.book + '/', packet)
             .then(res => res.json())
             .then(book => this.setState({
                 book: book
@@ -40,8 +40,24 @@ class EmailReservationForm extends React.Component{
 
 
         const daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-        const monthsOfYear = ["January", "February", "Mark", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-        return daysOfWeek[reservationDate.getDay()] + ', ' + monthsOfYear[reservationDate.getMonth()] + " " + (reservationDate.getDate() + 1) + trailer()
+        const monthsOfYear = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ]
+        return (
+            daysOfWeek[reservationDate.getDay()] + ', ' +
+            monthsOfYear[reservationDate.getMonth()] + " " +
+            (reservationDate.getDate() + 1) + trailer())
     }
 
     onClickHandler = (e) => {
@@ -67,7 +83,9 @@ class EmailReservationForm extends React.Component{
                             <div>
                                 <div id="close" onClick={this.onClickHandler}>Close</div>
                                 <h2 style={{padding: "10px"}}>Reservation Confirmation</h2>
-                                <div style={{padding: "10px", fontWeight: "900"}}>Reservation has been confirmed for: </div>
+                                <div style={{padding: "10px", fontWeight: "900"}}>
+                                    Reservation has been confirmed for:
+                                </div>
                                 <div>{this.props.guest.first_name} {this.props.guest.last_name}</div>
                                 <div>{this.renderDateWording()}</div>
                                 <div>for {this.props.slot.party_size} people</div>
@@ -75,7 +93,10 @@ class EmailReservationForm extends React.Component{
                                 <br />
                                 <div>Would you like a confirmation email?</div>
 
-                                <input style={{width: "300px"}} type="text" name="email" placeholder="Email" autoComplete="off" />
+                                <input style={{width: "300px"}}
+                                       type="text" name="email"
+                                       placeholder="Email"
+                                       autoComplete="off" />
                             </div>
                             <input style={{backgroundColor: "#486998", color: "white"}} type="submit" value="Send Email"/>
                         </form>
