@@ -79,7 +79,7 @@ class BookContainer extends React.Component {
                 <table style={{fontWeight: "bold"}}>
                     <tbody className="book-container-wrapper">
                     <tr className="header-title-bar">
-                        <th style={{textAlign: "center"}}>Time</th>
+                        <th style={{textAlign: "center"}} id="time">Time</th>
                         <th style={{textAlign: "center"}}>Size</th>
                         <th style={{textAlign: "center"}}>First Name</th>
                         <th style={{textAlign: "center"}}>Last Name</th>

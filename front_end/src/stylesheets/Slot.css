@@ -1,14 +1,14 @@
 tr {
-    overflow: hidden;
     height: 20px;
-
 }
 
 td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
     overflow: hidden;
 }
 
-#time {
+td#time {
     width: 100px;
     text-align: center;
 }
@@ -33,15 +33,17 @@ td {
 }
 
 #reservation-notes {
-    max-width: 400px;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    overflow:hidden;
+    overflow: hidden;
+    max-width: 400px;
 }
 
 #guest-notes {
     max-width: 400px;
+    text-overflow: ellipsis;
     white-space: nowrap;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 #status {
@@ -49,3 +51,8 @@ td {
     white-space: nowrap;
     overflow:hidden;
 }
+
+/*.header-title-bar {*/
+/*    position: fixed;*/
+/*    width: 100%;*/
+/*}*/
