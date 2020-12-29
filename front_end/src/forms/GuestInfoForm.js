@@ -1,5 +1,5 @@
 import React from 'react'
-import GuestHistoryItem from "../cards/GuestHistoryItem";
+//import GuestHistoryItem from "../cards/GuestHistoryItem";
 import "../stylesheets/GuestInfoForm.css"
 
 class GuestInfoForm extends React.Component {

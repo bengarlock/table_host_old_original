@@ -94,8 +94,9 @@ class FloorContainer extends React.Component {
     }
 
     renderReservations = () => {
-        let bookedResos = this.props.slots.filter(item =>
-            (item.booked) &&
+        let bookedResos = this.props.slots.filter(item => (item.booked))
+
+        let bookedStatusResos = bookedResos.filter(item =>
             (item.status === 'booked') ||
             (item.status === 'confirmed') ||
             (item.status === 'left-message') ||
@@ -103,7 +104,7 @@ class FloorContainer extends React.Component {
             (item.status === 'wrong-number')
         )
 
-        return bookedResos.map(reservation => <Reservation
+        return bookedStatusResos.map(reservation => <Reservation
             key={reservation.id}
             reservation={reservation}
             updateReservation={this.updateReservation}/>)
