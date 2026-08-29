@@ -132,7 +132,8 @@ class FloorContainer extends React.Component {
                         <TableStatusForm
                             table={this.state.current_table}
                             renderStatusForm={this.renderStatusForm}
-                            updateTableArray={this.updateTableArray}/> : null}
+                            updateTableArray={this.updateTableArray}
+                            backendUrl={this.props.backendUrl}/> : null}
                 </div>
             </div>
 
