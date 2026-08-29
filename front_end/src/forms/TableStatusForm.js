@@ -30,13 +30,13 @@ class TableStatusForm extends React.Component {
     }
 
     updateTable = (data, packet) => {
-        fetch("https://www.bengarlock.com:8080/tables/" + this.props.table.id +"/" , packet)
+        fetch(this.props.backendUrl + "/tables/" + this.props.table.id +"/" , packet)
             .then(res => res.json())
 
     }
 
     updateSlot = (data, packet) => {
-        fetch("https://www.bengarlock.com:8080/slots/" + this.props.table.reservation_id + "/", packet)
+        fetch(this.props.backendUrl + "/slots/" + this.props.table.reservation_id + "/", packet)
             .then(res => res.json())
     }
 
@@ -67,4 +67,3 @@ class TableStatusForm extends React.Component {
 }
 
 export default TableStatusForm
-
