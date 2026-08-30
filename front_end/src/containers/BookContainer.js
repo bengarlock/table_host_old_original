@@ -86,7 +86,6 @@ class BookContainer extends React.Component {
                         <th style={{textAlign: "center"}}>Phone Number</th>
                         <th style={{textAlign: "center"}}>Reservation Notes</th>
                         <th style={{textAlign: "center"}}>Guest Notes</th>
-                        <th style={{textAlign: "center"}}>Table</th>
                         <th style={{textAlign: "center"}}>Status</th>
                     </tr>
                         {this.renderSlots()}

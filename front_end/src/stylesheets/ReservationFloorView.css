@@ -1,61 +1,14 @@
-.floor-reservation-card {
-    display: grid;
-    grid-template-columns: 58px 1fr 18px;
-    gap: 12px;
-    align-items: center;
-    min-height: 82px;
-    padding: 12px;
-    border: 1px solid rgba(255,255,255,.12);
-    border-radius: 11px;
-    background: #24435c;
-    cursor: grab;
-    transition: transform .16s ease, background-color .16s ease;
+.reservation-time {
+    font-size: 15px;
+    padding: 10px;
 }
 
-.floor-reservation-card:hover {
-    transform: translateY(-1px);
-    background: #2b4e69;
+.reservation-party-size {
+    font-size: 15px;
+    padding: 10px;
 }
 
-.floor-reservation-card.is-selected,
-.floor-reservation-card:focus-visible {
-    border-color: #f4c56b;
-    background: #315976;
-    box-shadow: 0 0 0 3px rgba(244, 197, 107, .18);
-    outline: none;
-}
-
-.floor-reservation-card:active {
-    cursor: grabbing;
-}
-
-.floor-reservation-time {
-    color: #f4c56b;
-    font-size: 14px;
-    font-weight: 800;
-    text-align: center;
-}
-
-.floor-reservation-details h3 {
-    margin: 0 0 3px;
-    font-size: 16px;
-    line-height: 1.15;
-}
-
-.floor-reservation-details span,
-.floor-reservation-details p {
-    color: #b9cbd6;
-    font-size: 12px;
-}
-
-.floor-reservation-details p {
-    margin: 4px 0 0;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-}
-
-.floor-drag-handle {
-    color: #7993a3;
-    font-size: 20px;
+.reservation-guest-name {
+    font-size: 15px;
+    padding: 5px;
 }
