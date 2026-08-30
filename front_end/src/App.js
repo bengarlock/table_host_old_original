@@ -41,16 +41,6 @@ class Tablehost extends React.Component {
             .then(book => this.renderSlots(book))
     }
 
-    updateTableArray = (table) => {
-        const newArray = [...this.state.tables]
-        const tableToUpdate = newArray.find(item => item.id === table.id)
-        tableToUpdate.status = table.status
-
-        this.setState({
-            tables: newArray
-        })
-    }
-
     renderSlots = (book) => {
         if (book[0]) {
             book[0].slots.sort((a, b) => (a.id > b.id) ? 1 : -1)
@@ -66,7 +56,7 @@ class Tablehost extends React.Component {
 
     //updating coming from ModifyReservationForm.js using state
     updateSlots = (state) => {
-        const newArray = this.state.slots
+        const newArray = [...this.state.slots]
         const slotToUpdate = newArray.find(item => item.id === state.slot.id)
 
         slotToUpdate.booked = state.slot.booked
@@ -87,6 +77,12 @@ class Tablehost extends React.Component {
         })
     }
 
+    updateSlotFromFloor = (updatedSlot) => {
+        this.setState(state => ({
+            slots: state.slots.map(slot => slot.id === updatedSlot.id ? {...slot, ...updatedSlot} : slot)
+        }))
+    }
+
 
     render() {
         return (
@@ -99,8 +95,7 @@ class Tablehost extends React.Component {
                     backendUrl={backend_url}/> } />
                 <Route exact path="/floor" render={ () => <FloorContainer
                     date={this.state.date} slots={this.state.slots}
-                    updateSlotsfromObject={this.updateSlotsfromObject}
-                    updateTableArray={this.updateTableArray}
+                    updateSlot={this.updateSlotFromFloor}
                     backendUrl={backend_url}/> } />
                 <Route exact path="/guests" render={ () => <GuestContainer backendUrl={backend_url}/> } />
                 <Route exact path="/reports" render={ () => <ReportsContainer date={this.state.date} slots={this.state.slots} /> } />
