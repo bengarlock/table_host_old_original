@@ -7,6 +7,7 @@ readonly NPM_BIN=/home/deploy/.local/node-v22/bin/npm
 readonly NODE_BIN_DIR=/home/deploy/.local/node-v22/bin
 readonly RUNTIME_WRAPPER=/home/deploy/.local/bin/table-host-legacy-staging-run
 readonly SERVICE=table-host-legacy-staging.service
+readonly STATIC_DIR=/var/www/table-host-legacy-staging
 readonly LOCK_DIR=/home/deploy/.local/state/table-host-legacy-staging
 readonly LOCK_FILE="$LOCK_DIR/update.lock"
 
@@ -53,6 +54,11 @@ run_as_deploy env \
   PATH="$NODE_BIN_DIR:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin" \
   NODE_OPTIONS=--openssl-legacy-provider \
   "$NPM_BIN" --prefix "$REPO_DIR/front_end" run build
+
+install -d -o root -g www-data -m 0755 "$STATIC_DIR"
+rsync --archive --delete "$REPO_DIR/front_end/build/" "$STATIC_DIR/"
+chown -R root:www-data "$STATIC_DIR"
+chmod -R u=rwX,g=rX,o=rX "$STATIC_DIR"
 
 run_as_deploy "$RUNTIME_WRAPPER" bash -c '
   set -Eeuo pipefail
