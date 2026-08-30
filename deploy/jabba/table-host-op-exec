@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+CONFIG_FILE="/home/deploy/.config/1password/portfolio_database_production.env"
+OP_BIN="/home/deploy/.local/bin/op-beta"
+
+if [[ ! -r "$CONFIG_FILE" ]]; then
+  echo "Missing 1Password production environment configuration" >&2
+  exit 1
+fi
+
+set -a
+. "$CONFIG_FILE"
+set +a
+
+exec "$OP_BIN" run --environment "$OP_ENVIRONMENT_ID" -- \
+  /bin/sh -c 'export SECRET_KEY_BASE="$TABLE_HOST_SECRET_KEY_BASE"; exec "$@"' table-host "$@"

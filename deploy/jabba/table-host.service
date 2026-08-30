@@ -6,7 +6,7 @@ After=network.target postgresql.service
 Type=simple
 User=deploy
 WorkingDirectory=/home/deploy/Projects/table_host_old_original/back_end
-ExecStart=/home/deploy/.rbenv/versions/2.6.10/bin/bundle exec rails server -e production -b 127.0.0.1 -p 6436
+ExecStart=/home/deploy/.local/bin/table-host-op-exec /home/deploy/.rbenv/versions/2.6.10/bin/bundle exec rails server -e production -b 127.0.0.1 -p 6436
 Restart=on-failure
 RestartSec=5
 
