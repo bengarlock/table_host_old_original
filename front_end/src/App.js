@@ -9,7 +9,7 @@ import { Route } from 'react-router-dom'
 
 const backend_url = process.env.REACT_APP_BACKEND_URL || (
     process.env.NODE_ENV === 'production'
-        ? 'https://bengarlock.com:8080'
+        ? '/firstproject/api'
         : 'http://127.0.0.1:3001'
 )
 

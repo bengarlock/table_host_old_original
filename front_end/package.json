@@ -30,6 +30,7 @@
   },
   "private": true,
   "name": "flatiron_reservations",
+  "homepage": "/firstproject",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

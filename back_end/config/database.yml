@@ -80,6 +80,4 @@ test:
 #
 production:
   <<: *default
-  database: back_end_production
-  username: back_end
-  password: <%= ENV['BACK_END_DATABASE_PASSWORD'] %>
+  database: table_host_production
