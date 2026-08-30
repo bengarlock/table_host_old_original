@@ -44,8 +44,7 @@ run_as_deploy "$RUNTIME_WRAPPER" bash -c '
   set -Eeuo pipefail
   cd "$1/back_end"
   bundle install
-  DISABLE_SPRING=1 bundle exec rails db:create db:migrate
-  DISABLE_SPRING=1 bundle exec rails runner "DemoDataSeeder.call"
+  DISABLE_SPRING=1 bundle exec rails db:prepare
   DISABLE_SPRING=1 bundle exec rails test
 ' -- "$REPO_DIR"
 
