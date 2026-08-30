@@ -14,6 +14,20 @@ run_as_deploy() {
   runuser -u deploy -- "$@"
 }
 
+wait_for_url() {
+  local url="$1"
+  shift
+
+  for _attempt in {1..30}; do
+    if curl --fail --silent "$@" "$url" >/dev/null 2>&1; then
+      return 0
+    fi
+    sleep 1
+  done
+
+  curl --fail --silent --show-error "$@" "$url" >/dev/null
+}
+
 install -d -o deploy -g deploy -m 0755 "$LOCK_DIR"
 exec 9>"$LOCK_FILE"
 flock -w 1800 9
@@ -50,7 +64,7 @@ run_as_deploy "$RUNTIME_WRAPPER" bash -c '
 ' -- "$REPO_DIR"
 
 systemctl restart "$SERVICE"
-curl --fail --silent --show-error http://127.0.0.1:6436/tables >/dev/null
-curl --fail --silent --show-error -H 'Host: DS9' http://127.0.0.1/firstproject/ >/dev/null
+wait_for_url http://127.0.0.1:6436/tables
+wait_for_url http://127.0.0.1/firstproject/ -H 'Host: DS9'
 
 echo "TableHost legacy staging is healthy at $revision"
