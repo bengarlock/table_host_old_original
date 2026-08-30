@@ -3,15 +3,60 @@ set -euo pipefail
 
 CONFIG_FILE="/home/deploy/.config/1password/portfolio_database_production.env"
 OP_BIN="/home/deploy/.local/bin/op-beta"
+LOCK_FILE="/home/deploy/.config/1password/portfolio-database-op-exec.lock"
+EXPORTED_ENV_NAMES=()
+original_path="$PATH"
+
+cleanup_op_bootstrap() {
+  local name
+
+  pkill -x "$(basename "$OP_BIN")" 2>/dev/null || true
+  for name in "${EXPORTED_ENV_NAMES[@]}"; do
+    unset "$name"
+  done
+  unset OP_OUTPUT OP_SERVICE_ACCOUNT_TOKEN OP_ENVIRONMENT_ID
+  flock -u 9 2>/dev/null || true
+  exec 9>&-
+}
 
 if [[ ! -r "$CONFIG_FILE" ]]; then
   echo "Missing 1Password production environment configuration" >&2
   exit 1
 fi
 
+exec 9>"$LOCK_FILE"
+flock -x 9
+
 set -a
 . "$CONFIG_FILE"
 set +a
 
-exec "$OP_BIN" run --environment "$OP_ENVIRONMENT_ID" -- \
-  /bin/sh -c 'export SECRET_KEY_BASE="$TABLE_HOST_SECRET_KEY_BASE"; export PATH="/home/deploy/.rbenv/versions/2.6.10/bin:$PATH"; exec "$@"' table-host "$@"
+if ! OP_OUTPUT="$("$OP_BIN" --cache=false environment read "$OP_ENVIRONMENT_ID")"; then
+  cleanup_op_bootstrap
+  exit 1
+fi
+
+while IFS= read -r line; do
+  [[ -z "$line" || "$line" == \#* ]] && continue
+  name="${line%%=*}"
+  if [[ ! "$name" =~ ^[A-Za-z_][A-Za-z0-9_]*$ ]]; then
+    echo "Invalid variable name returned by 1Password environment" >&2
+    cleanup_op_bootstrap
+    exit 1
+  fi
+  export "$line"
+  EXPORTED_ENV_NAMES+=("$name")
+done <<< "$OP_OUTPUT"
+
+if [[ -z "${TABLE_HOST_SECRET_KEY_BASE:-}" ]]; then
+  echo "Required 1Password environment variable is missing: TABLE_HOST_SECRET_KEY_BASE" >&2
+  cleanup_op_bootstrap
+  exit 1
+fi
+
+table_host_secret_key_base="$TABLE_HOST_SECRET_KEY_BASE"
+cleanup_op_bootstrap
+export SECRET_KEY_BASE="$table_host_secret_key_base"
+export PATH="/home/deploy/.rbenv/versions/2.6.10/bin:$original_path"
+unset original_path table_host_secret_key_base
+exec "$@"
