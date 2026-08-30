@@ -14,4 +14,4 @@ set -a
 set +a
 
 exec "$OP_BIN" run --environment "$OP_ENVIRONMENT_ID" -- \
-  /bin/sh -c 'export SECRET_KEY_BASE="$TABLE_HOST_SECRET_KEY_BASE"; exec "$@"' table-host "$@"
+  /bin/sh -c 'export SECRET_KEY_BASE="$TABLE_HOST_SECRET_KEY_BASE"; export PATH="/home/deploy/.rbenv/versions/2.6.10/bin:$PATH"; exec "$@"' table-host "$@"
