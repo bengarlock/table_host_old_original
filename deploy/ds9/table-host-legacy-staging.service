@@ -1,0 +1,18 @@
+[Unit]
+Description=TableHost legacy staging Rails API
+After=network.target postgresql.service
+Wants=postgresql.service
+
+[Service]
+Type=simple
+User=deploy
+Group=deploy
+WorkingDirectory=/home/deploy/Projects/table_host_old_original/back_end
+Environment=RAILS_ENV=development
+Environment=RAILS_LOG_TO_STDOUT=1
+ExecStart=/home/deploy/.local/bin/table-host-legacy-staging-run bundle exec rails server -e development -b 127.0.0.1 -p 6436
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
