@@ -1,5 +1,6 @@
 import React from 'react'
 import "../stylesheets/EmailReservationForm.css"
+import { bookIdForSlot } from "../utils/book";
 class EmailReservationForm extends React.Component{
 
 
@@ -8,6 +9,7 @@ class EmailReservationForm extends React.Component{
     }
 
     componentDidMount() {
+        const bookId = bookIdForSlot(this.props.slot)
         let packet = {
             "method": "GET",
             "headers": {
@@ -16,11 +18,18 @@ class EmailReservationForm extends React.Component{
             }
         }
 
-        fetch(this.props.backendUrl + "/books/" + this.props.slot.book + '/', packet)
-            .then(res => res.json())
+        fetch(this.props.backendUrl + "/books/" + bookId + '/', packet)
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`Unable to load book ${bookId}: ${res.status}`)
+                }
+
+                return res.json()
+            })
             .then(book => this.setState({
                 book: book
             }))
+            .catch(error => this.setState({bookLoadError: error.message}))
     }
 
 
