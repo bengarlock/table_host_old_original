@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+export PATH="/home/deploy/.rbenv/versions/2.6.10/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin"
+
+# Load the shared development environment, but keep this legacy app on its own
+# local PostgreSQL database instead of inheriting another app's DATABASE_URL.
+exec /home/deploy/.local/bin/ds9-staging-op-exec env -u DATABASE_URL "$@"

@@ -103,6 +103,7 @@ class Slot extends React.Component {
                 <td id="phone-number">{this.props.slot.guest.phone_number}</td>
                 <td id='reservation-notes'>{this.props.slot.reservation_notes}</td>
                 <td id='guest-notes'>{this.props.slot.guest.guest_notes}</td>
+                <td id='table-names'>{(this.props.slot.tables || []).join(", ")}</td>
                 <td id='status'>{this.props.slot.status}</td>
             </tr>
         )

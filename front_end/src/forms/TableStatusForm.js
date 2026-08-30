@@ -1,69 +1,41 @@
-import React from 'react'
-import "../stylesheets/Forms.css"
+import React from "react"
+import "../stylesheets/TableStatusForm.css"
+import { FLOOR_STATUSES, formatFloorStatus } from "../utils/floor";
 
-class TableStatusForm extends React.Component {
+const TableStatusForm = ({table, reservation, busy, onClose, onStatusChange}) => {
+    const guest = reservation && reservation.guest
 
+    return (
+        <div className="table-status-backdrop" onMouseDown={event => event.target === event.currentTarget && onClose()}>
+            <section className="table-status-panel" aria-labelledby="table-status-title">
+                <button className="table-status-close" onClick={onClose} aria-label="Close table status">×</button>
+                <span className="floor-eyebrow">Table {table.name}</span>
+                <h2 id="table-status-title">{guest ? `${guest.first_name} ${guest.last_name}` : "Seated party"}</h2>
+                {reservation && <p>{reservation.time} · Party of {reservation.party_size}</p>}
 
-    onClickHandler = (e) => {
-        e.preventDefault()
-        this.props.table.status = e.target.name
-        this.props.updateTableArray(this.props.table)
-        this.props.renderStatusForm()
-        this.props.table.status = e.target.name
-
-        const data = {
-            status: e.target.name
-        }
-
-        const packet = {
-            method: "PATCH",
-            headers: {
-                "content-type": "application/json",
-                "accept": "application/json",
-            },
-            body: JSON.stringify(data)
-        }
-
-        this.updateSlot(data, packet)
-        this.updateTable(data, packet)
-
-    }
-
-    updateTable = (data, packet) => {
-        fetch(this.props.backendUrl + "/tables/" + this.props.table.id +"/" , packet)
-            .then(res => res.json())
-
-    }
-
-    updateSlot = (data, packet) => {
-        fetch(this.props.backendUrl + "/slots/" + this.props.table.reservation_id + "/", packet)
-            .then(res => res.json())
-    }
-
-
-    render() {
-        return(
-            <div id="wrapper">
-                <div id="overlay">
-                    <div id="reservation-form-container" >
-                        <form className="reservation-form" onSubmit={this.onSubmitHandler} >
-                            <div>
-                                <h2>Table Status - {this.props.table.name}</h2>
-                            </div>
-                            <input style={{backgroundColor: "red"}} type="button" value="Appetizer" name="appetizer" onClick={this.onClickHandler} />
-                            <input style={{backgroundColor: "orange"}} type="button" value="Entree" name="entree" onClick={this.onClickHandler} />
-                            <input style={{backgroundColor: "#aa2dfc"}} type="button" value="Dessert" name="dessert" onClick={this.onClickHandler} />
-                            <input style={{backgroundColor: "#23fa5c"}} type="button" value="Check Dropped" name="check_dropped" onClick={this.onClickHandler} />
-                            <input style={{backgroundColor: "green"}} type="button" value="Paid" name="paid" onClick={this.onClickHandler} />
-                            <div>
-                                <input style={{backgroundColor: "grey"}} type="button" value="Done" name="done" onClick={this.onClickHandler} />
-                            </div>
-                        </form>
-                    </div>
+                <div className="table-current-status">
+                    <span>Current status</span>
+                    <strong>{formatFloorStatus(table.status)}</strong>
                 </div>
-            </div>
-        )
-    }
+
+                <div className="table-status-options">
+                    {FLOOR_STATUSES.map(status => (
+                        <button key={status.value}
+                                className={table.status === status.value ? "is-current" : ""}
+                                disabled={busy || table.status === status.value}
+                                onClick={() => onStatusChange(status.value)}>
+                            <span className={`status-dot status-${status.value}`}/>
+                            {status.label}
+                        </button>
+                    ))}
+                </div>
+
+                <button className="table-done-button" disabled={busy} onClick={() => onStatusChange("done")}>
+                    {busy ? "Updating…" : "Mark done & clear table"}
+                </button>
+            </section>
+        </div>
+    )
 }
 
 export default TableStatusForm

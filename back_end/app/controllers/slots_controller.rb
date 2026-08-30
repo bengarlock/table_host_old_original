@@ -12,14 +12,17 @@ class SlotsController < ApplicationController
 
   def update
     @slot = Slot.find(params[:id])
-    @slot.update(slot_params)
-    render json: @slot
+    if @slot.update(slot_params)
+      render json: @slot
+    else
+      render json: { errors: @slot.errors.full_messages }, status: :unprocessable_entity
+    end
   end
 
   private
 
   def slot_params
-    params.require(:slot).permit(:time, :book, :party_size, :status, :reservation_notes, :booked, :guest_id, :tables)
+    params.require(:slot).permit(:time, :book, :party_size, :status, :reservation_notes, :booked, :guest_id, tables: [])
   end
 
 end

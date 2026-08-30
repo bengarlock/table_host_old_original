@@ -1,38 +1,33 @@
 import React from "react";
 import "../stylesheets/ReservationFloorView.css"
 
-class Reservation extends React.Component{
+const Reservation = ({reservation, selected, onSelect}) => {
+    const guest = reservation.guest || {}
 
-    state = {
-        reservation: this.props.reservation
+    const onDragStart = (event) => {
+        event.dataTransfer.effectAllowed = "move"
+        event.dataTransfer.setData("application/x-tablehost-reservation", String(reservation.id))
+        event.dataTransfer.setData("text/plain", String(reservation.id))
     }
 
-    onDragHandler = () => {
-        this.setState({
-            reservation: this.props.reservation
-        }, () => this.props.updateReservation(this.state.reservation))
-    }
-
-    /*onMouseLeave = () => {
-        this.setState({
-            reservation: ''
-        }, () => this.props.updateReservation(this.state.reservation))
-    }*/
-
-    render() {
-        return(
-            <div>
-                <div className="reservation-card"  draggable="true" onMouseOver={this.onDragHandler} onMouseLeave={this.onMouseLeave}>
-                    <h3>{this.props.reservation.first_name} {this.props.reservation.last_name}</h3>
-                    <div>
-                        <span className="reservation-time">{this.props.reservation.time} </span>
-                        <span className="reservation-party-size">{this.props.reservation.party_size} </span>
-                        <span className="reservation-guest-name"> {this.props.reservation.guest.first_name} {this.props.reservation.guest.last_name}</span>
-                    </div>
-                </div>
+    return (
+        <article className={`floor-reservation-card ${selected ? "is-selected" : ""}`}
+                 draggable="true"
+                 onDragStart={onDragStart}
+                 onClick={onSelect}
+                 onKeyDown={event => (event.key === "Enter" || event.key === " ") && onSelect()}
+                 role="button"
+                 tabIndex="0"
+                 aria-pressed={selected}>
+            <div className="floor-reservation-time">{reservation.time}</div>
+            <div className="floor-reservation-details">
+                <h3>{guest.first_name} {guest.last_name}</h3>
+                <span>Party of {reservation.party_size}</span>
+                {reservation.reservation_notes && <p>{reservation.reservation_notes}</p>}
             </div>
-        )
-    }
+            <span className="floor-drag-handle" aria-hidden="true">⠿</span>
+        </article>
+    )
 }
 
 export default Reservation
